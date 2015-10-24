@@ -1,3 +1,5 @@
+This is the fork of a great Jekyll theme (the best!). I'm using the theme to build my github blog.
+
 # Minimal Mistakes
 
 **[Minimal Mistakes](http://mmistakes.github.io/minimal-mistakes)** is a two column responsive Jekyll theme perfect for powering your GitHub hosted blog.
