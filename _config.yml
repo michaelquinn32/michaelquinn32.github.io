@@ -1,8 +1,8 @@
 # Site wide configuration
 
-title:            Site Title
+title:            Big Blog of R Adventures
 locale:           en_US
-url:
+url:              http://michaelquinn32.github.io
 
 
 # Jekyll configuration
@@ -26,36 +26,21 @@ kramdown:
 
 # Site owner
 owner:
-  name: Your Name
+  name: Michael Quinn
   avatar: bio-photo.jpg
-  bio: "Describe your self."
-  email:
-  disqus-shortname:
-  twitter: #username
-  facebook: #username
+  bio: "Nerd Dad who spends way too much time thinking about numbers, face-punching and other adventurous things."
+  email: msquinn2@illinois.edu
+  disqus-shortname: michaelquinn32
+  twitter: michaelquinn32
   google:
-    plus: #username
     analytics:
     verify:
     ad-client:
     ad-slot:
   bing-verify:
-  github: #username
-  stackoverflow: #123456/username   from a "http://stackoverflow.com/users/123456/username" link
-  linkedin: #username
-  xing: #username
-  instagram: #username
-  lastfm: #username
-  tumblr: #username
-  pinterest: #username
-  foursquare: #username
-  steam: #username
-  dribbble: #username
-  youtube: #username
-  soundcloud: #username
-  weibo: #username
-  flickr: #username
-  codepen: #username
+  github: michaelquinn32
+  stackoverflow: 5482627/michael-quinn
+  linkedin: michaelquinn32
 
 include: [".htaccess"]
-exclude: ["lib", "config.rb", "Capfile", "config", "log", "Rakefile", "Rakefile.rb", "tmp", "less", "*.sublime-project", "*.sublime-workspace", "test", "spec", "Gruntfile.js", "package.json", "node_modules", "Gemfile", "Gemfile.lock", "LICENSE", "README.md"]
+exclude: ["lib", "config.rb", "Capfile", "config", "log", "Rakefile", "Rakefile.rb", "tmp", "less", "*.sublime-project", "*.sublime-workspace", "test", "spec", "Gruntfile.js", "package.json", "node_modules", "Gemfile", "Gemfile.lock", "LICENSE", "README.md", "sample_posts"]

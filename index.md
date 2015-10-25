@@ -1,9 +1,9 @@
 ---
 layout: home
-excerpt: "A minimal Jekyll theme for your blog by designer Michael Rose."
-tags: [Jekyll, theme, responsive, blog, template]
+excerpt: "A series of tutorials, musings and curia on R programming and data science."
+tags: [R, data science, statistics, functional programming, blog]
 image:
-  feature: sample-image-1.jpg
-  credit: WeGraphics
-  creditlink: http://wegraphics.net/downloads/free-ultimate-blurred-background-pack/
+  feature: main_header.jpg
+  credit:  Superfamous
+  creditlink: http://images.superfamous.com/Interstate-5
 ---
