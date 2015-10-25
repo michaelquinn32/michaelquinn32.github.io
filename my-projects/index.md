@@ -4,9 +4,8 @@ title: Theme Setup
 modified: 2015-10-24
 excerpt: "Michael's ongoing and occassionally updated projects."
 image:
-  feature: sample-image-1.jpg
-  credit: WeGraphics
-  creditlink: http://wegraphics.net/downloads/free-ultimate-blurred-background-pack/
+  feature: projects_main.jpg
+  credit: Michael Quinn
 ---
 
 # Bayesian Portfolio Optimization in R
