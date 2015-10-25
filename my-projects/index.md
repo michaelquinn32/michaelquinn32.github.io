@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Theme Setup
+title: My Projects
 modified: 2015-10-24
 excerpt: "Michael's ongoing and occassionally updated projects."
 image:
