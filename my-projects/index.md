@@ -8,7 +8,7 @@ image:
   credit: Michael Quinn
 ---
 
-# Bayesian Portfolio Optimization in R
+## Bayesian Portfolio Optimization in R
 
 The project was originally a paper that I published in the Central Asia Business Journal, which is [edited by former colleagues at KIMEP university](http://kimep.kz/academics/en/central-asia-business-journal/). I'm sure that the digital edition of the most recent version will eventually go up. Or at least I hope.
 
