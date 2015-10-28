@@ -93,7 +93,7 @@ HTML and CSS are our tools. Mauris a ante. Suspendisse quam sem, consequat at, c
 
 ### An example using R
 
-{% highlight r linenos=table%}
+{% highlight r %}
 # This is a comment
 myfun <- function(x, y) {
     x + y
