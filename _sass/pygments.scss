@@ -12,7 +12,7 @@ pre {
   background: #fff;
   padding: 0;
   line-height: 20px;
-  margin-bottom: 55px;
+  margin-bottom: 40px;
   white-space: pre;
   overflow-x: auto;
   word-break: inherit;
@@ -42,8 +42,10 @@ pre .code {
   border: solid 1px #ddd;
 }
 .highlight pre {
- background: #151515; color: #e8e8d3; background-color: #151515;
-    margin: 0;
+  background: #151515; 
+  color: #e8e8d3; 
+  background-color: #151515;
+  margin: 0;
 }
 .highlight .code {
   width: calc(100% - 50px);
