@@ -7,11 +7,31 @@ Original syntax highlighting from: http://ma08.github.io/css/syntax.css
  * Courtesy of GitHub.com
  */
 
-/*.highlight pre, pre, .highlight .hll { background-color: #f8f8f8; border: 1px solid #ccc; padding: 6px 10px; border-radius: 3px; }*/
-.highlight .hll { background-color: #49483e }
-.highlight pre { background: #272822; color: #f8f8f2 }
-.highlight { background: #272822; color: #f8f8f2; margin-bottom: 25 px }
+pre {
+  border: none;
+  background: #fff;
+  padding: 0;
+  line-height: 28px;
+  margin-bottom: 40px;
+  white-space: pre;
+  overflow-x: auto;
+  word-break: inherit;
+  word-wrap: inherit;
+}
+pre .code {
+  display: block;
+}
 
+/*.highlight pre, pre, .highlight .hll { background-color: #f8f8f8; border: 1px solid #ccc; padding: 6px 10px; border-radius: 3px; }*/
+.highlight .hll { 
+  background-color: 
+  #49483e 
+}
+.highlight { 
+  background: #272822; 
+  color: #f8f8f2; 
+  margin-bottom: 25 px;
+}
 .highlight .gutter {
   width: 50px;
 }
@@ -20,6 +40,8 @@ Original syntax highlighting from: http://ma08.github.io/css/syntax.css
   border: solid 1px #ddd;
 }
 .highlight pre {
+  background: #272822; 
+  color: #f8f8f2;
   margin: 0;
 }
 .highlight .code {
