@@ -32,7 +32,7 @@ pre .code {
     margin-bottom: 25 px;
     padding: 12px;
     font-family: $code-font;
-	@include font(12);
+	@include font(14);
 }
 .highlight .gutter {
   width: 50px;

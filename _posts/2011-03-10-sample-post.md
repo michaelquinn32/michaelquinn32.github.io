@@ -102,6 +102,8 @@ myfun <- function(x, y) {
 1:10 %>% lapply(myfun)
 {% endhighlight %}
 
+This is code after a highlight.
+
 ## Buttons
 
 Make any link standout more when applying the `.btn` class.
