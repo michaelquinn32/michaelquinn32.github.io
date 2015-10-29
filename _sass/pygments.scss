@@ -11,7 +11,7 @@ pre {
   border: none;
   background: #fff;
   padding: 0;
-  line-height: 20px;
+  line-height: 15px;
   margin-bottom: 20px;
   white-space: pre;
   overflow-x: auto;
@@ -29,7 +29,7 @@ pre .code {
     background: #151515; 
     color: #e8e8d3; 
     background-color: #151515;
-    margin-bottom: 25px;
+    margin-bottom: 15px;
     padding: 12px;
     font-family: $code-font;
 	@include font(14);
