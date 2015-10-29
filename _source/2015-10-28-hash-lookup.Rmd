@@ -21,7 +21,7 @@ image:
 </div>
 </section><!-- /#table-of-contents -->
 
-## Introduction
+## Introduction 
 
 Over at the R Language subreddit, [a college student has an interesting problem prompt](https://www.reddit.com/r/Rlanguage/comments/3ptwld/hi_first_time_poster_and_new_r_user_stuck_on_a/). The redditor writes:
 

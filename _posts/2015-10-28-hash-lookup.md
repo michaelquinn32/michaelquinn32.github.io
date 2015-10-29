@@ -6,7 +6,7 @@ tags: [R, Functional Programming, Binning, Hash Tables]
 comments: true
 modified: 2015-10-28
 image: 
-    feature: hash.jpg
+    feature: bigsur.jpg
     credit: Superfamous
     creditlink: http://images.superfamous.com/Big-Sur-slopes
 ---
@@ -21,7 +21,7 @@ image:
 </div>
 </section><!-- /#table-of-contents -->
 
-## Introduction
+## Introduction 
 
 Over at the R Language subreddit, [a college student has an interesting problem prompt](https://www.reddit.com/r/Rlanguage/comments/3ptwld/hi_first_time_poster_and_new_r_user_stuck_on_a/). The redditor writes:
 
@@ -211,8 +211,8 @@ self_lookup(x, nbins = 10, id = 2)
 
 
 {% highlight text %}
-## 0.7035 
-##      7
+## 0.1522 
+##      5
 {% endhighlight %}
 
 
@@ -224,7 +224,7 @@ which(x[2] == sort(x)) - 1
 
 
 {% highlight text %}
-## [1] 73
+## [1] 57
 {% endhighlight %}
 
 The second expression above, which calls `which` tells us the sorted position of `x[2]`. It is 31st largest value, since `sort` is ascending by default. When we use 10 bins, it is in the 3rd bucket of our hash table (again, we're indexing from 0. ARE YOU HAPPY!?!?).
@@ -240,8 +240,8 @@ self_lookup(x, nbins = 10, id = 1:5) %>% unlist
 
 
 {% highlight text %}
-##  0.4321  0.7035 -0.5266 -0.3459  0.4458 
-##       6       7       2       3       6
+## 0.8828 0.1522 0.1952 0.6766 0.6008 
+##      8      5      5      7      7
 {% endhighlight %}
 
 
@@ -253,7 +253,7 @@ self_lookup(x, nbins = 10, id = 1:5) %>% unlist
 
 
 {% highlight text %}
-## [1] 68 73 23 33 69
+## [1] 80 57 59 75 74
 {% endhighlight %}
 
 Which it does. Unfortunately, the continuous example masks an unfortunate quick lurking in our code. What if our value matches multiple bins? By default, our function returns all of the matches. For example, take a random sample of integers between 1 and 10.
@@ -267,20 +267,20 @@ sample(1:10, 100, replace = TRUE) %>% self_lookup(nbins = 10, id = 1:5)
 
 
 {% highlight text %}
-## $`1`
-## [1] 0 1
-## 
-## $`1`
-## [1] 0 1
-## 
 ## $`8`
 ## [1] 6 7
 ## 
-## $`5`
-## [1] 4 5
+## $`10`
+## [1] 9
 ## 
-## $`3`
+## $`4`
 ## [1] 2 3
+## 
+## $`9`
+## [1] 8 9
+## 
+## $`9`
+## [1] 8 9
 {% endhighlight %}
 
 We can see that the value `4` appears in multiple bins. We might want to create another version of our lookup to trim the results and avoid that behavior. Of course, the type of trimming we want might vary depending on the situation, so we should let the user choose. Some good options are the first, last 
@@ -316,8 +316,8 @@ sample(1:10, 100, replace = TRUE) %>% self_lookup_t(nbins = 10, id = 1:5)
 
 
 {% highlight text %}
-##  8  6  2  5 10 
-##  6  4  1  3  8
+## 4 5 5 5 2 
+## 3 4 4 4 0
 {% endhighlight %}
 
 Sure looks like it. The output is a vector, and we have ensured no multiple matches.
@@ -399,7 +399,7 @@ system.time(iris[-5] %>% lapply(cut, 10) %>% data.frame)
 
 {% highlight text %}
 ##    user  system elapsed 
-##   0.001   0.000   0.002
+##   0.001   0.000   0.001
 {% endhighlight %}
 
 
@@ -412,7 +412,7 @@ system.time(iris[-5] %>% lapply(self_lookup_t, 10) %>% data.frame)
 
 {% highlight text %}
 ##    user  system elapsed 
-##   0.207   0.006   0.214
+##   0.234   0.004   0.238
 {% endhighlight %}
 
 Still, we've essentially built a pure R framework for a function like `cut`. More importantly, we've had the chance to see some of the amazing flexibility available in R's lists, and hopefully had a little fun along the way. 
