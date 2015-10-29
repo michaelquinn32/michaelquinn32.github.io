@@ -6,7 +6,7 @@ tags: [R, Functional Programming, Binning, Hash Tables]
 comments: true
 modified: 2015-10-28
 image: 
-    feature: hash.jpg
+    feature: bigsur.jpg
     credit: Superfamous
     creditlink: http://images.superfamous.com/Big-Sur-slopes
 ---
