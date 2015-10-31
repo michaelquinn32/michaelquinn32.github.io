@@ -211,8 +211,8 @@ self_lookup(x, nbins = 10, id = 2)
 
 
 {% highlight text %}
-## 1.4351 
-##      8
+## 0.4962 
+##      6
 {% endhighlight %}
 
 
@@ -224,7 +224,7 @@ which(x[2] == sort(x)) - 1
 
 
 {% highlight text %}
-## [1] 87
+## [1] 65
 {% endhighlight %}
 
 The second expression above, which calls `which` tells us the sorted position of `x[2]`. It is 31st largest value, since `sort` is ascending by default. When we use 10 bins, it is in the 3rd bucket of our hash table (again, we're indexing from 0. ARE YOU HAPPY!?!?).
@@ -240,8 +240,8 @@ self_lookup(x, nbins = 10, id = 1:5) %>% unlist
 
 
 {% highlight text %}
-## -0.2246  1.4351   0.175 -2.6371 -0.0844 
-##       3       8       5       0       4
+##  1.4122  0.4962 -0.1433 -2.5903  -0.301 
+##       9       6       4       0       3
 {% endhighlight %}
 
 
@@ -253,7 +253,7 @@ self_lookup(x, nbins = 10, id = 1:5) %>% unlist
 
 
 {% highlight text %}
-## [1] 38 87 53  0 43
+## [1] 92 65 48  0 37
 {% endhighlight %}
 
 Which it does. Unfortunately, the continuous example masks an unfortunate quick lurking in our code. What if our value matches multiple bins? By default, our function returns all of the matches. For example, take a random sample of integers between 1 and 10.
@@ -267,20 +267,20 @@ sample(1:10, 100, replace = TRUE) %>% self_lookup(nbins = 10, id = 1:5)
 
 
 {% highlight text %}
-## $`1`
+## $`7`
+## [1] 6 7
+## 
+## $`2`
 ## [1] 0 1
 ## 
-## $`8`
-## [1] 7 8
+## $`7`
+## [1] 6 7
 ## 
-## $`9`
+## $`10`
 ## [1] 8 9
 ## 
-## $`5`
-## [1] 5
-## 
-## $`7`
-## [1] 7
+## $`4`
+## [1] 2 3
 {% endhighlight %}
 
 We can see that the value `4` appears in multiple bins. We might want to create another version of our lookup to trim the results and avoid that behavior. Of course, the type of trimming we want might vary depending on the situation, so we should let the user choose. Some good options are the first, last 
@@ -316,8 +316,8 @@ sample(1:10, 100, replace = TRUE) %>% self_lookup_t(nbins = 10, id = 1:5)
 
 
 {% highlight text %}
-##  6  2  8  7 10 
-##  5  1  7  6  9
+##  4  7  6 10  2 
+##  3  6  4  8  1
 {% endhighlight %}
 
 Sure looks like it. The output is a vector, and we have ensured no multiple matches.
@@ -402,7 +402,7 @@ binned %>% tidyr::gather(variable, level) %>%
         ggtitle('Rough histograms')
 {% endhighlight %}
 
-![plot of chunk strange-histogram](http://michaelquinn32.github.io/images/2015-10-28-hash-lookup/strange-histogram-1.png) 
+![plot of chunk rough-histograms](http://michaelquinn32.github.io/images/2015-10-28-hash-lookup/rough-histograms-1.png) 
 
 This obviously isn't the easiest way to get that plot (`geom_histogram` is), but it's nice to have stumbled upon it. In general, `cut` should outperform the functions we've already written, since calls an Internal function called `.bincode`. All of R's internals are written in C. The difference is pretty extreme.
 
@@ -428,7 +428,7 @@ system.time(iris[-5] %>% lapply(self_lookup_t, 10) %>% data.frame)
 
 {% highlight text %}
 ##    user  system elapsed 
-##   0.207   0.005   0.211
+##   0.202   0.006   0.207
 {% endhighlight %}
 
 Still, we've essentially built a pure R framework for a function like `cut`. More importantly, we've had the chance to see some of the amazing flexibility available in R's lists, and hopefully had a little fun along the way. 

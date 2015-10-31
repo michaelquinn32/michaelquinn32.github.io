@@ -22,7 +22,7 @@ local({
                           cache = T,
                           fig.width = 8.5,
                           fig.height = 5)
-    knitr::opts_knit$set(base.dir = 'images/',
+    knitr::opts_knit$set(base.dir = '~/Projects/michaelquinn32.github.io/',
                          base.url = 'http://michaelquinn32.github.io/')
     
     knitr::opts_knit$set(width = 70)

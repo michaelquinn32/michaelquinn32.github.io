@@ -251,7 +251,7 @@ Which answers the redditor's question! She should probably just use `cut`. But a
 
 If we add `tidyr::gather`, we've surprisingly backed our way into a histogram. 
 
-```{r strange-histogram}
+```{r rough-histograms}
 library(ggplot2)
 
 binned %>% tidyr::gather(variable, level) %>%
