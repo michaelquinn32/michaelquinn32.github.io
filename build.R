@@ -15,12 +15,9 @@ local({
     # input/output filenames are passed as two additional arguments to Rscript
     a = commandArgs(TRUE)
     d = gsub('^_|[.][a-zA-Z]+$', '', a[1])
-    knitr::opts_chunk$set(
-        fig.path   = sprintf('figure/%s/', d),
-        cache.path = sprintf('cache/%s/', d)
-    )
+
     # set where you want to host the figures (I store them in my Dropbox Public
-    knitr::opts_chunk$set(fig.path = sprintf('%s/', gsub('^.+/', '', d)),
+    knitr::opts_chunk$set(fig.path = sprintf('images/%s/', gsub('^.+/', '', d)),
                           cache.path = '_cache/',
                           cache = T,
                           fig.width = 8.5,

@@ -247,11 +247,11 @@ binned_f <- iris[-5] %>% lapply(cut, 10) %>% data.frame
 head(binned_f)
 ```
 
-Which answers the redditor's question! She should probably just use `cut`. But at least now we have a full understanding of why!
+Which answers the redditor's question! She should probably just use `cut`. But at least now we have a full understanding of why! Did it work?
 
 If we add `tidyr::gather`, we've surprisingly backed our way into a histogram. 
 
-```{r 2015-10-28-histogram}
+```{r strange-histogram}
 library(ggplot2)
 
 binned %>% tidyr::gather(variable, level) %>%
@@ -262,7 +262,7 @@ binned %>% tidyr::gather(variable, level) %>%
         ggtitle('Rough histograms')
 ```
 
-This obviously isn't the easiest way to get that blot (`geom_histogram` is), but it's nice to have stumbled upon it. In general, `cut` should outperform the functions we've already written, since calls an Internal function called `.bincode`. All of R's internals are written in C. The difference is pretty extreme.
+This obviously isn't the easiest way to get that plot (`geom_histogram` is), but it's nice to have stumbled upon it. In general, `cut` should outperform the functions we've already written, since calls an Internal function called `.bincode`. All of R's internals are written in C. The difference is pretty extreme.
 
 ```{r }
 system.time(iris[-5] %>% lapply(cut, 10) %>% data.frame)
