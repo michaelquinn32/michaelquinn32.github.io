@@ -247,11 +247,11 @@ binned_f <- iris[-5] %>% lapply(cut, 10) %>% data.frame
 head(binned_f)
 ```
 
-Which answers the redditor's question! She should probably just use `cut`. But at least now we have a full understanding of why! Did it work?
+Which answers the redditor's question! She should probably just use `cut`. But at least now we have a full understanding of why! 
 
 If we add `tidyr::gather`, we've surprisingly backed our way into a histogram. 
 
-```{r rough-histograms}
+```{r rough-histogram}
 library(ggplot2)
 
 binned %>% tidyr::gather(variable, level) %>%
