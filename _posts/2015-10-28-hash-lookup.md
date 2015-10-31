@@ -4,7 +4,7 @@ title: "Experimenting with Lists and Hash Tables"
 excerpt: "A simple request from Reddit gives a great opportunity to demonstrate some of the less common features in R's list objects."
 tags: [R, Functional Programming, Binning, Hash Tables]
 comments: true
-modified: 2015-10-28
+modified: 2015-10-30
 image: 
     feature: bigsur.jpg
     credit: Superfamous
@@ -211,8 +211,8 @@ self_lookup(x, nbins = 10, id = 2)
 
 
 {% highlight text %}
-## 0.1522 
-##      5
+## -0.2691 
+##       4
 {% endhighlight %}
 
 
@@ -224,7 +224,7 @@ which(x[2] == sort(x)) - 1
 
 
 {% highlight text %}
-## [1] 57
+## [1] 43
 {% endhighlight %}
 
 The second expression above, which calls `which` tells us the sorted position of `x[2]`. It is 31st largest value, since `sort` is ascending by default. When we use 10 bins, it is in the 3rd bucket of our hash table (again, we're indexing from 0. ARE YOU HAPPY!?!?).
@@ -240,8 +240,8 @@ self_lookup(x, nbins = 10, id = 1:5) %>% unlist
 
 
 {% highlight text %}
-## 0.8828 0.1522 0.1952 0.6766 0.6008 
-##      8      5      5      7      7
+## -0.4921 -0.2691 -1.3578 -0.1604  0.4536 
+##       3       4       0       4       7
 {% endhighlight %}
 
 
@@ -253,7 +253,7 @@ self_lookup(x, nbins = 10, id = 1:5) %>% unlist
 
 
 {% highlight text %}
-## [1] 80 57 59 75 74
+## [1] 34 43  7 48 70
 {% endhighlight %}
 
 Which it does. Unfortunately, the continuous example masks an unfortunate quick lurking in our code. What if our value matches multiple bins? By default, our function returns all of the matches. For example, take a random sample of integers between 1 and 10.
@@ -270,17 +270,17 @@ sample(1:10, 100, replace = TRUE) %>% self_lookup(nbins = 10, id = 1:5)
 ## $`8`
 ## [1] 6 7
 ## 
-## $`10`
-## [1] 9
-## 
 ## $`4`
 ## [1] 2 3
 ## 
-## $`9`
-## [1] 8 9
+## $`7`
+## [1] 5 6
 ## 
-## $`9`
-## [1] 8 9
+## $`2`
+## [1] 0 1
+## 
+## $`7`
+## [1] 5 6
 {% endhighlight %}
 
 We can see that the value `4` appears in multiple bins. We might want to create another version of our lookup to trim the results and avoid that behavior. Of course, the type of trimming we want might vary depending on the situation, so we should let the user choose. Some good options are the first, last 
@@ -316,8 +316,8 @@ sample(1:10, 100, replace = TRUE) %>% self_lookup_t(nbins = 10, id = 1:5)
 
 
 {% highlight text %}
-## 4 5 5 5 2 
-## 3 4 4 4 0
+## 10  6  5  8  7 
+##  9  5  4  7  6
 {% endhighlight %}
 
 Sure looks like it. The output is a vector, and we have ensured no multiple matches.
@@ -388,7 +388,23 @@ head(binned_f)
 
 Which answers the redditor's question! She should probably just use `cut`. But at least now we have a full understanding of why!
 
-In general, `cut` should outperform the functions we've already written, since calls an Internal function called `.bincode`. All of R's internals are written in C. The difference is pretty extreme.
+If we add `tidyr::gather`, we've surprisingly backed our way into a histogram. 
+
+
+{% highlight r %}
+library(ggplot2)
+
+binned %>% tidyr::gather(variable, level) %>%
+    ggplot(aes(x = factor(level))) +
+        geom_bar(width = 1) +
+        facet_wrap(~variable , nrow = 2) +
+        xlab('level') +
+        ggtitle('Rough histograms')
+{% endhighlight %}
+
+![plot of chunk 2015-10-28-histogram](http://michaelquinn32.github.io/2015-10-28-hash-lookup/2015-10-28-histogram-1.png) 
+
+This obviously isn't the easiest way to get that blot (`geom_histogram` is), but it's nice to have stumbled upon it. In general, `cut` should outperform the functions we've already written, since calls an Internal function called `.bincode`. All of R's internals are written in C. The difference is pretty extreme.
 
 
 {% highlight r %}
@@ -399,7 +415,7 @@ system.time(iris[-5] %>% lapply(cut, 10) %>% data.frame)
 
 {% highlight text %}
 ##    user  system elapsed 
-##   0.001   0.000   0.001
+##   0.002   0.000   0.004
 {% endhighlight %}
 
 
@@ -412,7 +428,7 @@ system.time(iris[-5] %>% lapply(self_lookup_t, 10) %>% data.frame)
 
 {% highlight text %}
 ##    user  system elapsed 
-##   0.234   0.004   0.238
+##   0.215   0.005   0.223
 {% endhighlight %}
 
 Still, we've essentially built a pure R framework for a function like `cut`. More importantly, we've had the chance to see some of the amazing flexibility available in R's lists, and hopefully had a little fun along the way. 

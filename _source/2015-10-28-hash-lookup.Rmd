@@ -4,7 +4,7 @@ title: "Experimenting with Lists and Hash Tables"
 excerpt: "A simple request from Reddit gives a great opportunity to demonstrate some of the less common features in R's list objects."
 tags: [R, Functional Programming, Binning, Hash Tables]
 comments: true
-modified: 2015-10-28
+modified: 2015-10-30
 image: 
     feature: bigsur.jpg
     credit: Superfamous
@@ -249,7 +249,20 @@ head(binned_f)
 
 Which answers the redditor's question! She should probably just use `cut`. But at least now we have a full understanding of why!
 
-In general, `cut` should outperform the functions we've already written, since calls an Internal function called `.bincode`. All of R's internals are written in C. The difference is pretty extreme.
+If we add `tidyr::gather`, we've surprisingly backed our way into a histogram. 
+
+```{r 2015-10-28-histogram}
+library(ggplot2)
+
+binned %>% tidyr::gather(variable, level) %>%
+    ggplot(aes(x = factor(level))) +
+        geom_bar(width = 1) +
+        facet_wrap(~variable , nrow = 2) +
+        xlab('level') +
+        ggtitle('Rough histograms')
+```
+
+This obviously isn't the easiest way to get that blot (`geom_histogram` is), but it's nice to have stumbled upon it. In general, `cut` should outperform the functions we've already written, since calls an Internal function called `.bincode`. All of R's internals are written in C. The difference is pretty extreme.
 
 ```{r }
 system.time(iris[-5] %>% lapply(cut, 10) %>% data.frame)

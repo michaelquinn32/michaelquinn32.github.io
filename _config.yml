@@ -17,6 +17,7 @@ sass:
   style: compressed
 gems:
   - jekyll-sitemap
+  - jekyll-feed
 
 kramdown:
   auto_ids: true
@@ -45,4 +46,4 @@ owner:
   linkedin: michaelquinn32
 
 include: [".htaccess"]
-exclude: ["lib", "config.rb", "Capfile", "config", "log", "Rakefile", "Rakefile.rb", "tmp", "less", "*.sublime-project", "*.sublime-workspace", "test", "spec", "Gruntfile.js", "package.json", "node_modules", "Gemfile", "Gemfile.lock", "LICENSE", "README.md", "sample_posts", "michaelquinn32.github.io.Rproj", "_source", "build.R"]
+exclude: ["lib", "config.rb", "Capfile", "config", "log", "Rakefile", "Rakefile.rb", "tmp", "less", "*.sublime-project", "*.sublime-workspace", "test", "spec", "Gruntfile.js", "package.json", "node_modules", "Gemfile", "Gemfile.lock", "LICENSE", "README.md", "sample_posts", "michaelquinn32.github.io.Rproj", "_source", "build.R", "_cache"]

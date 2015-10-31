@@ -20,8 +20,12 @@ local({
         cache.path = sprintf('cache/%s/', d)
     )
     # set where you want to host the figures (I store them in my Dropbox Public
-    knitr::opts_chunk$set(fig.path = sprintf('%s/', gsub('^.+/', '', d)))
-    knitr::opts_knit$set(base.dir = '~/images/',
+    knitr::opts_chunk$set(fig.path = sprintf('%s/', gsub('^.+/', '', d)),
+                          cache.path = '_cache/',
+                          cache = T,
+                          fig.width = 8.5,
+                          fig.height = 5)
+    knitr::opts_knit$set(base.dir = 'images/',
                          base.url = 'http://michaelquinn32.github.io/')
     
     knitr::opts_knit$set(width = 70)
