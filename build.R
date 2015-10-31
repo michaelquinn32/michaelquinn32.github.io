@@ -20,8 +20,11 @@ local({
     knitr::opts_chunk$set(fig.path = sprintf('images/%s/', gsub('^.+/', '', d)),
                           cache.path = '_cache/',
                           cache = T,
-                          fig.width = 13,
-                          fig.height = 7.5)
+                          fig.width = 8,
+                          fig.height = 5,
+                          dpi = 150,
+                          out.width = '800px',
+                          out.height = '500px')
     knitr::opts_knit$set(base.dir = '~/Projects/michaelquinn32.github.io/',
                          base.url = 'http://michaelquinn32.github.io/')
     
