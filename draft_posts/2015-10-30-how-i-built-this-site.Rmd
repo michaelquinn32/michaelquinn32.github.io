@@ -17,3 +17,5 @@ And yet, I built this a healthy portion of this website, on my own, using primar
 This post will cover the process, failures and little amounts of code that wrote to get this blog up and running. Since I'm not a developer, a lot of this might not make much sense. It doesn't always make much sense to me. But it is a working webpage (I think?) stored and edited locally with tools familiar to most statisticians. If that something that suits your fancy, please read on.
 
 # The plan
+
+http://byverdu.github.io/how-to-host-your-blog-at-github-using-jekyll-and-poole/
