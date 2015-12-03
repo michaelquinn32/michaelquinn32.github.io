@@ -60,7 +60,6 @@ GEM
     rb-inotify (0.9.5)
       ffi (>= 0.5.0)
     redcarpet (3.2.2)
-    rouge (1.10.1)
     safe_yaml (1.0.4)
     sass (3.4.13)
     timers (4.0.1)
@@ -78,7 +77,6 @@ DEPENDENCIES
   jekyll
   jekyll-feed
   jekyll-sitemap
-  rouge
 
 BUNDLED WITH
    1.10.6
