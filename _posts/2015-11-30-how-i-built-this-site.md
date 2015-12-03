@@ -52,9 +52,10 @@ If you own a Windows machine, you can install `git` by grabbing the [Github for 
 
 Once Homebrew is installed, you can install the latest version of `git` with the following:
 
-```{r hb, engine='bash', eval= FALSE}
+
+{% highlight bash %}
 brew install git
-```
+{% endhighlight %}
 
 To get started using Github pages, you need a Github account. [That process starts here](https://github.com/). Github has a very nice guide to setting up `git`. [That's here](https://help.github.com/articles/set-up-git/), and there's some very cool tutorials available to get you up to speed using version control:
 
@@ -70,10 +71,11 @@ Github pages support [Jekyll](http://jekyllrb.com/), a tool for creating static 
 
 To install Jekyll, run the following in your terminal. The first call to Homebrew gets us an updated Ruby, and the second gives us Jekyll.
 
-```{r jekyll, engine = 'bash', eval= FALSE}
+
+{% highlight bash %}
 brew install ruby
 gem install jekyll
-```
+{% endhighlight %}
 
 Since `git` is an integral tool in managing our webpage, we'll bootstrap its ability to share projects to get all of the components we need for a website. Fortunately, [Jekyll has a variety of themes](http://jekyllthemes.org/) for us to take advantage of. There's no reason to reinvent the wheel when we don't have to. I went with [Minimal Mistakes by Michael Rose](https://mmistakes.github.io/minimal-mistakes/). All of that beautiful design you see right now is his work. Thanks Michael!
 
@@ -84,18 +86,20 @@ Launching the theme is as simple as forking [his Github repository](https://gith
 All you want in your Github account is the `main` branch. Once everything is cleaned up, rename the repo. You can do this by clicking the settings tab. It's the one with the gear (green pointer). For a personal page, the name of the repository *must* be *your_username.github.io*. No exceptions.  
 You're ready to create your own local copy, grab the ssh address for your site (orange tab) and run the following in the your terminal.
 
-```{r clone, engine = 'bash', eval = FALSE}
+
+{% highlight bash %}
 cd your-projects-folder
 git clone git@github.com:your-username/your-username.github.io.git
-```
+{% endhighlight %}
 
 The rest of the setup mostly involves minimal edits to the `_config.yml`. Before you do that, I would read the [theme setup guide posted by Michael Rose](https://mmistakes.github.io/minimal-mistakes/theme-setup/). Feel free to copy freely from my file. Like the rest of the site, [it's on Github](https://github.com/michaelquinn32/michaelquinn32.github.io/blob/master/_config.yml). When you're ready to go live, push your site to Github.
 
-```{r push, engine = 'bash', eval= FALSE}
+
+{% highlight bash %}
 git add -A
 git commit -m 'My commit message'
 git push -u origin master
-```
+{% endhighlight %}
 
 # Modifying the theme
 
@@ -107,15 +111,17 @@ Honestly, as long as you don't hate Jellybeans, I recommend grabbing my [`_pygme
 
 If you're feeling a bit more beastly, you can automatically generate the style sheets from the command line. To do this, install `pygments` with the following.
 
-```{r pygments, engine = 'bash', eval = FALSE}
+
+{% highlight bash %}
 python -m pip install Pygments
-```
+{% endhighlight %}
 
 With that, you call the following to create the sheet. Replace `default` with your preferred highlighting style.
 
-```{r pygments2, engine = 'bash', eval = FALSE}
+
+{% highlight bash %}
 pygmentize -S default -f html 
-```
+{% endhighlight %}
 
 I also played around a bit with `rouge` and the function `rougify`, which generates these style sheets. Unfortunately, this work was for naught, since Github pages doesn't accept it. `pygments` is a much better bet.
 
@@ -131,9 +137,10 @@ This is a bit more complicated, and it took me awhile to get running. Go through
 
 Once you're ready to install Analytics to your page, create a new file in your `_includes` folder. Call it `_google_tag_tracker.html`. [Here's what my file looks like](https://github.com/michaelquinn32/michaelquinn32.github.io/blob/master/_includes/_google_tag_tracker.html). Then, open up `_layouts/home.html` and add the following below the very first body tag. 
 
-```{r analytics, eval = FALSE}
+
+{% highlight r %}
 {% include _google_tag_tracker.html %}
-```
+{% endhighlight %}
 
 You might want to install [the Google Analytics Debugger for Chrome](https://chrome.google.com/webstore/detail/google-analytics-debugger/jnkmfdileelhofjcijamephohjechhna?hl=en). I found it particularly helpful to make sure that the installation worked.
 
@@ -159,9 +166,10 @@ Yihui Xie, the invaluable author of `knitr`, has been hard at work producing one
 
 Getting `servr` up and running isn't too hard. Obviously, you need to install it.
 
-```{r servr, eval = FALSE}
+
+{% highlight r %}
 install.packages(c("servr", "knitr"), repos = "http://cran.rstudio.com")
-```
+{% endhighlight %}
 
 You also need to add a couple new folders, a build script and a `Makefile`. 
 
