@@ -20,7 +20,7 @@ The package implements several Bayesian estimators for the parameters in a class
 
 ## AdventureR
 
-This package contains all of the functions written for posts on this blog. Obviously, the package will always be "in development," since this blog is an ongoing project. Nonetheless, this should make it a lot easier to organize, document and share the code produced for this project.
+This package contains all of the functions written for posts on this blog. Obviously, the package will always be "in development," since this blog is an ongoing project. Nonetheless, this should make it a lot easier to organize, document and share the code produced here.
 
 [You can view it here on Github](https://github.com/michaelquinn32/adventureR).
 
