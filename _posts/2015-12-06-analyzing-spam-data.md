@@ -235,7 +235,7 @@ $$
 W = \left( \Sigma_1 + \Sigma_0 \right)
 $$
 
-In the two dimensional binary case, it looks something like this. We have two color-coded classes with a discriminating line running between. For now, ignore the function `LDA` and just focus on the image. I'll talk about it a lot more soon:
+In the two dimensional binary case, it looks something like this. For now, ignore the function `LDA` and just focus on the image. I'll talk about it a lot more soon.
 
 
 {% highlight r %}
@@ -261,6 +261,8 @@ ggplot(example_data, aes(V1, V2)) +
 {% endhighlight %}
 
 <img src="http://michaelquinn32.github.io/images/2015-12-06-analyzing-spam-data/lda_example-1.png" title="plot of chunk lda_example" alt="plot of chunk lda_example" width="800px" height="500px" />
+
+We have two color-coded classes with a discriminating line running between them. Observations on one side of the line would be classified as one group and vice versa. Obviously, this is not a perfect classifier, but it is nonetheless optimal for a linear split. 
 
 ## Implementing Each Classifier
 
