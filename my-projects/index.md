@@ -17,3 +17,10 @@ Since the code was originally structured to accompany a paper, it's a bit of a m
 The package implements several Bayesian estimators for the parameters in a classic Markowitz portfolio optimization algorithm. A Gibbs sampler is used to find the Bayesian estimates.
 
 [You can view it here on Github](https://github.com/michaelquinn32/bpoR).
+
+## AdventureR
+
+This package contains all of the functions written for posts on this blog. Obviously, the package will always be "in development," since this blog is an ongoing project. Nonetheless, this should make it a lot easier to organize, document and share the code produced for this project.
+
+[You can view it here on Github](https://github.com/michaelquinn32/adventureR).
+
