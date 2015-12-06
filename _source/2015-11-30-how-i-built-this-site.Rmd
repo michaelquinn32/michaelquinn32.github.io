@@ -4,7 +4,7 @@ title: "How I Built this Site"
 excerpt: "Or: How I transformed RStudio into a Blogging Platform, and how you can too!"
 tags: [R, RStudio, Blog, Jekyll, Github Pages, Web Development]
 comments: true
-modified: 2015-12-02
+modified: 2015-12-06
 image: 
     feature: sunset.jpeg
     credit: Michael Quinn
@@ -132,22 +132,42 @@ This is a bit more complicated, and it took me awhile to get running. Go through
 Once you're ready to install Analytics to your page, create a new file in your `_includes` folder. Call it `_google_tag_tracker.html`. [Here's what my file looks like](https://github.com/michaelquinn32/michaelquinn32.github.io/blob/master/_includes/_google_tag_tracker.html). Then, open up `_layouts/home.html` and add the following below the very first body tag. 
 
 ```{r analytics, eval = FALSE}
-{% include _google_tag_tracker.html %}
+{%raw%}{% include _google_tag_tracker.html %}{%endraw%}
 ```
 
 You might want to install [the Google Analytics Debugger for Chrome](https://chrome.google.com/webstore/detail/google-analytics-debugger/jnkmfdileelhofjcijamephohjechhna?hl=en). I found it particularly helpful to make sure that the installation worked.
 
 ## Other Tweaks and Tools
 
-I wanted so slightly different pages than the default. That requires creating a new folder and throwing and `index.md` file in it. Here, for example, is [my page for personal projects](https://raw.githubusercontent.com/michaelquinn32/michaelquinn32.github.io/master/my-projects/index.md). The major difference from a post is the YAML header, which has the page layout.
+### Different Page Hierarchy
+I wanted some slightly different pages than the default. That requires creating a new folder and throwing and `index.md` file in it. Here, for example, is [my page for personal projects](https://raw.githubusercontent.com/michaelquinn32/michaelquinn32.github.io/master/my-projects/index.md). The major difference from a post is the YAML header, which has the page layout.
 
+### Sitemap and Site Feed
 I also added the gems for a sitemap and a site feed. That is a small tweak to [the site's `Gemfile`](https://github.com/michaelquinn32/michaelquinn32.github.io/blob/master/Gemfile) and some more text in the `_config.yml`. You need to tell Jekyll that the Gems have been added.
 
+### Custom Icons
 My images folder has some additional icons and those icons are the basis for the site's favicon. Along the way, I came across a few different sites for additional site assets.
 
 * [The Noun Project](https://thenounproject.com/) is the best resource for icons. The favicon comes from there.
 * [Superfamous](http://images.superfamous.com/) is my favorite resource for free stock photography. It goes along well with the site's themes.
 * [Gratis Photography](http://www.gratisography.com/), [Unsplash](https://unsplash.com/) and [MMT](http://mmt.li/) are also excellent too.
+
+### MathJax
+I also write a lot of math. To render that into `html`, I use [MathJax](https://www.mathjax.org/). Installing MathJax was simple. I just followed [the guide by Haixing Hu](http://haixing-hu.github.io/programming/2013/09/20/how-to-use-mathjax-in-jekyll-generated-github-pages/). While this process is slightly longer than a typical installation (which just adds a single link), going Haixing's route gives you both block and in-line math expressions. Just like LaTex.
+
+Haixing's installation takes two steps. First, you need to create another small `.html` file in the `_includes` folder. I called it `_mathjax.html`. I needed to add one more little piece of code to the `_head.html` file (also in `_includes`).
+
+```{r mathjax, eval = FALSE}
+{%raw%}{% if page.use_math %}{%endraw%}
+    {%raw%}{% include _mathjax.html %}{%endraw%}
+{%raw%}{% endif %}{%endraw%}
+```
+
+Now we have pretty math! Enabling it requires an additional option in each page/ post's YAML header. The name of the option should correspond to the name set up in the previous conditional expression.
+
+```{r YAML, eval = FALSE}
+{%raw%}use_math: true{%endraw%}
+```
 
 # Managing everything from RStudio
 
