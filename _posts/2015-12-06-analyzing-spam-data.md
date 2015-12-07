@@ -213,7 +213,7 @@ $$
 b = - \frac{1}{2} \left( \mu_1 ' \hat{\Sigma}^{-1} \mu_1 - \mu_0 ' \hat{\Sigma}^{-1} \mu_0 \right) + \log \left( \frac{p_1}{p_0} \right)
 $$
 
-In multivariate statistics, a *quadratic form$ is the matrix operation $a' X a$ where $a$ is a length $n$ vector and $X$ is an $n \times n$ matrix. The calculation of $b$ above uses two of them. This expression will come in handy later.
+In multivariate statistics, a *quadratic form* is the matrix operation $a' X a$ where $a$ is a length $n$ vector and $X$ is an $n \times n$ matrix. The calculation of $b$ above uses two of them. This expression will come in handy later.
 
 If you haven't noticed already, the expression $d_1(x) = a' x + b$ follows the canonical definition of a hyperplane. In discriminant analysis it is often referred to as the *separating plane*. If none of those words mean anything to you, don't worry, it's just the multivariate definition of the classical linear equation $y = ax + b$. Formally speaking, the separating plane maximizes the ratio of two sums of squares, $d_R$,
 
