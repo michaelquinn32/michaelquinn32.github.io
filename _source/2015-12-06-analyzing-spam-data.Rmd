@@ -90,7 +90,13 @@ $$
 P \left( y_i \neq \hat{y}_i  \middle| \mathbf{X} =  x_i \right) = 1 - P \left( y_i = \hat{y}_i | \mathbf{X} =  x_i \right)
 $$
 
-This gives us what we're ultimately looking for. We want a function that maximizes $P \left( y_i = \hat{y}_i \middle\|  \mathbf{X} =  x_i \right)$. In a multi-class problem, we would need to calculate the probability for each class separately and then pick accordingly. In the binary case, finding the max is much easier. Let $\mathrm{G} (x_j) = 1$ if
+This gives us what we're ultimately looking for. We want a function that maximizes the probability that our prediction is the same as the target, given the data that we have. Formally, that's 
+
+$$
+P \left( y_i = \hat{y}_i \middle\|  \mathbf{X} =  x_i \right)
+$$. 
+
+In a multi-class problem, we would need to calculate the probability for each class separately and then pick accordingly. In the binary case, finding the max is much easier. Let $\mathrm{G} (x_j) = 1$ if
 
 $$
 P \left( y_i = 0 | \mathbf{X} =  x_i \right) < P \left( y_i = 1 | \mathbf{X} =  x_i \right)
@@ -114,7 +120,7 @@ $$
 A lot of the differences in our models come from how we evaluate the probability statements that form the log odds. For example, we can apply Bayes Rule. By that, I mean
 
 $$
-P \left( y_i = 1 | \mathbf{X} =  x_i \right) = \frac{P(y_i = 1) P(\mathbf{X} =  x_i | y_i = 1)}{\mathbf{X} =  x_i}
+P \left( y_i = 1 | \mathbf{X} =  x_i \right) = \frac{P(y_i = 1) P(\mathbf{X} =  x_i | y_i = 1)}{P (\mathbf{X} =  x_i)}
 $$
 
 In the numerator of the expression above, $P(y_i = 1)$ is called the *prior probability*. It is a statement about the distribution of the groups within our data. The other numerator component, $P(\mathbf{X} =  x_i \| y_i = 1)$, is called the likelihood. In Bayesian statistics, we often get to ignore the denominator, so we often say that the posterior is proportional to the prior times the likelihood. 
@@ -125,7 +131,7 @@ $$
 0 < \log \left( \frac{P(y_i = 1) P(\mathbf{X} =  x_i | y_i = 1)}{P(y_i = 0) P(\mathbf{X} =  x_i | y_i = 0)} \right)
 $$
 
-For the Naive Bayes classifier, we assume that each column of $\mathbf{X}$ is normally distributed and independent. This is often too general of an assumption to make, but Naive Bayes tends to perform well regardless. This means that each *column* of the $\mathbf{X}$ matrix now has the following pdf:
+For the Naive Bayes classifier, we assume that each column of $\mathbf{X}$ is normally distributed and independent. This is often too general of an assumption to make, but Naive Bayes tends to perform well regardless. This means that the $j$-th column of the $\mathbf{X}$ matrix now has the following pdf:
 
 $$
 f_{x_j} (x_j) = \frac{1}{\sqrt{2 \pi \sigma_j^2}} \exp \left\{- \frac{(x_j - \mu_j)^2}{2 \sigma_j^2} \right\}
@@ -153,7 +159,7 @@ $$
 \mathbf{X} \sim \mathcal{N}_p (\mu, \Sigma)
 $$
 
-The PDF for the MV normal distribution is similar to the univariate normal, with some additional matrix algebra.
+The pdf for the MV normal distribution is similar to the univariate normal, with some additional matrix algebra.
 
 $$
 f_{x} (x_1, \dots, x_k) = \frac{1}{\sqrt{(2 \pi)^k | \Sigma |}} \exp \left \{ -\frac{1}{2} (x - \mu)' \Sigma^{-1} (x - \mu) \right\}
@@ -168,10 +174,10 @@ The methods differ over assumptions about the covariance matrix used in the prob
 To estimate the covariance matrix in LDA, we use a *pooled covariance*:
 
 $$
-\hat{\Sigma} = \frac{1}{n - 2} \left( (\mathbf{X}_0 - \mu_0)(\mathbf{X}_0 - \mu_0)' + (\mathbf{X}_1 - \mu_1)(\mathbf{X}_1 - \mu_1)' \right)
+\hat{\Sigma} = \frac{1}{n - 2} \left( \sum_{i = 1}^{n_0} (\mathbf{X}_{0i} - \mu_0)(\mathbf{X}_{0i} - \mu_0)' + \sum_{i = 1}^{n_1}(\mathbf{X}_{1i} - \mu_1)(\mathbf{X}_{1i} - \mu_1)' \right)
 $$
 
-Where $\mathbf{X}_k$ is the matrix of observations corresponding to the $k$-th group, and $\mu_k$ is the group mean.
+Where $\mathbf{X}_{ki}$ is the $i$-th observation within the $k$-th group, and $\mu_k$ is the group mean.
 
 Returning to the log odds and plugging in the MV normal pdf, we get the following classification rule. In LDA, this is usually referred as the *discriminant function* $d_1(x)$.
 
@@ -197,7 +203,7 @@ $$
 d_1(x) = a' x + b
 $$
 
-Where
+where
 
 $$
 a = \hat{\Sigma}^{-1}(\mu_1 - \mu_0)
@@ -211,7 +217,7 @@ $$
 
 In multivariate statistics, a *quadratic form$ is the matrix operation $a' X a$ where $a$ is a length $n$ vector and $X$ is an $n \times n$ matrix. The calculation of $b$ above uses two of them. This expression will come in handy later.
 
-If you haven't noticed already, the expression $d_1(x) = a' x + b$ follows the canonical definition of a separating hyperplane. Formally speaking, the separating plane maximizes the ratio of two sums of squares, $d_R$,
+If you haven't noticed already, the expression $d_1(x) = a' x + b$ follows the canonical definition of a hyperplane. In discriminant analysis it is often referred to as the *separating plane*. If none of those words mean anything to you, don't worry, it's just the multivariate definition of the classical linear equation $y = ax + b$. Formally speaking, the separating plane maximizes the ratio of two sums of squares, $d_R$,
 
 $$
 d_R = \frac{a' B a}{a' W a}
@@ -238,9 +244,9 @@ We have two color-coded classes with a discriminating line running between them.
 
 ## Implementing Each Classifier
 
-You can view the complete code for each classifier on Github. Since they're a little on the line side, I'll save you all from posting the complete code here. [Here's LDA](https://github.com/michaelquinn32/adventureR/blob/master/R/LDA.R), and here's [Naive Bayes](https://github.com/michaelquinn32/adventureR/blob/master/R/naive_bayes.R). Both functions depend on the `purrr` package (thanks Hadley!) for some functional programming tools. [You can learn about it here](https://github.com/hadley/purrr).
+You can view the complete code for each classifier on Github. Since they're a little on the long side, I'll save you all from posting the complete code here. [Here's LDA](https://github.com/michaelquinn32/adventureR/blob/master/R/LDA.R), and here's [Naive Bayes](https://github.com/michaelquinn32/adventureR/blob/master/R/naive_bayes.R). Both functions depend on the `purrr` package (thanks Hadley!) for some functional programming tools. [You can learn about it here](https://github.com/hadley/purrr). If I had to pick a favorite package, it would probably be it.
 
-The implementation of each follows a similar strategy:
+The implementation of each classifier follows a similar strategy:
 
 * Use `model.frame` to convert the formula input into a standard data frame. The target is always the first column and the remainder is always the set of predictors.
 * Perform some assertions and clean up factors. I created a simple function `to_number` to convert a factor to numeric. It uses `purrr::compose` to chain `as.character` and `as.numeric`.
@@ -279,11 +285,11 @@ log_odds <- function(x, mus, sigmas) {
 
 ## A Test
 
-So, which function is a better fit for our spam problem? Well, we're statisticians. Like create a test.
+So, which function is a better fit for our spam problem? Well, we're statisticians. Let's create a test.
 
 * Randomly split `spam_data` into test and training components
 * Fit each model to the former and score on the latter
-* Repeat many, many times (or 100 times if you don't consider that many)
+* Repeat many, many times (or 100 times. That's many, many. Right?)
 
 Since this is a classification problem, I used [the F1 score](https://en.wikipedia.org/wiki/F1_score) as a performance metric. This score is the harmonic mean of two separate metrics:
 
@@ -306,7 +312,7 @@ f1_score <- function(prec, rec) {
 }
 ```
 
-Before we get to the test, we should check out the spam dataset in detail. Let's pull it in from the web and coerce the target into a factor. We'll be comparing our methods against `caret`, and that package requires factors for classification.
+Before we get to the test, we should check out the spam dataset in detail. Let's pull it in from the web and coerce the target into a factor. We'll be comparing our methods against implementations within `caret`, and that package requires factors for classification.
 
 ```{r data}
 ```
@@ -365,7 +371,7 @@ And the function `rerun` in `purrr` will generate all 100 splits for us.
 ```{r test_dr, echo = FALSE, results = 'hide'}
 ```
 
-The actual test is a relatively simple pipeline. We take our list of dataframes. We call each of the models with the combination of `map` and `invoke_map`. The results in a list of lists, where each item in the top level of the list contains a list of five fit models. With that, we map again. We takes the test data out of `dfs` and use the models in the list of lists to get our scores.
+The actual test is a relatively simple pipeline. We take our list of data frames. We call each of the models with the combination of `map` and `invoke_map`. The results in a list of lists, where each item in the top level of the list contains a list of five fit models. With that, we map again. We takes the test data out of `dfs` and use the models in the list of lists to get our scores.
 
 The standardized outputs of `score_model`, which has methods for all of the classes of models involved, makes sure that everything is eventually consistent. It's the grease that makes the whole machine run.
 
@@ -376,11 +382,15 @@ results <- dfs %>%
                     actual = .y$test$target))
 ```
 
-So, what did we get? Right now, we have a pretty messy nested list. To clean this up, we need to make some dataframes and bind them together. After that, we can put together a little plot. Since we're comparing results across distinct categories (the models), a boxplot is best.
+So, what did we get? Right now, we have a pretty messy nested list. To clean this up, we need to make some data frames and bind them together. After that, we can put together a little plot. Since we're comparing results across distinct categories (the models), a boxplot is best.
 
 ```{r final_plot}
 ```
 
-Our version of LDA performed exactly the same as `caret`'s. YAY! Our version of Naive Bayes lagged a little, but it's way ahead of `caret`'s QDA and Naive Bayes. Why's that? It took awhile to diagnose, but it turns out that `caret`'s default correction for zero variance is pretty aggressive. So much so that it adversely affects the model's performance. Moreover, the version of Naive Bayes used by `caret` comes from the package `klaR`, which does not use log odds in its classification rule. There's probably a good reason for this, but the result is something that doesn't do that well with very sparse dataframes.
+Our version of LDA performed exactly the same as `caret`'s. YAY! Either one is the best, but I'm pretty sure you know which one I love more. 
+
+Our version of Naive Bayes lagged a little, but it's way ahead of `caret`'s QDA and Naive Bayes. Why's that? It took awhile to diagnose, but it turns out that `caret`'s default correction for zero variance is pretty aggressive. So much so that it adversely affects the model's performance. We have much tighter standards for zero variance columns, and end up rejecting a much smaller number of them.
+
+Moreover, the version of Naive Bayes used by `caret` comes from the package `klaR`, which does not use log odds in its classification rule. There's probably a good reason for this, but the result is something that doesn't do that well with very sparse data frames. We get a long stream of warnings about probabilities close to 0 or 1 is the odds. It ultimately has to round, which introduces a host of problems. 
 
 We could expand on this test by throwing in some other methods, but that's probably enough for today. Please, take the time to check out the implementation of each method in the blog's package. It's surprisingly simple and straightforward. And please don't hesitate to let me know your thoughts.
