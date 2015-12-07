@@ -28,7 +28,7 @@ John Marden was a Professor Emeritus when I attended UIUC. While I didn't have t
 
 In honor of Dr. Marden, we're doing fitting some Old School classification models to an Old School Machine learning dataset. I'll be looking at two models today: linear discriminant analysis (LDA) and Naive Bayes (NB). I'll touch a bit on the theory behind each model and the classification problem itself. Most importantly, I've developed code to implement each model, as I think both are excellent learning opportunities. 
 
-In that regard, this blog now has a package. You can find it on Github, and you can install the most recent version with `devtools`.
+In that regard, this blog now has a package. [You can find it on Github](https://github.com/michaelquinn32/adventureR), and you can install the most recent version with `devtools`.
 
 
 {% highlight r %}
