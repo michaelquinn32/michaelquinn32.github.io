@@ -91,8 +91,8 @@ $$
 This gives us what we're ultimately looking for. We want a function that maximizes the probability that our prediction is the same as the target, given the data that we have. Formally, that's 
 
 $$
-P \left( y_i = \hat{y}_i \middle\|  \mathbf{X} =  x_i \right)
-$$. 
+P \left( y_i = \hat{y}_i \middle|  \mathbf{X} =  x_i \right)
+$$ 
 
 In a multi-class problem, we would need to calculate the probability for each class separately and then pick accordingly. In the binary case, finding the max is much easier. Let $\mathrm{G} (x_j) = 1$ if
 
