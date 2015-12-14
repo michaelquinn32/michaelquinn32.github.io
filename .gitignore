@@ -10,3 +10,4 @@ _asset_bundler_cache
 _cache
 .Rhistory
 .RData
+*.nb
