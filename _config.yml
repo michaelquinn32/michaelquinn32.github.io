@@ -43,7 +43,7 @@ owner:
     ad-slot:
   bing-verify:
   github: michaelquinn32
-  stackoverflow: 5482627/michael-quinn
+# stackoverflow: 5482627/michael-quinn
   linkedin: michaelquinn32
 
 include: [".htaccess"]
