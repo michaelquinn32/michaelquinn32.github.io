@@ -379,7 +379,7 @@ geyser <- function(...) {
 }
 ```
 
-Passing named values `geyser(a = 1, b = 2)` works fine, as does a list of values. The generator throws an error if our list is nested, we have only one geyser, or if we have duplicate names or missing names.
+Our class simplifies our life in a couple ways. First, it takes advantage of some of the most common applications of [non-standard evaluation in R](http://adv-r.had.co.nz/Computing-on-the-language.html). We can pass the function either named values `geyser(a = 1, b = 2)` or a list of values when creating a new `geyser`. It has some defensive programming features, too. The generator throws an error if our list is nested, we have only one geyser, or if we have duplicate names or missing names.
 
 We start the simulation with a simple function for generating random eruption times for a single geyser. It takes an eruption `rate` as an argument, which describes the number of hours between eruptions, and a `timeframe` for the simulation. By default, the latter is set to the largest `rate` passed to the simulation. 
 
