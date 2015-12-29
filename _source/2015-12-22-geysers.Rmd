@@ -378,7 +378,7 @@ geysers <- function(rates, timeframe) {
 }
 ```
 
-We iterate over the list of `rate`'s with `map`, which is part of a suite of iteration tools in the functional programming library [`purrr`]((https://github.com/hadley/purrr). You'll see a lot of this package today, and if you're not familiar with it, you might enjoy reading this chapter from [Hadley Wickham's book on Data Science](http://r4ds.had.co.nz/lists.html). 
+We iterate over the list of `rate`'s with `map`, which is part of a suite of iteration tools in the functional programming library [`purrr`](https://github.com/hadley/purrr). You'll see a lot of this package today, and if you're not familiar with it, you might enjoy reading this chapter from [Hadley Wickham's book on Data Science](http://r4ds.had.co.nz/lists.html). 
 
 `map` and its cousins are similar to `lapply` and other functionals in `base`, but they are much more flexibile and useful. They come in a variety of flavors, and I'll do my best to explain each as we go.
 
