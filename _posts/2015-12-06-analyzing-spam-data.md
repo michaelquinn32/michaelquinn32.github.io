@@ -2,7 +2,7 @@
 layout: post
 title: "Going Old School with the Spam Email Dataset"
 excerpt: "It's time to break out some oldschool classification algorithms!"
-tags: [R, RStudio, Blog, Jekyll, Github Pages, Web Development]
+tags: [R, Machine Learning, Classification, Spam Data]
 comments: true
 modified: 2015-12-06
 use_math: true
