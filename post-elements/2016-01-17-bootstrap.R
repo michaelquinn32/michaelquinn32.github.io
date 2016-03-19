@@ -146,7 +146,18 @@ reshape <- test %>%
     mutate(method = factor(method, levels = c("ss_qntls", "emp_qntls", "se"))) 
 
 model <- aov(bias.sqr ~ (.) * (.) - method:r - r:bsi, reshape)
-summary(model)
+MASS::boxcox(model)
+
+# Show boxcox of original model
+model <- update(model, I((bias.sqr)^(1/3)) ~ .)
+
+## ---- residuals
+# Plot residuals
+data.frame(residuals = rstandard(model),
+           fitted = model.frame(model)[[1]]) %>% 
+    ggplot(aes(fitted, residuals)) +
+    geom_point(alpha = .25) +
+    ggtitle('Fitted vs standardized residuals')
 
 ## ---- effect
 tables <- model.tables(model, "effects")
@@ -157,7 +168,7 @@ tables$tables$`r:replace`
 model %>% model.matrix %>% 
     as.data.frame %>% 
     select(4:8) %>% 
-    mutate(fitted =  fitted(model)) %>% 
+    mutate(fitted =  fitted(model)^2) %>% 
     gather(variable, predictor, -fitted, -replaceTRUE) %>% 
     rename(replace = replaceTRUE) %>% 
     mutate(replace = as.factor(ifelse(replace == 1, "true", "false"))) %>% 
