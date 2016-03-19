@@ -4,7 +4,7 @@ title: "An R translation of List out of Lambda"
 excerpt: "We'll use a modern classic in literate programming to illustrate some of the more interesting sides of functional programming in R."
 tags: [R, Functional Programming, Lists, Thought Experiments]
 comments: true
-modified: 2016-03-18
+modified: 2016-03-19
 use_math: true
 image: 
     feature: harlem.jpg
@@ -54,11 +54,11 @@ is_empty <- function(ls) {
 }
 ```
 
-Take a second to mull these over. And all you pedants over there, cool it with the "you're abusing the class system nonsense." I know I'm abusing the class system, but if we're going to create "objects" out of lists and preserve even a modicum of beauty in our code, we're going to need to take some short cuts. If we can all take it easy for just one second, I promise that everyone will have a lot of fun.
+Take a second to mull these over. And all you pedants over there, cool it with the "you're abusing the class system nonsense." I know I'm abusing the class system, but if we're going to create "objects" out of functions and preserve even a modicum of beauty in our code, we're going to need to take some short cuts. If we can all take it easy for just one second, I promise that everyone will have a lot of fun.
 
 For those still wondering what all the `.fl` stuff is, sorry. That last comment was probably confusing. [You might want to check out Hadley Wickham's explanation of S3](http://adv-r.had.co.nz/OO-essentials.html#s3). A lot of the functions that we are creating overlap with functions in base R and the standard packages. In some cases, there will be a generic function already defined. This allows us to call `tail.fl` as `tail` on our functional lists and get the reaction that we want. The other cases are handled by the [`lambdaList` package](https://github.com/michaelquinn32/lambdaList).
 
-Alright, let's get back on track. What have we done? Believe it or not, we've got almost everything we need (save one function) for Losh's implementation of a list: "a function that returns its head or tail." While R doesn't use inheritance like C++, Java or Python, it's still useful to this of the preceding functions as a "base class" that we'll build off of later.
+Alright, let's get back on track. What have we done? Believe it or not, we've got almost everything we need (save one function) for Losh's implementation of a list: "a function that returns its head or tail." While R doesn't use inheritance like C++, Java or Python, it's still useful to think of the preceding functions as a "base class" that we'll build off of later.
 
 1. `empty_list` returns a closure that takes arguments for its head, tail and empty status. Keep these arguments in your head going forward, even though they aren't ever named. Right now, only the latter has a non-`NULL` value. That will change.
 2. `head` uses an anonymous function to call the head argument from `empty_list` or any other functional list object that we build with it.
@@ -95,7 +95,7 @@ It might help to write this down as well. In fact, it wouldn't hurt to do a simi
 
 I understand that it doesn't see like we've accomplished much yet. "What good is an empty list any way?" I hear ya. Have patience. The cool stuff starts in the next section.
 
-## Where's the data
+## Where's the data?
 
 These principals come together in our list constructor functions. The package accompanying this post has three "builders", but the first has more back-end functionality while the other two are more user-facing. Either way, all three will use `empty_list` as a base function to mark the final value of the list, nesting values in additional functional calls. What in the world does that mean? Well, let's start by having a look at `prepend`.
 
@@ -105,7 +105,7 @@ prepend <- function(ls, el) {
 }
 ```
 
-While the call to `structure` make everything a little cluttered, the heart of prepend is the same style closure that we saw in `empty_list`. But now, the anonymous function replaces the closure's arguments with the prepended element, the list and `FALSE` (a prepended list is no longer empty!).
+While the call to `structure` makes everything a little cluttered, the heart of `prepend` is the same style closure that we saw in `empty_list`. But now, the anonymous function replaces the closure's arguments with the prepended element, the list and `FALSE` (a prepended list is no longer empty!).
 
 In practice, this is what that looks like.
 
@@ -149,7 +149,7 @@ Let's work through it:
 * In the base case, we are checking if the functional list is empty. If so, we start building.
 * Otherwise, we "work backwards," prepending the oldest elements to our list and working to the newest
 
-Although recursion is costly, we've bought ourselves a much cleaner syntax for generating lists. Even better, it places nicely with `magrittr` and looks fully at home in modern R. Notice that our lists are pretty agnostic to the type of data that we put in. As long as it can be used in the argument of a function,[^2] our list can store it.
+Although recursion is costly, we've bought ourselves a much cleaner syntax for generating lists. Even better, it plays nicely with `magrittr` and looks fully at home in modern R. Notice that our lists are pretty agnostic to the type of data that we put in. As long as it can be used in the argument of a function,[^2] our list can store it.
 
 [^2]: We face other implementation methods, like printing and working with more esoteric data types. This isn't exactly an issue with the implementation of functional lists, so we can skip this issue for now. Just know, for now, that if you throw a data frame in these lists, nothing will print out. Maybe I'll fix that later.
 
@@ -182,7 +182,6 @@ head(my_stuff)
 
 # Using accessor functions: empty
 is_empty(my_stuff)
-
 
 # Using accessor functions: tail
 tail(my_stuff)
@@ -236,7 +235,7 @@ length.fl <- function(x) {
 }
 ```
 
-We're now counting recursively. Empty lists have no length. They're our base case. Otherwise, we call the function again on the tail of the list and add one. This strips off one element from the list. Each operation strips one and adds one. And just like that, we have the list's length.
+We're now counting recursively. Empty lists have no length. They're our base case. Otherwise, we call the function again on the tail of the list and add one. This strips off one element from the list, and we add one element to our count. And just like that, we have the list's length.
 
 Here's the function in practice.
 
@@ -303,11 +302,11 @@ seq.fl <- function(empty, start, end) {
 
 Look! We have more recursive, and even more counting with arguments. We check to see if start has reached the value of end. If not, we add start to the list and move it up one. In order to take advantage of S3 methods dispatch and avoid overwriting default R behavior, we add an `empty` argument to the beginning of `seq`. That way, it knows that it's building a functional list.
 
-R uses a lot of sequences, but one of its most powerful tools for generating lists comes from the function `Replicate`. It takes advantage of R's ability to store and evaluate expressions, i.e. literal bits of code. With `Replicate`, you are simply asking R to take this bit of code, run it a bunch of times and give it back as a list.[^4]
+R uses a lot of sequences, but one of its most powerful tools for generating lists comes from the function `replicate`. It takes advantage of R's ability to store and evaluate expressions, i.e. literal bits of code. With `replicate`, you are simply asking R to take this bit of code, run it a bunch of times and give it back as a list.[^4]
 
 [^4]: At least that's how it's supposed to work when you're doing functional programming. You need to set `simplify = FALSE` in the arguments to get back a list.
 
-I don't want to get to deep into R's non-standard evaluation and meta-computing tools. Hadley Wickham explains these well. Instead, let's just implement a version of `rerun` where we require the user to specify that they have an expression in advance.
+I don't want to get to deep into R's non-standard evaluation and meta-computing tools. [Hadley Wickham explains these well](http://adv-r.had.co.nz/Computing-on-the-language.html). Instead, let's just implement a version of `rerun` where we require the user to specify that they have an expression in advance.
 
 ```{r eval = FALSE}
 rerun <- function(n, expr) {
@@ -333,7 +332,7 @@ The field of functional programming is dominated by three families of functions:
 
 * **Maps**: apply a function to every element in the list
 * **Filters**: take a predicate function that returns true or false and returns the elements of the list that fulfill that condition (or don't)
-* **Reductions**: take a list a recursively fold it down to a scalar
+* **Reductions**: take a list and recursively fold it down to a scalar
 
 Don't believe me? [Check out R's help file on common higher-order functions](https://stat.ethz.ch/R-manual/R-devel/library/base/html/funprog.html). I promise you'll see lots of filters, maps and reductions. For me, this is the most exciting part of the entire project, so I plan on showing a few options. 
 
@@ -455,7 +454,7 @@ position(some_numbers, is_even)
 
 ### Reductions
 
-We wrap up our little tour of functional programming by looking at reductions. Generally speaking, this class of functions take a binary function and *folds* it along a list, eventually resulting in a single scalar. What does that mean? Consider the following case, reducing a sequence of numbers with addition.
+We wrap up our little tour of functional programming by looking at reductions. Generally speaking, this class of functions takes a binary function and *folds* it along a list, eventually resulting in a single scalar. What does that mean? Consider the following case, reducing a sequence of numbers with addition.
 
 ```{r , eval = FALSE}
 reduce([0, 1, 2, 3], +) => 
@@ -465,7 +464,7 @@ reduce([0, 1, 2, 3], +) =>
     6
 ```
 
-This is another obvious candidate for recursion, but a better implementation keeps track of the intermediate calculations through a value in the arguments. Fortunately, most reductions allow for initialization with a specific value, and we can use that. With that, we can implement two different reductions, one for each "direction" of the list.
+This is another obvious candidate for recursion, and a good implementation keeps track of the intermediate calculations through a value in the arguments. Fortunately, most reductions allow for initialization with a specific value, and we can use that. With that, we can implement two different reductions, one for each "direction" of the list.
 
 ```{r eval = FALSE}
 reduce <- function(ls, fn, init = 0, ...) {
@@ -488,11 +487,11 @@ mean.fl <- function(x)  reduce(x, `+`) / length(x)
 rerun(500, quote(rnorm(1))) %>% mean
 ```
 
-`reduce_right` is a bit more complicated to use, as it leads to many counterintuitive results. It's usually helpful to work out the problem on paper before going that route.
+`reduce_right` is a bit more complicated to use, as it leads to many counterintuitive results. Don't believe me? Try running a right reduction with subtraction. It's usually helpful to work out the problem on paper before going that route.
 
 ## Some limitations
 
-Over the course of the article, we've created a data structure using only functions, extended it with many other methods and demonstrated a whole suite a functional programming tools. I hope you found this exercise illuminating and surprising. Few things have changed my approach to programming the way that List out of Lambda has, and I hope seeing an implementation in R makes you more excited for functional programming.
+Over the course of the article, we've created a data structure using only functions, extended it with many other methods and demonstrated a whole suite a functional programming tools. I hope you found this exercise illuminating and surprising. Few things have changed my approach to programming the way that *List out of Lambda* has, and I hope seeing an implementation in R makes you more excited for functional programming.
 
 That said, this approach to programming does not play nice with the current R interpreter. In particular, R limits the number of recursive calls you can execute in a single call. This is meant to protect you from a runaway recursive call, but it ends up tying your hands as well. This threshold is pretty low for a lot of modern problems. As you can see, you can only build vectors that are less than 1500 calls long using rerun.
 
