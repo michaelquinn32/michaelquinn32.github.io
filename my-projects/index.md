@@ -24,3 +24,8 @@ This package contains all of the functions written for posts on this blog. Obvio
 
 [You can view it here on Github](https://github.com/michaelquinn32/adventureR).
 
+## LambdaList
+
+I created this package to accompany my [R translation of *List Out of Lambda*](http://michaelquinn32.github.io/list-out-of-lambda-in-R/). Motivation for the project comes from Steve Losh, [whose article lays the foundation for purely functional lists](http://stevelosh.com/blog/2013/03/list-out-of-lambda/). I also relied on [Hadley Wickham and Lionel Henry's package `purrr`](https://github.com/hadley/purrr), which provided many of the functional programming examples in the article.
+
+[You can view the package here on Github](https://github.com/michaelquinn32/lambdaList).
