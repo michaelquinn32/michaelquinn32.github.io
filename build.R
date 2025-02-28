@@ -26,7 +26,7 @@ local({
                           out.width = '800px',
                           out.height = '500px')
     knitr::opts_knit$set(base.dir = '~/Projects/michaelquinn32.github.io/',
-                         base.url = 'http://michaelquinn32.github.io/')
+                         base.url = 'https://michaelquinn32.github.io/')
     
     knitr::opts_knit$set(width = 70)
     knitr::knit(a[1], a[2], quiet = TRUE, encoding = 'UTF-8', envir = .GlobalEnv)
