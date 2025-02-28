@@ -2,7 +2,7 @@
 
 title:            Big Blog of R Adventures
 locale:           en_US
-url:              http://michaelquinn32.github.io
+url:              https://michaelquinn32.github.io
 description: >
     The personal blog of Michael Quinn, a Data Scientist who enjoys exploring
     new computational tools and teaching others. Tutorials, musings and other 
@@ -31,7 +31,7 @@ kramdown:
 owner:
   name: Michael Quinn
   avatar: bio-photo.jpg
-  bio: "Nerd dad who spends way too much time thinking about statistical computing, face-punching and other adventurous things."
+  bio: "Nerd dad who spends way too much time thinking about statistical computing, the great outdoors and other adventurous things."
   email: msquinn2@illinois.edu
   disqus-shortname: michaelquinn32
   twitter: michaelquinn32
