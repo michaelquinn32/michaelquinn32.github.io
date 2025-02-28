@@ -9,7 +9,7 @@ use_math: true
 image: 
     feature: ando.jpg
     credit: Andō, Hiroshige, via the NY Public Library
-    creditlink: http://digitalcollections.nypl.org/items/69f3e5ef-fcd7-0a54-e040-e00a180636a3
+    creditlink: https://digitalcollections.nypl.org/items/69f3e5ef-fcd7-0a54-e040-e00a180636a3
 ---
 
 {% include _toc.html %}
@@ -32,21 +32,21 @@ As always, let's start with some theory. The standard bootstrapping algorithm ro
 4. Repeat *k* times (often 1,000 or more) to generate a distribution of the sample statistic
 5. With this distribution, calculate bias, confidence intervals for the statistic, etc.
 
-The confidence intervals are usually the most interesting estimate that we can derive from the method. Getting the sampling statistic itself isn't that big of a deal, and we don't need a complicated sampling algorithm to reproduce what we already have. On the other hand, it can often be difficult to get confidence intervals. [Estimating confidence intervals for sample medians, for example, can get really hard](http://www.stat.umn.edu/geyer/old03/5102/notes/rank.pdf). 
+The confidence intervals are usually the most interesting estimate that we can derive from the method. Getting the sampling statistic itself isn't that big of a deal, and we don't need a complicated sampling algorithm to reproduce what we already have. On the other hand, it can often be difficult to get confidence intervals. [Estimating confidence intervals for sample medians, for example, can get really hard](https://www.stat.umn.edu/geyer/old03/5102/notes/rank.pdf). 
 
 Luckily, we have many, many options for calculating confidence intervals from the bootstrapped distribution. [The `boot` package in R provides five](https://cran.r-project.org/web/packages/boot/boot.pdf#page=18). A couple of approaches stick out:
 
 * Use the variance of the bootstrap distribution for a normal or *t* distribution approximation.
 * Use percentiles. A 95 percent confidence interval is based on the 2.5 and 97.5 percentiles.
 
-This works in most cases, [with some notable assumptions](http://www.wiley.com/WileyCDA/WileyTitle/productCd-0471756210,subjectCd-STZ0.html):
+This works in most cases, [with some notable assumptions](https://www.wiley.com/WileyCDA/WileyTitle/productCd-0471756210,subjectCd-STZ0.html):
 
 * Your original sample data is representative of the population data
 * The bootstrap distribution is roughly symmetric
 * The distribution of your data has finite moments
 * Your statistic is not at the extreme of the distribution of the data
 
-Even when these assumptions are violated, there is usually some sort of correction available. Different statistics, like trimmed means, can be used for distributions that don't have finite moments. [Special sampling algorithms handle extreme-valued statistics](http://link.springer.com/chapter/10.1007%2F978-1-4612-2856-1_105). The list goes on and on.
+Even when these assumptions are violated, there is usually some sort of correction available. Different statistics, like trimmed means, can be used for distributions that don't have finite moments. [Special sampling algorithms handle extreme-valued statistics](https://link.springer.com/chapter/10.1007%2F978-1-4612-2856-1_105). The list goes on and on.
 
 ### Why does this work?
 
@@ -58,15 +58,15 @@ $$
 \sqrt{n} \left( \bar{x} \right) \overset{d}{\to} \mathcal{N} \left(\mu, \sigma^2 \right)
 $$
 
-In English, we say that the sample mean [converges in distribution](http://www.math.uah.edu/stat/dist/Convergence.html) to that described above. Convergence in distribution can seem a little arcane, but it's actually pretty straightforwad. Given a random variable whose distribution function depends on *n*, convergence in distribution implies that
+In English, we say that the sample mean [converges in distribution](https://www.math.uah.edu/stat/dist/Convergence.html) to that described above. Convergence in distribution can seem a little arcane, but it's actually pretty straightforwad. Given a random variable whose distribution function depends on *n*, convergence in distribution implies that
 
 $$
 \lim_{n \to \infty} F_n (x) = F (x)
 $$
 
-For example, [the classic normal approximation to a binomial random variable](http://demonstrations.wolfram.com/NormalApproximationToABinomialRandomVariable/) is based on the fact that a binomial random variable converges to a normal random variable as $n \to \infty$. The more we increase *n*, the smoother the distribution of the binomial random variable becomes.
+For example, [the classic normal approximation to a binomial random variable](https://demonstrations.wolfram.com/NormalApproximationToABinomialRandomVariable/) is based on the fact that a binomial random variable converges to a normal random variable as $n \to \infty$. The more we increase *n*, the smoother the distribution of the binomial random variable becomes.
 
-If you are familiar with Moment Generating Functions, [you can follow a proof of the CLT](http://www.cs.toronto.edu/~yuvalf/CLT.pdf). I'll skip it today, since many other people have done a much better job than I can.
+If you are familiar with Moment Generating Functions, [you can follow a proof of the CLT](https://www.cs.toronto.edu/~yuvalf/CLT.pdf). I'll skip it today, since many other people have done a much better job than I can.
 
 Just as the sample mean converges in distribution to a particular distribution, we can use the statistic's empirical distribution function (EDF) to estimate the true distribution. Moreover, given enough observations, we know that EDF's converge [almost surely](https://en.wikipedia.org/wiki/Convergence_of_random_variables#Almost_sure_convergence) to true distributions.
 
@@ -76,7 +76,7 @@ Thanks to the CLT, we know exactly what kind of distribution we are approximatin
 
 ### Deviations from the standard procedure
 
-[As Geyer points out](http://www.stat.umn.edu/geyer/5601/notes/sub.pdf), when bootstrapping, we are sampling from an *approximation* of the sample statistic's distribution. As we discussed above, even though this is incorrect, we approach the true distribution with enough iterations. But in an ideal workld, we would prefer sample from the true distribution. Subsampling can do this:
+[As Geyer points out](https://www.stat.umn.edu/geyer/5601/notes/sub.pdf), when bootstrapping, we are sampling from an *approximation* of the sample statistic's distribution. As we discussed above, even though this is incorrect, we approach the true distribution with enough iterations. But in an ideal workld, we would prefer sample from the true distribution. Subsampling can do this:
 
 1. Determine a statistic of interest derived from a particular sample of length *n*
 2. Using the previous data, generate new data (of length $b << n$ ) by sampling *without replacement*
@@ -102,9 +102,9 @@ $$
 \mathrm{se} \left( \bar{x} \right) = \mathrm{se} \left( \bar{x}_b \right) \sqrt{\frac{b}{n}}
 $$
 
-This is approximately true for any sampling statistic. More importantly, [as Poltis, Romano and Wolf](http://web.stanford.edu/~doubleh/lecturenotes/lecture13.pdf) this method converges at a first-order rate. While the bootstrap converges faster (second-order convergence), subsampling can work in a variety of situations where bootstrapping fails. A notable case is time series, where autocorrelation screws up our bootstrapping algorithm.
+This is approximately true for any sampling statistic. More importantly, [as Poltis, Romano and Wolf](https://web.stanford.edu/~doubleh/lecturenotes/lecture13.pdf) this method converges at a first-order rate. While the bootstrap converges faster (second-order convergence), subsampling can work in a variety of situations where bootstrapping fails. A notable case is time series, where autocorrelation screws up our bootstrapping algorithm.
 
-Granted, we can also sample less than the full length of the vector while keeping replacement. This methods is known as the *m* out of *n* bootstrap, and it is often credited to [Bickel, Gotze and van Zwet](http://www3.stat.sinica.edu.tw/statistica/oldpdf/a7n11.pdf). They note that there are some cases where this method can work where the standard algorithm doesn't, but we pay for this flexibility in efficiency.
+Granted, we can also sample less than the full length of the vector while keeping replacement. This methods is known as the *m* out of *n* bootstrap, and it is often credited to [Bickel, Gotze and van Zwet](https://www3.stat.sinica.edu.tw/statistica/oldpdf/a7n11.pdf). They note that there are some cases where this method can work where the standard algorithm doesn't, but we pay for this flexibility in efficiency.
 
 ## Experimenting with subsampling
 
@@ -129,7 +129,7 @@ red_se <- function(x, probs = c(.025, .975), n, b, xbar) {
 }
 ```
 
-For a quantile-based approach, [we borrow some code from Geyer](http://www.stat.umn.edu/geyer/5601/notes/sub.pdf#page=6).
+For a quantile-based approach, [we borrow some code from Geyer](https://www.stat.umn.edu/geyer/5601/notes/sub.pdf#page=6).
 
 ```{r ss_quantiles, eval = FALSE}
 ss_quantiles <- function(x, probs = c(.025, .975), n, b, xbar) {
@@ -376,7 +376,7 @@ When we don't use replacement, which is the proper subsampling method, smaller s
 
 ## Conclusions
 
-We started off by asking the question: how should you bootstrap? Well, it turns out that there might be many different sampling schemes that fall in the bootstrapping family, and the standard algorithm is only one member of this family. [Chernick's book](http://www.wiley.com/WileyCDA/WileyTitle/productCd-0471756210,subjectCd-STZ0.html) is a good resource for the many varieties, and separating which methods best suit which problems is a challenge unto itself. Looking at just two of those methods, subsampling and the *m* out of *n* bootstrap, we see that a variety of parameters influence the size of the bias in confidence intervals. 
+We started off by asking the question: how should you bootstrap? Well, it turns out that there might be many different sampling schemes that fall in the bootstrapping family, and the standard algorithm is only one member of this family. [Chernick's book](https://www.wiley.com/WileyCDA/WileyTitle/productCd-0471756210,subjectCd-STZ0.html) is a good resource for the many varieties, and separating which methods best suit which problems is a challenge unto itself. Looking at just two of those methods, subsampling and the *m* out of *n* bootstrap, we see that a variety of parameters influence the size of the bias in confidence intervals. 
 
 The *best* combination of parameters is quite tricky. [As Bickel and Sakov note](https://www.stat.berkeley.edu/~bickel/BS2008SS.pdf), choosing the size of the subsample is in fact one of the hardest steps in using these methods. We don't resolve these problems here to any degree of certainty, but there are some general practical implications. Subsampling seems to prefer smaller subsamples relative to the size of the original data, and both methods improve as the size of the original data and the number of iterations increase. 
 

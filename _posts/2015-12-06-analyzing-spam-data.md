@@ -9,7 +9,7 @@ use_math: true
 image: 
     feature: clouds.jpg
     credit: Superfamous
-    creditlink: http://images.superfamous.com/Cloud-Mountain-II
+    creditlink: https://images.superfamous.com/Cloud-Mountain-II
 ---
 
 
@@ -22,9 +22,9 @@ image:
 
 John Marden was a Professor Emeritus when I attended UIUC. While I didn't have the chance to attend any of his classes, he had a huge influence on my academic career. He is the author of an incredible series of "Old School" courses notes on a variety of topics in statistical analysis.
 
-* [Mathematical Statistics: Old School](http://istics.net/pdfs/mathstat.pdf) was my text for PhD-level math stats
-* [Analysis of Variance: Old School](http://istics.net/pdfs/anova.pdf) was my theory linear models text
-* [Multivariate Analysis: Old School](http://istics.net/pdfs/multivariate.pdf) was the textbook for my multivariate class
+* [Mathematical Statistics: Old School](https://istics.net/pdfs/mathstat.pdf) was my text for PhD-level math stats
+* [Analysis of Variance: Old School](https://istics.net/pdfs/anova.pdf) was my theory linear models text
+* [Multivariate Analysis: Old School](https://istics.net/pdfs/multivariate.pdf) was the textbook for my multivariate class
 
 In honor of Dr. Marden, we're doing fitting some Old School classification models to an Old School Machine learning dataset. I'll be looking at two models today: linear discriminant analysis (LDA) and Naive Bayes (NB). I'll touch a bit on the theory behind each model and the classification problem itself. Most importantly, I've developed code to implement each model, as I think both are excellent learning opportunities. 
 
@@ -36,7 +36,7 @@ In that regard, this blog now has a package. [You can find it on Github](https:/
 devtools::install_github("michaelquinn32/adventureR")
 {% endhighlight %}
 
-[Code is a means of communication](http://r4ds.had.co.nz/expressing-yourself.html), and good code is well-documented code. The easiest way to do that was just put the package together and throw in [Roxygen headers](http://r-pkgs.had.co.nz/man.html) for each function. That said, the blog's sister package is only meant to illustrate the exercises on the blog. It is permanently a work in progress, and nothing was written for perfect application in every context. *Caveat emptor*.
+[Code is a means of communication](https://r4ds.had.co.nz/expressing-yourself.html), and good code is well-documented code. The easiest way to do that was just put the package together and throw in [Roxygen headers](https://r-pkgs.had.co.nz/man.html) for each function. That said, the blog's sister package is only meant to illustrate the exercises on the blog. It is permanently a work in progress, and nothing was written for perfect application in every context. *Caveat emptor*.
 
 In today's post, I'll be working with the [Hewlett-Packard Spam Data](https://archive.ics.uci.edu/ml/datasets/Spambase). It's available in the UCI Repository Of Machine Learning Databases. While it's not that old as far as standard statistical datasets are concerned (the data were published in 1999), it's already considered a classic classification dataset. The familiarity of the data should help us focus on the real issue at hand, the classification algorithms.
 
@@ -50,7 +50,7 @@ $$
 y \in \left\{ 0, \dots, K - 1 \right\}
 $$
 
-Terminology is always a bit of a problem, but I'll do my best to adhere to the terminology outlined by Hastie, Tibishirani and Friedman in [The Elements of Statistical Learning](http://statweb.stanford.edu/~tibs/ElemStatLearn/). The vector $y$ is our *outcome* or *target*, and our problem is one of *supervised learning*. In the spam dataset, an observation can belong to either the "spam" or "not spam" group, meaning that our problem is *binary*.
+Terminology is always a bit of a problem, but I'll do my best to adhere to the terminology outlined by Hastie, Tibishirani and Friedman in [The Elements of Statistical Learning](https://statweb.stanford.edu/~tibs/ElemStatLearn/). The vector $y$ is our *outcome* or *target*, and our problem is one of *supervised learning*. In the spam dataset, an observation can belong to either the "spam" or "not spam" group, meaning that our problem is *binary*.
 
 A prediction is ultimately a function. Given a single observation of $\mathbf{X}$, let's call is $x_j$ we want a function that produces our best estimate of the target $\hat{y}_j$. Formally, we want $\mathrm{G}()$ such that
 
@@ -165,7 +165,7 @@ $$
 
 Where $\| \Sigma \|$ is the determinant of the covariance matrix. Keep in mind that in the above equation we're dealing with vectors and matrices, not scalars. 
 
-With this assumption, we can implement Linear or Quadratic Discriminant Analysis (LDA or QDA). The former has been around for almost 100 years now. Like most of Statistics, it was created by RA Fisher. [You can read the original article online](http://onlinelibrary.wiley.com/doi/10.1111/j.1469-1809.1936.tb02137.x/abstract), along with everything else published in the very unfortunately named *Annals of Eugenics*. The name's so bad that Wiley has to throw up a disclaimer. Ouch.
+With this assumption, we can implement Linear or Quadratic Discriminant Analysis (LDA or QDA). The former has been around for almost 100 years now. Like most of Statistics, it was created by RA Fisher. [You can read the original article online](https://onlinelibrary.wiley.com/doi/10.1111/j.1469-1809.1936.tb02137.x/abstract), along with everything else published in the very unfortunately named *Annals of Eugenics*. The name's so bad that Wiley has to throw up a disclaimer. Ouch.
 
 The methods differ over assumptions about the covariance matrix used in the problem. In LDA, we assume that different groups have the same covariance. We do not make this assumption in QDA. Grouped covariance makes the math in LDA a lot simpler, it also saves us from estimating a bunch of extra parameters. For that reason, QDA tends to overfit and you need a lot of data ( even more than the spam data ) to get improved performance. I'll show that in this post, but I won't actually implement QDA (*the remaining proof is left as an exercise for the student...*).
 
@@ -258,7 +258,7 @@ ggplot(example_data, aes(V1, V2)) +
     ggtitle("LDA Example")
 {% endhighlight %}
 
-<img src="http://michaelquinn32.github.io/images/2015-12-06-analyzing-spam-data/lda_example-1.png" title="plot of chunk lda_example" alt="plot of chunk lda_example" width="800px" height="500px" />
+<img src="https://michaelquinn32.github.io/images/2015-12-06-analyzing-spam-data/lda_example-1.png" title="plot of chunk lda_example" alt="plot of chunk lda_example" width="800px" height="500px" />
 
 We have two color-coded classes with a discriminating line running between them. Observations on one side of the line would be classified as one group and vice versa. Obviously, this is not a perfect classifier, but it is nonetheless optimal for a linear split. 
 
@@ -478,7 +478,7 @@ spam_data %>% count(target)
 ## 2      1  1813
 {% endhighlight %}
 
-As a check for our implementation for each method, I'll pull out the same classification methods in the `caret` packaged. For all intents and purposes, this is the gold standard for predictive modeling in R. [It has a wonderul site as well](http://topepo.github.io/caret/), which is a thorough tutorial on predictive modeling as much as it is package documentation. If we compete well with `caret`, we've done a good job. `caret` has LDA, QDA and Naive Bayes. We'll use all three, along with the option of removing zero variance columns from our training data.
+As a check for our implementation for each method, I'll pull out the same classification methods in the `caret` packaged. For all intents and purposes, this is the gold standard for predictive modeling in R. [It has a wonderul site as well](https://topepo.github.io/caret/), which is a thorough tutorial on predictive modeling as much as it is package documentation. If we compete well with `caret`, we've done a good job. `caret` has LDA, QDA and Naive Bayes. We'll use all three, along with the option of removing zero variance columns from our training data.
 
 
 {% highlight r %}
@@ -550,7 +550,7 @@ results %>% at_depth(2, data.frame) %>%
     ggtitle("Comparison of F1 in classification models")
 {% endhighlight %}
 
-<img src="http://michaelquinn32.github.io/images/2015-12-06-analyzing-spam-data/final_plot-1.png" title="plot of chunk final_plot" alt="plot of chunk final_plot" width="800px" height="500px" />
+<img src="https://michaelquinn32.github.io/images/2015-12-06-analyzing-spam-data/final_plot-1.png" title="plot of chunk final_plot" alt="plot of chunk final_plot" width="800px" height="500px" />
 
 Our version of LDA performed exactly the same as `caret`'s. YAY! Either one is the best, but I'm pretty sure you know which one I love more. 
 

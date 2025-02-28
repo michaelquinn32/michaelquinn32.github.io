@@ -8,7 +8,7 @@ modified: 2015-10-30
 image: 
     feature: bigsur.jpg
     credit: Superfamous
-    creditlink: http://images.superfamous.com/Big-Sur-slopes
+    creditlink: https://images.superfamous.com/Big-Sur-slopes
 ---
 
 <section id="table-of-contents" class="toc">
@@ -27,7 +27,7 @@ Over at the R Language subreddit, [a college student has an interesting problem 
 
 > Hi, the question asks us to create a sample of standard normal distribution, n=100. Then group it into 10 groups of 10 numbers in ascending order (group 1 is the 10 smallest numbers, where group 10 is the 10 largest numbers). I then struggle on this part, "Give a vector of values (let’s call it y) which says which group each observation falls in, in the original vector x. So if the first entry in x falls in the fifth group the vector y will have at first entry value 5 and so on." 
 
-Another helpful redditor links to [a question thread over at Stack Overflow](http://stackoverflow.com/questions/3318333/split-a-vector-into-chunks-in-r) which roughly boils down to "just use `cut`". That's not so fun. Maybe we can tackle the problem differently.
+Another helpful redditor links to [a question thread over at Stack Overflow](https://stackoverflow.com/questions/3318333/split-a-vector-into-chunks-in-r) which roughly boils down to "just use `cut`". That's not so fun. Maybe we can tackle the problem differently.
 
 Instead, let's solve the problem using [hash tables](https://en.wikipedia.org/wiki/Hash_table). For those not in the know, a hash table is a standard computer science data object that consists of key, value pairs. Python's `dict` objects are an example. Hash tables are usually generated through the application of a hash function, which takes some standard data object and associates it with key values in a useful manner.  
 
@@ -402,7 +402,7 @@ binned %>% tidyr::gather(variable, level) %>%
         ggtitle('Rough histograms')
 {% endhighlight %}
 
-<img src="http://michaelquinn32.github.io/images/2015-10-28-hash-lookup/rough-histogram-1.png" title="plot of chunk rough-histogram" alt="plot of chunk rough-histogram" width="800px" height="500px" />
+<img src="https://michaelquinn32.github.io/images/2015-10-28-hash-lookup/rough-histogram-1.png" title="plot of chunk rough-histogram" alt="plot of chunk rough-histogram" width="800px" height="500px" />
 
 This obviously isn't the easiest way to get that plot (`geom_histogram` is), but it's nice to have stumbled upon it. In general, `cut` should outperform the functions we've already written, since calls an Internal function called `.bincode`. All of R's internals are written in C. The difference is pretty extreme.
 

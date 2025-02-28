@@ -8,7 +8,7 @@ comments: true
 image:
   feature: sample-image-5.jpg
   credit: WeGraphics
-  creditlink: http://wegraphics.net/downloads/free-ultimate-blurred-background-pack/
+  creditlink: https://wegraphics.net/downloads/free-ultimate-blurred-background-pack/
 ---
 
 <section id="table-of-contents" class="toc">

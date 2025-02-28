@@ -17,7 +17,7 @@ Start by modifying or creating a new `authors.yml` file in the `_data` folder an
 
 billy_rick:
   name: Billy Rick
-  web: http://thewhip.com
+  web: https://thewhip.com
   email: billy@rick.com
   bio: "What do you want, jewels? I am a very extravagant man."
   avatar: bio-photo-2.jpg

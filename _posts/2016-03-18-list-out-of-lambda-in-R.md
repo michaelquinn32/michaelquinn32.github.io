@@ -9,16 +9,16 @@ use_math: true
 image: 
     feature: harlem.jpg
     credit: Olds, Elizabeth, via the NY Public Library
-    creditlink: http://digitalcollections.nypl.org/items/913dd5f0-d56d-0131-4387-58d385a7bbd0
+    creditlink: https://digitalcollections.nypl.org/items/913dd5f0-d56d-0131-4387-58d385a7bbd0
 ---
 
 {% include _toc.html %}
 
 ## Introduction
 
-We're going to do something a little different today. Instead of [explaining classic modeling methods](http://michaelquinn32.github.io/analyzing-spam-data/), [exploring some research](http://michaelquinn32.github.io/bootstrap/) or [solving a problem](http://michaelquinn32.github.io/geysers/), I'm going to translate an article from JavaScript into R. "That's it," you say? Well, well, well, dear reader have some faith in your translator. As anyone familiar with [Pevear and Volokhonsky's incredible translations of Russian literature knows](http://www.theparisreview.org/interviews/6385/the-art-of-translation-no-4-richard-pevear-and-larissa-volokhonsky), the work of a translator is much, much more than just a verbatim transcription. The translator brings a foreign world alive in a new and exciting context, adding as much of his or her authoritative voice as the original.
+We're going to do something a little different today. Instead of [explaining classic modeling methods](https://michaelquinn32.github.io/analyzing-spam-data/), [exploring some research](https://michaelquinn32.github.io/bootstrap/) or [solving a problem](https://michaelquinn32.github.io/geysers/), I'm going to translate an article from JavaScript into R. "That's it," you say? Well, well, well, dear reader have some faith in your translator. As anyone familiar with [Pevear and Volokhonsky's incredible translations of Russian literature knows](https://www.theparisreview.org/interviews/6385/the-art-of-translation-no-4-richard-pevear-and-larissa-volokhonsky), the work of a translator is much, much more than just a verbatim transcription. The translator brings a foreign world alive in a new and exciting context, adding as much of his or her authoritative voice as the original.
 
-Now *that's* what we're going to do. Today's article is Steve Losh's [List Out of Lambda](http://stevelosh.com/blog/2013/03/list-out-of-lambda/), and I would dare to say that it is a modern classic in literate programming. I was lucky enough to stumble across it while working through [Hadley Wickham's Advanced R](http://adv-r.had.co.nz/).[^1] If you haven't read that article yet, boy you're in for a treat. Please, give it a shot before reading any further, and I'll do my best to show you how R can interpret Steve's ideas.
+Now *that's* what we're going to do. Today's article is Steve Losh's [List Out of Lambda](https://stevelosh.com/blog/2013/03/list-out-of-lambda/), and I would dare to say that it is a modern classic in literate programming. I was lucky enough to stumble across it while working through [Hadley Wickham's Advanced R](https://adv-r.had.co.nz/).[^1] If you haven't read that article yet, boy you're in for a treat. Please, give it a shot before reading any further, and I'll do my best to show you how R can interpret Steve's ideas.
 
 [^1]: And thanks Hadley for all of the amazing functional programming ideas in [`purrr`](https://github.com/hadley/purrr)
 
@@ -57,7 +57,7 @@ is_empty <- function(ls) {
 
 Take a second to mull these over. And all you pedants over there, cool it with the "you're abusing the class system nonsense." I know I'm abusing the class system, but if we're going to create "objects" out of functions and preserve even a modicum of beauty in our code, we're going to need to take some short cuts. If we can all take it easy for just one second, I promise that everyone will have a lot of fun.
 
-For those still wondering what all the `.fl` stuff is, sorry. That last comment was probably confusing. [You might want to check out Hadley Wickham's explanation of S3](http://adv-r.had.co.nz/OO-essentials.html#s3). A lot of the functions that we are creating overlap with functions in base R and the standard packages. In some cases, there will be a generic function already defined. This allows us to call `tail.fl` as `tail` on our functional lists and get the reaction that we want. The other cases are handled by the [`lambdaList` package](https://github.com/michaelquinn32/lambdaList).
+For those still wondering what all the `.fl` stuff is, sorry. That last comment was probably confusing. [You might want to check out Hadley Wickham's explanation of S3](https://adv-r.had.co.nz/OO-essentials.html#s3). A lot of the functions that we are creating overlap with functions in base R and the standard packages. In some cases, there will be a generic function already defined. This allows us to call `tail.fl` as `tail` on our functional lists and get the reaction that we want. The other cases are handled by the [`lambdaList` package](https://github.com/michaelquinn32/lambdaList).
 
 Alright, let's get back on track. What have we done? Believe it or not, we've got almost everything we need (save one function) for Losh's implementation of a list: "a function that returns its head or tail." While R doesn't use inheritance like C++, Java or Python, it's still useful to think of the preceding functions as a "base class" that we'll build off of later.
 
@@ -448,7 +448,7 @@ R uses a lot of sequences, but one of its most powerful tools for generating lis
 
 [^4]: At least that's how it's supposed to work when you're doing functional programming. You need to set `simplify = FALSE` in the arguments to get back a list.
 
-I don't want to get to deep into R's non-standard evaluation and meta-computing tools. [Hadley Wickham explains these well](http://adv-r.had.co.nz/Computing-on-the-language.html). Instead, let's just implement a version of `rerun` where we require the user to specify that they have an expression in advance.
+I don't want to get to deep into R's non-standard evaluation and meta-computing tools. [Hadley Wickham explains these well](https://adv-r.had.co.nz/Computing-on-the-language.html). Instead, let's just implement a version of `rerun` where we require the user to specify that they have an expression in advance.
 
 
 {% highlight r %}
@@ -742,7 +742,7 @@ test <- rerun(1500, quote(rnorm(1)))
 
 Even if you reset `options(expressions=)`, you'll quickly hit another hard cap: the size of the stack in C. For those that didn't know, each new function call creates its own environment (or frame in C) to contain all of the local variables and expressions within the function. For your own sake, C limits the number of calls you make at once. Within R, there's not much you can do about it.
 
-Not surprisingly, creating a new frame on the stack with each recursive step is both memory intensive and somewhat slow. This is a particular feature of the C family of languages. Functional programming languages like `scala` and `haskell` are optimized for long recursive calls. [This is known as tail recursion optimization in certain languages](http://stackoverflow.com/questions/310974/what-is-tail-call-optimization).[^5] Despite all of R's functional programming strengths, this is not a feature in the current implementation of the language. Considering the fact that R is built in C, it might not ever be either.
+Not surprisingly, creating a new frame on the stack with each recursive step is both memory intensive and somewhat slow. This is a particular feature of the C family of languages. Functional programming languages like `scala` and `haskell` are optimized for long recursive calls. [This is known as tail recursion optimization in certain languages](https://stackoverflow.com/questions/310974/what-is-tail-call-optimization).[^5] Despite all of R's functional programming strengths, this is not a feature in the current implementation of the language. Considering the fact that R is built in C, it might not ever be either.
 
 [^5]: Haskell is slightly special in this regard, using a method called guarded recursion that uses a special kind lazy evaluation to avoid having to create more frames. [See more here](https://wiki.haskell.org/Tail_recursion).
 

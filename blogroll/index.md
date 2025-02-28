@@ -14,9 +14,9 @@ Otherwise, here's a couple of good ones.
 
 ### Everything R and Statistics
 
-* [R-Bloggers](http://www.r-bloggers.com/)
-* [StatsBlogs](http://www.statsblogs.com/)
-* [RStudio's Blog](http://blog.rstudio.org//)
+* [R-Bloggers](https://www.r-bloggers.com/)
+* [StatsBlogs](https://www.statsblogs.com/)
+* [RStudio's Blog](https://blog.rstudio.org//)
 
 ### My Favorite Packages on GitHub
 

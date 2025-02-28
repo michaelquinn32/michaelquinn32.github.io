@@ -9,7 +9,7 @@ comments: true
 
 Syntax highlighting is a feature that displays source code, in different colors and fonts according to the category of terms. This feature facilitates writing in a structured language such as a programming language or a markup language as both structures and syntax errors are visually distinct. Highlighting does not affect the meaning of the text itself; it is intended only for human readers.[^1]
 
-[^1]: <http://en.wikipedia.org/wiki/Syntax_highlighting>
+[^1]: <https://en.wikipedia.org/wiki/Syntax_highlighting>
 
 ### Pygments Code Blocks
 
@@ -73,7 +73,7 @@ end
 
 ### Fenced Code Blocks
 
-To modify styling and highlight colors edit `/_sass/_coderay.scss`. Line numbers and a few other things can be modified in `_config.yml`. Consult [Jekyll's documentation](http://jekyllrb.com/docs/configuration/) for more information.
+To modify styling and highlight colors edit `/_sass/_coderay.scss`. Line numbers and a few other things can be modified in `_config.yml`. Consult [Jekyll's documentation](https://jekyllrb.com/docs/configuration/) for more information.
 
 ~~~ css
 #container {

@@ -46,9 +46,9 @@ It took a long weekend, but I eventually nailed down every component.
 
 ## Working with Github Pages
 
-A static webpage is different than a lot of blogging solutions. Instead of using an online content management system that connects to a database, you have a complete hosted version of your webpage online and a complete local copy on your computer. The local copy is used for building additional pages and testing. Whenever you're ready to put these local changes online, you *push* the local version of the server. We'll do this step using `git`, the little version control system that has become [*the* software that builds software](http://www.newyorker.com/tech/elements/the-software-that-builds-software) and we'll host the page using Github pages.
+A static webpage is different than a lot of blogging solutions. Instead of using an online content management system that connects to a database, you have a complete hosted version of your webpage online and a complete local copy on your computer. The local copy is used for building additional pages and testing. Whenever you're ready to put these local changes online, you *push* the local version of the server. We'll do this step using `git`, the little version control system that has become [*the* software that builds software](https://www.newyorker.com/tech/elements/the-software-that-builds-software) and we'll host the page using Github pages.
 
-If you own a Windows machine, you can install `git` by grabbing the [Github for Windows Desktop Client](https://desktop.github.com/) or the [standalone Git client](https://git-scm.com/download/win). Basically all Linux distros come with `git`, and you can always get the most recent version through [your package management system](https://en.wikipedia.org/wiki/List_of_software_package_management_systems).If you own a Mac, like me, you already have `git` installed, but I prefer to grab the most recent version from [Homebrew](http://brew.sh/).
+If you own a Windows machine, you can install `git` by grabbing the [Github for Windows Desktop Client](https://desktop.github.com/) or the [standalone Git client](https://git-scm.com/download/win). Basically all Linux distros come with `git`, and you can always get the most recent version through [your package management system](https://en.wikipedia.org/wiki/List_of_software_package_management_systems).If you own a Mac, like me, you already have `git` installed, but I prefer to grab the most recent version from [Homebrew](https://brew.sh/).
 
 Once Homebrew is installed, you can install the latest version of `git` with the following:
 
@@ -61,13 +61,13 @@ To get started using Github pages, you need a Github account. [That process star
 
 * A great place to start is [TryGit](https://try.github.io/levels/1/challenges/1), by Github
 * And most of that material is covered in [Hello World](https://guides.github.com/activities/hello-world/), also by Github
-* [Peter Cottle](https://github.com/pcottle) has a separate guide to Git Branching, [which is super cool](http://pcottle.github.io/learnGitBranching/)
+* [Peter Cottle](https://github.com/pcottle) has a separate guide to Git Branching, [which is super cool](https://pcottle.github.io/learnGitBranching/)
 
 Now that we're more familiar with `git`, we can get started with our static webpage. You have the option of creating a personal page or a project page, but I'm showing the former. The brief tutorial [on Github pages](https://pages.github.com/) shows how you can create a site from scratch, but we're going to skip around most of that. Instead, let's go pick a theme. It can do most of our work for us.
 
 ## Jekyll and Themes
 
-Github pages support [Jekyll](http://jekyllrb.com/), a tool for creating static webpages and blogs from text. It's built in Ruby, which seems like a really awesome language. But that's about all I can say about Ruby. Don't worry, we'll still be working in our precious R. All the Ruby we need is a couple of stuff in the command line.
+Github pages support [Jekyll](https://jekyllrb.com/), a tool for creating static webpages and blogs from text. It's built in Ruby, which seems like a really awesome language. But that's about all I can say about Ruby. Don't worry, we'll still be working in our precious R. All the Ruby we need is a couple of stuff in the command line.
 
 To install Jekyll, run the following in your terminal. The first call to Homebrew gets us an updated Ruby, and the second gives us Jekyll.
 
@@ -77,7 +77,7 @@ brew install ruby
 gem install jekyll
 {% endhighlight %}
 
-Since `git` is an integral tool in managing our webpage, we'll bootstrap its ability to share projects to get all of the components we need for a website. Fortunately, [Jekyll has a variety of themes](http://jekyllthemes.org/) for us to take advantage of. There's no reason to reinvent the wheel when we don't have to. I went with [Minimal Mistakes by Michael Rose](https://mmistakes.github.io/minimal-mistakes/). All of that beautiful design you see right now is his work. Thanks Michael!
+Since `git` is an integral tool in managing our webpage, we'll bootstrap its ability to share projects to get all of the components we need for a website. Fortunately, [Jekyll has a variety of themes](https://jekyllthemes.org/) for us to take advantage of. There's no reason to reinvent the wheel when we don't have to. I went with [Minimal Mistakes by Michael Rose](https://mmistakes.github.io/minimal-mistakes/). All of that beautiful design you see right now is his work. Thanks Michael!
 
 Launching the theme is as simple as forking [his Github repository](https://github.com/mmistakes/minimal-mistakes/fork) and deleting some of the extra branches. That link will do the first part for you, and the "branch" window lets you get to any other branches floating around (red pointer).
 
@@ -156,11 +156,11 @@ I also added the gems for a sitemap and a site feed. That is a small tweak to [t
 My images folder has some additional icons and those icons are the basis for the site's favicon. Along the way, I came across a few different sites for additional site assets.
 
 * [The Noun Project](https://thenounproject.com/) is the best resource for icons. The favicon comes from there.
-* [Superfamous](http://images.superfamous.com/) is my favorite resource for free stock photography. It goes along well with the site's themes.
-* [Gratis Photography](http://www.gratisography.com/), [Unsplash](https://unsplash.com/) and [MMT](http://mmt.li/) are also excellent too.
+* [Superfamous](https://images.superfamous.com/) is my favorite resource for free stock photography. It goes along well with the site's themes.
+* [Gratis Photography](https://www.gratisography.com/), [Unsplash](https://unsplash.com/) and [MMT](https://mmt.li/) are also excellent too.
 
 ### MathJax
-I also write a lot of math. To render that into `html`, I use [MathJax](https://www.mathjax.org/). Installing MathJax was simple. I just followed [the guide by Haixing Hu](http://haixing-hu.github.io/programming/2013/09/20/how-to-use-mathjax-in-jekyll-generated-github-pages/). While this process is slightly longer than a typical installation (which just adds a single link), going Haixing's route gives you both block and in-line math expressions. Just like LaTex.
+I also write a lot of math. To render that into `html`, I use [MathJax](https://www.mathjax.org/). Installing MathJax was simple. I just followed [the guide by Haixing Hu](https://haixing-hu.github.io/programming/2013/09/20/how-to-use-mathjax-in-jekyll-generated-github-pages/). While this process is slightly longer than a typical installation (which just adds a single link), going Haixing's route gives you both block and in-line math expressions. Just like LaTex.
 
 Haixing's installation takes two steps. First, you need to create another small `.html` file in the `_includes` folder. I called it `_mathjax.html`. I needed to add one more little piece of code to the `_head.html` file (also in `_includes`).
 
@@ -184,13 +184,13 @@ Now we have pretty math! Enabling it requires an additional option in each page/
 
 We're almost there. For all intents and purposes, we have a working website. With `git`, we can publish new posts. But the last step is probably the most important for statisticians, getting our IDE to handle most of the work.
 
-Yihui Xie, the invaluable author of `knitr`, has been hard at work producing one of the most useful R packages that you've never heard of `servr`. With this, you can take your `html` files generated by `knitr` and host them on your own server. Even better, it works with Jekyll. [You can learn more about it here](http://yihui.name/knitr-jekyll/2014/09/jekyll-with-knitr.html).
+Yihui Xie, the invaluable author of `knitr`, has been hard at work producing one of the most useful R packages that you've never heard of `servr`. With this, you can take your `html` files generated by `knitr` and host them on your own server. Even better, it works with Jekyll. [You can learn more about it here](https://yihui.name/knitr-jekyll/2014/09/jekyll-with-knitr.html).
 
 Getting `servr` up and running isn't too hard. Obviously, you need to install it.
 
 
 {% highlight r %}
-install.packages(c("servr", "knitr"), repos = "http://cran.rstudio.com")
+install.packages(c("servr", "knitr"), repos = "https://cran.rstudio.com")
 {% endhighlight %}
 
 You also need to add a couple new folders, a build script and a `Makefile`. 
@@ -199,7 +199,7 @@ I created a `draft_posts` folder to hold my work and told Jekyll to ignore it (i
 
 The build file controls most of the `knitr` options. It goes in the main site directory. [Here's mine](https://github.com/michaelquinn32/michaelquinn32.github.io/blob/master/build.R). Pay attention to things like where `knitr` will store your images.
 
-The `Makefile` goes in the `_source` folder with your `Rmarkdown` posts. [Here's mine](https://github.com/michaelquinn32/michaelquinn32.github.io/tree/master/_source). It controls how `knitr` and Jekyll work together to convert your text to `html`. [Karl Broman's guide to make](http://kbroman.org/minimal_make/) is a useful place to go if you want to understand how all of this works.
+The `Makefile` goes in the `_source` folder with your `Rmarkdown` posts. [Here's mine](https://github.com/michaelquinn32/michaelquinn32.github.io/tree/master/_source). It controls how `knitr` and Jekyll work together to convert your text to `html`. [Karl Broman's guide to make](https://kbroman.org/minimal_make/) is a useful place to go if you want to understand how all of this works.
 
 All we have left is a few minor tweaks in RStudio.
 
