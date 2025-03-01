@@ -1,5 +1,4 @@
-# Setting some of the knitr and servr build arguments.
-# File courtesy of https://github.com/yihui/knitr-jekyll/blob/gh-pages/build.R
+# From: https://github.com/yihui/blogdown-jekyll/blob/gh-pages/R/build_one.R
 
 local({
     # fall back on '/' if baseurl is not specified
