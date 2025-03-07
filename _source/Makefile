@@ -2,7 +2,7 @@
 # need to install the servr package.
 
 all:
-	Rscript -e "servr::jekyll('..', command = 'bundle exec jekyll build')"
+	Rscript -e "blogdown::build_site()"
 
 clean:
 	rm -r ../_site
