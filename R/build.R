@@ -18,4 +18,4 @@ files = cbind(rmds, blogdown:::with_ext(rmds, '.md'))
 
 for (i in seq_len(nrow(files))) build_one(files[i, ])
 
-system2('bundle', 'exec jekyll build')
+system2('bundle', 'exec jekyll build', env = 'JEKYLL_ENV=production')
