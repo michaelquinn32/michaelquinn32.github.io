@@ -86,6 +86,10 @@ Swapping models is especially important, as the field is moving so quickly. The 
 <iframe width="560" height="315" src="https://storage.googleapis.com/public-arena-no-cors/scatterplot.html" width="560" title="lmarena.ai/price
 "></iframe>
 
+*From [lmarena.ai/price](https://lmarena.ai/?price).*
+
+<br/>
+
 # Even ICs are now managers
 
 A lot has been said about the future of software engineering in the age of AI. While there is more to the debate than what I can get to here, one clear trend is that the role of the software engineer is changing. In the past, we were often seen as the "doers" of the team, responsible for writing code and implementing features. Now, with the rise of AI and LLMs, our role is shifting towards that of a manager or overseer. I often apply the model of the Google career ladder to better frame this trend. As a great Google joke goes:
