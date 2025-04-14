@@ -7,7 +7,7 @@ comments: true
 modified: 2025-04-13
 use_math: true
 image: 
-    feature: island.png
+    feature: island.jpg
     credit: ImageFx
     creditlink: https://labs.google/fx/tools/image-fx/5pugg7pnm0000
 ---
