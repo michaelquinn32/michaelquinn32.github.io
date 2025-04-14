@@ -1,6 +1,6 @@
 # Site wide configuration
 
-title:            Big Blog of R Adventures
+title:            Big Blog of Data Science Adventures
 locale:           en_US
 # For a development URL, follow the pattern from 
 # https://docs.github.com/en/codespaces/developing-in-a-codespace/forwarding-ports-in-your-codespace
