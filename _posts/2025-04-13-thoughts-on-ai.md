@@ -38,9 +38,8 @@ Over the last month, many of the AI projects that I've been working on can be ea
 *  Doing extensive research with an agent to eventually configure other tools
 
 These type of quick, small projects, often geared towards a specific goal, have really focused on my thoughts on the value of AI, LLMs and the forthcoming wave of agents that we will all interact with. Often, we are thinking about a task that we would like a critically-minded, detailed-orient person to take on, but there isn't capacity to fully hand this off. Instead, AI steps in as the next best, and often better, option.
-This is a huge shift from the past, where we would often think of AI as a way to automate a task that was already being done by a human. Now, we are thinking about how to augment our own work with AI.
 
-On a day-to-day basis, I'm also seeing my own behavior shift towards an AI first approach and away from traditional tools. Search is the most obvious of these. While I don't necessarily have a single preferred option, I find myself using either Perplexity, ChatGPT or Gemini before looking for an answer in a search engine. Moreover, the way I search seems to be changing, as I am becoming more prone to ask questions than to try and track down a reference that I already have in mind.
+This is a huge shift from the past, where we would often think of AI as a way to automate a task that was already being done by a human. Now, we are thinking about how to augment our own work with AI.
 
 # Text is data; data is text
 
@@ -105,6 +104,27 @@ One big part of that is in the importance of system design, architecture and the
 <br/>
 
 That said, while I think that writing is one of the most important skills for a good people leader, I'm still not sure on what the right approach to communication is for when we're working with models. Most guides to [Prompt Engineering](https://drive.google.com/file/d/1AbaBYbEa_EbPelsT40-vj64L-2IwUJHy/view) suggest that we are entering a paradigm where we communicate with models in a very particular style. The exact nature of this style of communicate is still being worked out. For example, how critical is formatting a prompt? With reasoning models, do we need to follow chain of thought? As context windows grow, is simplicity still critical? I expect a lot of this to get worked out as models continue to gain more capabilities.
+
+# Tools, tools, tools
+
+The first wave of AI models came in the form of chat bots: Chat GPT, Gemini, Claude, etc. To be frank, I only found limited utility from this wave of tools. There was still a lot to learn about how to use them, and there value as knowledge engines was often overshadowed by things like hallucinations. That's no longer the case, as three new augmentations have come to models over the last year. All are impactful:
+
+*  The addition of Search means that information is largely grounded and that the response is consistently good
+*  The big splash of reasoning after Deepseek, which is now showing up everywhere
+*  Generic tool use, either within the apps provided by major platforms or augmented through things like the Model Context Protocol (MCP)
+
+On a day-to-day basis, I'm seeing my own behavior shift towards an AI first approach and away from traditional tools. Search is the most obvious of these. While I don't necessarily have a single preferred option, I find myself using either Perplexity, ChatGPT or Gemini before looking for an answer in a search engine. Moreover, the way I search seems to be changing, as I am becoming more prone to ask questions than to try and track down a reference that I already have in mind.
+
+Deep research has fundamentally changed the way how I work. Reading is now a collaborative activity, and I've found myself consistently returning to AI to brainstorm ideas, summarize literatures and come up with reading plans. At the same time, it is just as important for me to make sure that articles get loaded into a [notebooklm](https://notebooklm.google.com/), so I can come back and ask questions later. This is a huge increase in my personal productivity, as I have found my ability to learn new things accelerate.
+
+The last of these big A-ha moments was the debut of MCP servers. While not a new idea, it really feels like they took off over the last month. My big mind blown moment came from this video by Zen van Riel. I immediately began to dream of LLM-centric operating systems where a single model can interact with programs across my computer, but to provide assistance but to also off-load much of the mental load that goes into remembering shortcuts, UIs and all the other stuff that fills your head as a knowledge worker.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/NMmDnYKD0fE?si=9ZdYNVpJTLmnQS_Y" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+<br/>
+
+Now, to be realistic, a lot of MCP demos are still just *demos*, it will be some time until they can be relied on as day-to-day tools. For example, I could never get the Linear server to work with my API key, and my DuckDuckGo-augmented Claude wasn't especially performant. But we are still on the cusp on something amazing, where an LLM can be improved upon by dozens of different tools and systems. Your full-featured assistant is just a prompt away.
+
 
 # You have agency; you are king 👑
 
