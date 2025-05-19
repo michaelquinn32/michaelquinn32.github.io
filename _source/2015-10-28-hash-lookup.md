@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "Experimenting with Lists and Hash Tables"
 excerpt: "A simple request from Reddit gives a great opportunity to demonstrate some of the less common features in R's list objects."
 tags: [R, Functional Programming, Binning, Hash Tables]

@@ -1,18 +1,17 @@
 ---
-layout: post
 title: "Some thoughts after a month of working on AI"
 excerpt: "It's been one month since I left Google for an AI startup, which makes it a good time for some reflection."
 tags: [AI, LLMs, MCP]
 comments: true
 modified: 2025-04-13
 use_math: true
-image: 
-    feature: island.jpg
-    credit: ImageFx
-    creditlink: https://labs.google/fx/tools/image-fx/5pugg7pnm0000
+toc: true
+toc_label: Contents
+toc_sticky: true
+header:
+    image: /images/island.jpg
+    caption: "Photo credit: [**ImageFx**](https://labs.google/fx/tools/image-fx/5pugg7pnm0000)"
 ---
-
-{% include _toc.html %}
 
 # Introduction
 

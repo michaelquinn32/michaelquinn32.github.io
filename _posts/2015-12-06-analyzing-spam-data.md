@@ -1,22 +1,17 @@
 ---
-layout: post
 title: "Going Old School with the Spam Email Dataset"
 excerpt: "It's time to break out some oldschool classification algorithms!"
 tags: [R, Machine Learning, Classification, Spam Data]
 comments: true
 modified: 2015-12-06
 use_math: true
-image: 
-    feature: clouds.jpg
-    credit: Superfamous
-    creditlink: https://images.superfamous.com/Cloud-Mountain-II
+toc: true
+toc_label: Contents
+toc_sticky: true
+header:
+    image: /images/clouds.jpg
+    caption: "Photo Credit: [**Superfamous**](https://images.superfamous.com/Cloud-Mountain-II)"
 ---
-
-
-
-
-
-{% include _toc.html %}
 
 ## Introduction
 

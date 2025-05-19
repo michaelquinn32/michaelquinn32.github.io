@@ -1,18 +1,17 @@
 ---
-layout: post
 title: "An R translation of List out of Lambda"
 excerpt: "We'll use a modern classic in literate programming to illustrate some of the more interesting sides of functional programming in R."
 tags: [R, Functional Programming, Lists, Thought Experiments]
 comments: true
 modified: 2016-03-19
 use_math: true
-image: 
-    feature: harlem.jpg
-    credit: Olds, Elizabeth, via the NY Public Library
-    creditlink: https://digitalcollections.nypl.org/items/913dd5f0-d56d-0131-4387-58d385a7bbd0
+toc: true
+toc_label: Contents
+toc_sticky: true
+header:
+    image: /images/harlem.jpg
+    caption: "Photo Credit: [**Olds, Elizabeth, via the NY Public Library**](https://digitalcollections.nypl.org/items/913dd5f0-d56d-0131-4387-58d385a7bbd0)"
 ---
-
-{% include _toc.html %}
 
 ## Introduction
 

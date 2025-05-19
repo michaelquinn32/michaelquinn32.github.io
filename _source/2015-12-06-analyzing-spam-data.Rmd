@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "Going Old School with the Spam Email Dataset"
 excerpt: "It's time to break out some oldschool classification algorithms!"
 tags: [R, Machine Learning, Classification, Spam Data]
@@ -18,8 +17,6 @@ knitr::read_chunk("../post-elements/2015-12-02-spam-experiment.R")
 
 ```{r prelims, echo = FALSE, message = FALSE, warning = FALSE}
 ```
-
-{% include _toc.html %}
 
 ## Introduction
 

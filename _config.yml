@@ -1,53 +1,99 @@
 # Site wide configuration
 
-title:            Big Blog of Data Science Adventures
-locale:           en_US
+title: Michael Quinn
+subtitle: Supercharge Data Science with AI
+locale: en_US
 # For a development URL, follow the pattern from 
 # https://docs.github.com/en/codespaces/developing-in-a-codespace/forwarding-ports-in-your-codespace
-# https://CODESPACENAME-PORT.app.github.dev
-url:              https://michaelquinn32.github.io
+url: https://glowing-journey-64r4xr7pv725rr7-4000.app.github.dev
+# url:              https://michaelquinn32.github.io
 description: >
-    The personal blog of Michael Quinn, a Data Scientist who enjoys exploring
+    The personal website and blog of Michael Quinn, a Data Scientist who enjoys exploring
     new computational tools and teaching others. Tutorials, musings and other 
     adventures posted every now and then.
+twitter_username: michaelquinn32
+github_username: michaelquinn32
 
-# Jekyll configuration
-permalink:   /:categories/:title/
-markdown:    kramdown
-highlighter: rouge
-sass:
-  sass_dir: _sass
-  style: compressed
-gems:
+
+
+# Build settings
+markdown: kramdown
+remote_theme: mmistakes/minimal-mistakes
+minimal_mistakes_skin: dark
+search: true
+# Outputting
+permalink: /:categories/:title/
+paginate: 5 # amount of posts to show
+paginate_path: /page:num/
+timezone: 	America/Los_Angeles
+
+# Plugins (previously gems:)
+plugins:
+  - jekyll-paginate
   - jekyll-sitemap
+  - jekyll-gist
   - jekyll-feed
+  - jemoji
+  - jekyll-include-cache
 
-kramdown:
-  auto_ids: true
-  footnote_nr: 1
-  entity_output: as_char
-  toc_levels: 1..6
-  use_coderay: false
+include: ["_pages"]
+github: [metadata]
 
-
-# Site owner
-owner:
+author:
   name: Michael Quinn
-  avatar: bio-photo.jpg
-  bio: "Nerd dad who spends way too much time thinking about statistical computing, the great outdoors and other adventurous things."
+  avatar: /images/bio-photo.jpg
+  bio: "An AI and Data Science veteran. A ex-Googler. A dad. A fan of statistical computing, the great outdoors and other adventurous things."
   email: msquinn2@illinois.edu
   disqus-shortname: michaelquinn32
   twitter: michaelquinn32
+  github: michaelquinn32
+  linkedin: michaelquinn32
   google:
     analytics: UA-69944402-1
     verify: xQogj-1c3Pnw2lZjKP6_vH0uz_COdCP7XwjJkepiAnc
     tagmanager: GTM-N4X4ZX
     ad-client:
     ad-slot:
-  bing-verify:
-  github: michaelquinn32
-# stackoverflow: 5482627/michael-quinn
-  linkedin: michaelquinn32
 
-include: [".htaccess"]
-exclude: ["lib", "config.rb", "Capfile", "config", "log", "Rakefile", "Rakefile.rb", "tmp", "less", "*.sublime-project", "*.sublime-workspace", "test", "spec", "Gruntfile.js", "package.json", "node_modules", "Gemfile", "Gemfile.lock", "LICENSE", "README.md", "draft-posts", "post-elements", "michaelquinn32.github.io.Rproj", "_source", "build.R", "_cache"]
+footer:
+  links:
+    - label: "Twitter"
+      icon: "fab fa-fw fa-twitter-square"
+      url: "https://twitter.com/michaelquinn32"
+    - label: "GitHub"
+      icon: "fab fa-fw fa-github"
+      url: "https://github.com/michaelquinn32"
+
+analytics:
+  provider: "google-gtag"
+  google:
+    tracking_id: "G-5Z551RWVK6"
+    anonymize_ip: false # default
+
+defaults:
+  # _posts
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: single
+      author_profile: true
+      read_time: true
+      comments: true
+      share: true
+      related: true
+  # _pages
+  - scope:
+      path: "_pages"
+      type: pages
+    values:
+      layout: single
+
+
+kramdown:
+  auto_ids: true
+  footnote_nr: 1
+  entity_output: as_char
+  toc_levels: 1..6
+  enable_coderay: false
+

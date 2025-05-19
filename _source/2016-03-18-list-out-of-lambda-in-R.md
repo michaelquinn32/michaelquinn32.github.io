@@ -12,8 +12,6 @@ image:
     creditlink: https://digitalcollections.nypl.org/items/913dd5f0-d56d-0131-4387-58d385a7bbd0
 ---
 
-{% include _toc.html %}
-
 ## Introduction
 
 We're going to do something a little different today. Instead of [explaining classic modeling methods](https://michaelquinn32.github.io/analyzing-spam-data/), [exploring some research](https://michaelquinn32.github.io/bootstrap/) or [solving a problem](https://michaelquinn32.github.io/geysers/), I'm going to translate an article from JavaScript into R. "That's it," you say? Well, well, well, dear reader have some faith in your translator. As anyone familiar with [Pevear and Volokhonsky's incredible translations of Russian literature knows](https://www.theparisreview.org/interviews/6385/the-art-of-translation-no-4-richard-pevear-and-larissa-volokhonsky), the work of a translator is much, much more than just a verbatim transcription. The translator brings a foreign world alive in a new and exciting context, adding as much of his or her authoritative voice as the original.

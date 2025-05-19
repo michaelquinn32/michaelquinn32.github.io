@@ -12,7 +12,6 @@ image:
     creditlink: https://digitalcollections.nypl.org/items/69f3e5ef-fcd7-0a54-e040-e00a180636a3
 ---
 
-{% include _toc.html %}
 
 ## Introduction
 

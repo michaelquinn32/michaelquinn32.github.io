@@ -1,25 +1,16 @@
 ---
-layout: post
 title: "Experimenting with Lists and Hash Tables"
 excerpt: "A simple request from Reddit gives a great opportunity to demonstrate some of the less common features in R's list objects."
 tags: [R, Functional Programming, Binning, Hash Tables]
 comments: true
 modified: 2015-10-30
-image: 
-    feature: bigsur.jpg
-    credit: Superfamous
-    creditlink: https://images.superfamous.com/Big-Sur-slopes
+toc: true
+toc_label: Contents
+toc_sticky: true
+header:
+    image: /images/bigsur.jpg
+    caption: "Photo credit: [**Superfamous**](https://images.superfamous.com/Big-Sur-slopes)"
 ---
-
-<section id="table-of-contents" class="toc">
-  <header>
-    <h3>Overview</h3>
-  </header>
-<div id="drawer" markdown="1">
-*  Auto generated table of contents
-{:toc}
-</div>
-</section><!-- /#table-of-contents -->
 
 ## Introduction 
 

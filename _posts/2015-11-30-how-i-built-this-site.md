@@ -1,24 +1,16 @@
 ---
-layout: post
 title: "How I Built this Site"
 excerpt: "Or: How I transformed RStudio into a Blogging Platform, and how you can too!"
 tags: [R, RStudio, Blog, Jekyll, Github Pages, Web Development]
 comments: true
 modified: 2015-12-06
-image: 
-    feature: sunset.jpeg
-    credit: Michael Quinn
+toc: true
+toc_label: Contents
+toc_sticky: true
+header:
+    image: /images/sunset.jpeg
+    caption: "Photo credit: Michael Quinn"
 ---
-
-<section id="table-of-contents" class="toc">
-  <header>
-    <h3>Overview</h3>
-  </header>
-<div id="drawer" markdown="1">
-*  Auto generated table of contents
-{:toc}
-</div>
-</section><!-- /#table-of-contents -->
 
 ## Preamble
 I am not a web developer. I've blogged in the past, messed around with `html` a little and conceptually understand style sheets, but that doesn't even bring me close to being capable of launching a website on my own. 

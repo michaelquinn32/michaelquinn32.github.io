@@ -1,18 +1,17 @@
 ---
-layout: post
 title: "Wait, how do you bootstrap?"
 excerpt: "We're told in school that bootstrapping requires us to sample all of the data with replacement. But what if we didn't?"
 tags: [R, Bootstrapping, Design of Experiments, Random Effects]
 comments: true
 modified: 2016-01-17
 use_math: true
-image: 
-    feature: ando.jpg
-    credit: Andō, Hiroshige, via the NY Public Library
-    creditlink: https://digitalcollections.nypl.org/items/69f3e5ef-fcd7-0a54-e040-e00a180636a3
+toc: true
+toc_label: Contents
+toc_sticky: true
+header:
+    image: /images/ando.jpg
+    caption: "Photo Credit: [**Andō, Hiroshige, via the NY Public Library**](https://digitalcollections.nypl.org/items/69f3e5ef-fcd7-0a54-e040-e00a180636a3)"
 ---
-
-{% include _toc.html %}
 
 ## Introduction
 

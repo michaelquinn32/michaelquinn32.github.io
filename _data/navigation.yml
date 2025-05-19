@@ -1,13 +1,16 @@
 # Site navigation links
 
-- title: About Me
-  url: /about-me/
+main:
+  - title: About Me
+    url: /about-me/
+  - title: Blog
+    url: /blog/
+  - title: My Projects
+    url: /my-projects/
 
-- title: Posts
-  url: /posts/
 
-- title: My Projects
-  url: /my-projects/
+
+
+
   
-- title: Old Blog
-  url:  https://empiricalturn.blogspot.com/
+

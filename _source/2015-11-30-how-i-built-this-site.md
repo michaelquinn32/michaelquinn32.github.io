@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "How I Built this Site"
 excerpt: "Or: How I transformed RStudio into a Blogging Platform, and how you can too!"
 tags: [R, RStudio, Blog, Jekyll, Github Pages, Web Development]

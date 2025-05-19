@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "Going Old School with the Spam Email Dataset"
 excerpt: "It's time to break out some oldschool classification algorithms!"
 tags: [R, Machine Learning, Classification, Spam Data]
@@ -48,8 +47,6 @@ image:
 {% highlight text %}
 ## Error in library(adventureR): there is no package called 'adventureR'
 {% endhighlight %}
-
-{% include _toc.html %}
 
 ## Introduction
 

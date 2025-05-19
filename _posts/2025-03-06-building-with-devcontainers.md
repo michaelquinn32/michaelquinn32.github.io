@@ -1,18 +1,17 @@
 ---
-layout: post
 title: "Moving the development of this blog to devcontainers"
 excerpt: "The world has changed since I discussed building the site for the first time. Let's get caught up!"
 tags: [GitHub Sites, Devcontainers, Jekyll]
 comments: true
 modified: 2025-03-06
 use_math: true
-image: 
-    feature: ski.png
-    credit: George Arents Collection, The New York Public Library.
-    creditlink: https://digitalcollections.nypl.org/items/510d47da-7947-a3d9-e040-e00a18064a99
+toc: true
+toc_label: Contents
+toc_sticky: true
+header:
+    image: /images/ski.png
+    caption: "Photo Credit: [**George Arents Collection, The New York Public Library**](https://digitalcollections.nypl.org/items/510d47da-7947-a3d9-e040-e00a18064a99)"
 ---
-
-{% include _toc.html %}
 
 ## Introduction
 
