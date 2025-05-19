@@ -1,6 +1,6 @@
-# The Big Blog of R Adventures
+# Michael's website
 
-This the personal blog of Michael Quinn, a professional statistician and generally curious person. 
+This the personal website of Michael Quinn, a professional Data Scientist, AI enthusiast and generally curious person. 
 
 [You can read it here](https://michaelquinn32.github.io/).
 
