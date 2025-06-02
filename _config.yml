@@ -5,8 +5,8 @@ subtitle: Supercharge Data Science with AI
 locale: en_US
 # For a development URL, follow the pattern from 
 # https://docs.github.com/en/codespaces/developing-in-a-codespace/forwarding-ports-in-your-codespace
-url: https://glowing-journey-64r4xr7pv725rr7-4000.app.github.dev
-# url:              https://michaelquinn32.github.io
+# url: https://glowing-journey-64r4xr7pv725rr7-4000.app.github.dev
+url: https://michaelquinn32.github.io
 description: >
     The personal website and blog of Michael Quinn, a Data Scientist who enjoys exploring
     new computational tools and teaching others. Tutorials, musings and other 
@@ -42,7 +42,7 @@ github: [metadata]
 author:
   name: Michael Quinn
   avatar: /images/bio-photo.jpg
-  bio: "An AI and Data Science veteran. A ex-Googler. A dad. A fan of statistical computing, the great outdoors and other adventurous things."
+  bio: "An AI and Data Science veteran. An ex-Googler. A dad. A fan of statistical computing, the great outdoors and other adventurous things."
   email: msquinn2@illinois.edu
   disqus-shortname: michaelquinn32
   twitter: michaelquinn32
@@ -57,12 +57,15 @@ author:
 
 footer:
   links:
-    - label: "Twitter"
-      icon: "fab fa-fw fa-twitter-square"
-      url: "https://twitter.com/michaelquinn32"
+    - label: "LinkedIn"
+      icon: "fa-brands fa-linkedin"
+      url: "https://www.linkedin.com/in/michaelquinn32"
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
       url: "https://github.com/michaelquinn32"
+    - label: "Twitter"
+      icon: "fab fa-fw fa-twitter-square"
+      url: "https://twitter.com/michaelquinn32"
 
 analytics:
   provider: "google-gtag"

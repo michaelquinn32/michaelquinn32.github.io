@@ -3,7 +3,9 @@ title: "Ready to jumpstart your business?"
 layout: splash
 date: 2016-03-23T11:48:41-04:00
 header:
-  overlay_image: /images/glacier.jpg
+  overlay_image: /images/tree-desert.jpg
+  overlay_color: "#000"
+  overlay_filter: "0.25"
 excerpt: "Solve Your Toughest Challenges with Custom AI & Data Science Solutions"
 intro: 
   - excerpt: >-
@@ -17,7 +19,7 @@ classes:
 feature_row2:
   - image_path: /images/desert-portrait.jpg
     alt: "Hi! I'm Michael"
-    title: "Let's build something amazing together"
+    title: "An AI and Data Science veteran. An ex-Googler. And a recognized leader."
     excerpt: >-
         I've been a Data Scientist for over decade, working across multiple industries. My most recent
         stint on Google focused on data acquisition and data quality for flagship AI products like
@@ -26,11 +28,66 @@ feature_row2:
     url: "/about-me/"
     btn_label: "Read More"
     btn_class: "btn--primary"
+feature_row3:
+  - image_path: /images/services/glacier.jpg
+    alt: "glacier"
+    title: "AI audits and integrations"
+    excerpt: "Assess the capabilities for AI in your business and add new automations."
+  - image_path: /images/services/canyon.jpg
+    alt: "placeholder image 2"
+    title: "Dataset development"
+    excerpt: "Define and generate meaningful datasets to improve next generation applications."
+  - image_path: /images/services/mountain.jpg
+    title: "Growth"
+    excerpt: "Measure success, apply experiments and deliver meaningful improvements for your customers."
 ---
 
 {% include feature_row id="intro" type="center" %}
 
 {% include feature_row id="feature_row2" type="left" %}
+
+<h1 class="archive__item-title">My services</h2>
+
+{% include feature_row id="feature_row3" %}
+
+<div class="feature__wrapper">
+    <div class="feature__item--left">
+      <div class="archive__item">
+          <div class="archive__item-teaser">
+            <img src="/images/path.jpg" alt="Let's work together.">
+          </div>
+        <div class="archive__item-body">
+          <form
+            action="https://formspree.io/f/{FORM_ID}"
+            class="fs-form"
+            target="_top"
+            method="POST"
+          >
+            <h2 class="archive__item-title" style="padding-bottom: 0; margin: 0;">Let's talk</h2>
+            <div class="fs-field">
+              <label class="fs-label" for="email">Your Email</label>
+              <input class="fs-input" id="email" name="email" required />
+            </div>
+            <div class="fs-field">
+              <label class="fs-label" for="message">How can I help?</label>
+              <textarea
+                class="fs-textarea"
+                id="message"
+                name="message"
+                required
+              ></textarea>
+            </div>
+            <div class="fs-button-group">
+              <button class="fs-button" type="submit">Submit</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  
+
+</div>
+
 
 <!-- feature_row:
   - image_path: assets/images/unsplash-gallery-image-1-th.jpg
@@ -48,27 +105,4 @@ feature_row2:
   - image_path: /assets/images/unsplash-gallery-image-3-th.jpg
     title: "Placeholder 3"
     excerpt: "This is some sample content that goes here with **Markdown** formatting."
-feature_row2:
-  - image_path: /assets/images/unsplash-gallery-image-2-th.jpg
-    alt: "placeholder image 2"
-    title: "Placeholder Image Left Aligned"
-    excerpt: 'This is some sample content that goes here with **Markdown** formatting. Left aligned with `type="left"`'
-    url: "#test-link"
-    btn_label: "Read More"
-    btn_class: "btn--primary"
-feature_row3:
-  - image_path: /assets/images/unsplash-gallery-image-2-th.jpg
-    alt: "placeholder image 2"
-    title: "Placeholder Image Right Aligned"
-    excerpt: 'This is some sample content that goes here with **Markdown** formatting. Right aligned with `type="right"`'
-    url: "#test-link"
-    btn_label: "Read More"
-    btn_class: "btn--primary"
-feature_row4:
-  - image_path: /assets/images/unsplash-gallery-image-2-th.jpg
-    alt: "placeholder image 2"
-    title: "Placeholder Image Center Aligned"
-    excerpt: 'This is some sample content that goes here with **Markdown** formatting. Centered with `type="center"`'
-    url: "#test-link"
-    btn_label: "Read More"
-    btn_class: "btn--primary" -->
+ -->
