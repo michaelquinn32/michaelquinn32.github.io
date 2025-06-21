@@ -1,5 +1,5 @@
 ---
-title: Data Science in the Age of AI
+title: Big Blog of Data Science Adventures
 modified: 2015-10-24
 excerpt: "My posts to this blog."
 permalink: /blog/

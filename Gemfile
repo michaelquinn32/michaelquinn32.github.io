@@ -25,3 +25,5 @@ end
 # gem 'logger'
 # gem 'rouge'
 # gem "minimal-mistakes-jekyll"
+
+gem "jekyll", "~> 3.10"
