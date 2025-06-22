@@ -16,14 +16,4 @@ group :jekyll_plugins do
   gem "jekyll-algolia"
 end
 
-# gem 'base64'
-# gem 'bigdecimal'
-# gem 'jekyll-feed'
-# gem 'jekyll-redirect-from'
-# gem 'jekyll-sitemap'
-# gem 'jekyll'
-# gem 'logger'
-# gem 'rouge'
-# gem "minimal-mistakes-jekyll"
-
 gem "jekyll", "~> 3.10"

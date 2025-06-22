@@ -4,11 +4,10 @@
 	"name": "blog development container",
 	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
 	"image": "ghcr.io/rocker-org/devcontainer/r-ver:4",
+	// Features to add to the dev container. More info: https://containers.dev/features.
 	"features": {
 		"ghcr.io/devcontainers/features/ruby:1": {}
 	},
-	// Features to add to the dev container. More info: https://containers.dev/features.
-	// "features": {},
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	// "forwardPorts": [],
 	// Use 'postCreateCommand' to run commands after the container is created.
@@ -20,7 +19,8 @@
 				"valentjn.vscode-ltex",
 				"vscodevim.vim",
 				"BeardedBear.beardedtheme",
-				"esbenp.prettier-vscode"
+				"esbenp.prettier-vscode",
+				"GitHub.vscode-pull-request-github"
 			]
 		}
 	}
