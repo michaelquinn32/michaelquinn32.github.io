@@ -1,0 +1,30 @@
+{
+    "mcp": {
+        "inputs": [
+            {
+                "type": "promptString",
+                "id": "perplexity-key",
+                "description": "Perplexity API Key",
+                "password": true
+            }
+        ],
+        "servers": {
+            "fetch": {
+                "command": "uvx",
+                "args": [
+                    "mcp-server-fetch"
+                ]
+            },
+            "perplexity-mcp": {
+                "command": "uvx",
+                "type": "stdio",
+                "args": [
+                    "perplexity-mcp"
+                ],
+                "env": {
+                    "PERPLEXITY_API_KEY": "${input:perplexity-key}"
+                }
+            }
+        }
+    }
+}
