@@ -123,7 +123,7 @@ That last part depends on some [Codespaces behavior](https://docs.github.com/en/
 
 **Note: This isn't an issue for local development.**
 
-# Update 2025-06-22
+## Update 2025-06-22
 
 There are a couple of new features that I've discovered since writing this post. Most were discovered while updating the look of the site. They include:
 
