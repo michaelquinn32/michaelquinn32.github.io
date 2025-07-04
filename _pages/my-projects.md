@@ -16,6 +16,14 @@ In this blog post for the *Unofficial Google Data Science Blog*, Jeremy Miles, K
 
 [You can read the whole article here](https://www.unofficialgoogledatascience.com/2023/07/measuring-validity-and-reliability-of.html).
 
+## Patrick: Parameterized testing in R is kind of cool!
+
+I wrote and maintain the R package [`patrick`](https://github.com/google/patrick), which is an adaptation of Python parameterized testing libraries like [`parameterized`](https://github.com/wolever/parameterized). With `patrick`, you can R tests in the common `testthat` framework and then add parameters so that cases are more reusable. This is especially useful for testing functions that take a variety of inputs, like statistical models or data transformations.
+
+
+## Large scale machine learning using TensorFlow, BigQuery and CloudML Engine within RStudio
+
+I spoke on behalf of Google Cloud at [rstudio::conf 2018](https://posit.co/resources/videos/large-scale-machine-learning-using-tensorflow-bigquery-and-cloudml-engine-within-rstudio/). The talk showcased how someone can quickly start an instance of RStudio Server in Google Cloud and then use already-connected Google products like TensorFlow and BigQuery to solve Data Science problems. This came together in a demo I prepared that built on model on Google Analytics data. 
 
 ## Bayesian Portfolio Optimization in R
 
