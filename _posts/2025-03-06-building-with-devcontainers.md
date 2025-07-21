@@ -8,6 +8,7 @@ use_math: true
 toc: true
 toc_label: Contents
 toc_sticky: true
+image: /images/ski.png
 header:
   image: /images/ski.png
   caption: "Photo Credit: [**George Arents Collection, The New York Public Library**](https://digitalcollections.nypl.org/items/510d47da-7947-a3d9-e040-e00a18064a99)"

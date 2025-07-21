@@ -7,6 +7,7 @@ modified: 2025-04-13
 use_math: true
 toc: true
 toc_label: Contents
+image: /images/island.jpg
 toc_sticky: true
 header:
     image: /images/island.jpg

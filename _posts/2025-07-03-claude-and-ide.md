@@ -8,6 +8,7 @@ use_math: true
 use_mermaid: true
 toc: true
 toc_label: Contents
+image: /images/volcano.jpg
 toc_sticky: true
 header:
   image: /images/volcano.jpg
