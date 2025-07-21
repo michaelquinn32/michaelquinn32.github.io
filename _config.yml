@@ -38,6 +38,7 @@ plugins:
   - jemoji
 
 include: ["_pages"]
+exclude: ["post-elements/"]
 github: [metadata]
 
 author:
@@ -101,3 +102,8 @@ kramdown:
   toc_levels: 1..6
   enable_coderay: false
 
+atom_feed:
+  path: /blog/feed.atom
+
+feed:
+  path: /blog/feed.atom
