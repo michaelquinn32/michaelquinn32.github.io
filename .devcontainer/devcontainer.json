@@ -16,6 +16,7 @@
 	"customizations": {
 		"vscode": {
 			"extensions": [
+				"Google.geminicodeassist",
 				"valentjn.vscode-ltex",
 				"vscodevim.vim",
 				"BeardedBear.beardedtheme",
