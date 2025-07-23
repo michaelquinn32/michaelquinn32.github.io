@@ -1,12 +1,12 @@
 # Site wide configuration
 
 title: Michael Quinn
-subtitle: Data Science in the Age of AI
+subtitle: Your Guide to Data Science in the Age of AI
 locale: en_US
 # For a development URL, follow the pattern from 
 # https://docs.github.com/en/codespaces/developing-in-a-codespace/forwarding-ports-in-your-codespace
 # url: https://glowing-journey-64r4xr7pv725rr7-4000.app.github.dev
-url: https://michaelquinn32.github.io
+url: https://www.msquinn.com
 description: >
     The personal website and blog of Michael Quinn, a Data Scientist who enjoys exploring
     new computational tools and teaching others. Tutorials, musings and other 
