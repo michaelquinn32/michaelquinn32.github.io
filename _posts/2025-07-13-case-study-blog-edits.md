@@ -3,7 +3,7 @@ title: "Case study: Creating a newsletter for this blog using Gemini"
 excerpt: "Documenting a somewhat realistic workflow as I update my blog."
 tags: [Claude, VS Code, MCP, AI, Development]
 comments: true
-modified: 2025-07-13
+modified: 2025-07-23
 show_newsletter_signup: true
 use_math: true
 use_mermaid: false
@@ -281,7 +281,7 @@ On the other hand,
 
 - You need good foundational knowledge and practices
 - You need to be able to test and debug anything you develop with agents
-- You need to understand context, and you need to be ready to deal with weird errors\
+- You need to understand context, and you need to be ready to deal with weird errors
 - These are brand new products!
 
 Thanks for reading all the way to the end, and I hope you enjoyed this guided tour of how I added one little box to the end of my blog posts. If you want to subscribe, that'd be pretty neat too!
