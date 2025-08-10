@@ -16,3 +16,63 @@ search: false
 .page__content ul li, ol li {
     margin-left: 1em;
 }
+
+// Customization
+
+// New background color
+$background-color: #222;
+
+// Override minimal mistakes variables
+body {
+  background-color: $background-color;
+}
+
+.masthead {
+  background-color: $background-color;
+}
+
+.page__footer {
+  background-color: #1E1E1E; // Darker than the new background
+}
+
+
+// Formspree form
+.fs-form {
+  background-color: #333;
+  padding: 20px;
+  border-radius: 4px;
+}
+
+.fs-form h2,
+.fs-form p {
+    color: #eee;
+}
+
+.fs-label {
+  color: #eee !important;
+}
+
+.fs-input,
+.fs-textarea {
+  background-color: #444 !important;
+  color: #eee !important;
+  border-color: #555 !important;
+  box-shadow: #555 0 0 0 1px inset !important;
+}
+
+.fs-input::placeholder,
+.fs-textarea::placeholder {
+  color: #ccc !important;
+}
+
+.greedy-nav {
+    background: #222 !important;
+}
+
+.greedy-nav .hidden-links {
+  background-color: #222 !important;
+}
+
+.toc {
+    background-color: #333;
+}
