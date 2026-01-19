@@ -100,7 +100,8 @@ jobs:
             
             # Extract article content (between <article> tags, or main content)
             # This extracts the main article content and wraps it for email
-            ARTICLE_CONTENT=$(HTML_PATH="$HTML_PATH" python3 << 'PYEOF'
+            export HTML_PATH="$HTML_PATH"
+            ARTICLE_CONTENT=$(python3 -c "
 import os
 import re
 
@@ -110,13 +111,12 @@ with open(html_path, 'r', encoding='utf-8') as f:
     content = f.read()
 
 # Try to extract just the article content
-# Look for <article> or <div class="page__inner-wrap">
 article_match = re.search(r'<article[^>]*>(.*?)</article>', content, re.DOTALL)
 if article_match:
     article_html = article_match.group(1)
 else:
     # Fallback: look for main content area
-    main_match = re.search(r'<div class="page__inner-wrap">(.*?)</div>\s*</div>\s*</article>', content, re.DOTALL)
+    main_match = re.search(r'<div class=\"page__inner-wrap\">(.*?)</div>\s*</div>\s*</article>', content, re.DOTALL)
     if main_match:
         article_html = main_match.group(1)
     else:
@@ -129,10 +129,8 @@ article_html = re.sub(r'<nav[^>]*>.*?</nav>', '', article_html, flags=re.DOTALL)
 article_html = re.sub(r'<script[^>]*>.*?</script>', '', article_html, flags=re.DOTALL)
 article_html = re.sub(r'<aside[^>]*>.*?</aside>', '', article_html, flags=re.DOTALL)
 
-# Output the cleaned HTML
 print(article_html.strip())
-PYEOF
-)
+")
             
             echo "Extracted article content (${#ARTICLE_CONTENT} chars)"
             
