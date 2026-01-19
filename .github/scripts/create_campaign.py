@@ -14,9 +14,8 @@ def create_campaign(
     from_name: str,
     from_email: str,
     reply_to: str,
-    html_content: str,
 ) -> str | None:
-    """Create a draft campaign in MailerLite with content.
+    """Create a draft campaign in MailerLite (without content).
     
     Arguments:
         api_key: MailerLite API key.
@@ -24,7 +23,6 @@ def create_campaign(
         from_name: Sender name.
         from_email: Sender email address.
         reply_to: Reply-to email address.
-        html_content: Full HTML content for the email.
     
     Returns:
         Campaign ID if successful, None otherwise.
@@ -40,7 +38,6 @@ def create_campaign(
                 "from_name": from_name,
                 "from": from_email,
                 "reply_to": reply_to,
-                "content": html_content,
             }
         ],
     }
@@ -139,10 +136,10 @@ def main():
     # Build full email HTML
     email_html = build_email_html(title, post_url, article_content)
     
-    # Create campaign with content
+    # Create campaign (without content - requires Advanced plan)
     print(f"Creating campaign: {title}")
     campaign_id = create_campaign(
-        api_key, title, from_name, from_email, reply_to, email_html
+        api_key, title, from_name, from_email, reply_to
     )
     
     if not campaign_id:
@@ -150,8 +147,18 @@ def main():
         sys.exit(1)
     
     print(f"Created campaign with ID: {campaign_id}")
-    print(f"Campaign URL: https://dashboard.mailerlite.com/campaigns/{campaign_id}")
-    print("Campaign is ready for review in MailerLite dashboard.")
+    print(f"Campaign URL: https://dashboard.mailerlite.com/campaigns/{campaign_id}/content")
+    print("")
+    print("=" * 60)
+    print("NEXT STEPS:")
+    print("1. Click the campaign URL above")
+    print("2. Choose 'Rich-text editor' or drag in an HTML block")
+    print("3. Copy the HTML content below and paste it")
+    print("=" * 60)
+    print("")
+    print("--- HTML CONTENT START ---")
+    print(email_html)
+    print("--- HTML CONTENT END ---")
 
 
 if __name__ == "__main__":
