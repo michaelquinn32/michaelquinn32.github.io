@@ -38,7 +38,7 @@ plugins:
   - jemoji
 
 include: ["_pages"]
-exclude: ["post-elements/"]
+exclude: ["post-elements/", "vendor"]
 github: [metadata]
 
 author:
