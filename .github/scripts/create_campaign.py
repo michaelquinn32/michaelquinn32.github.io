@@ -14,8 +14,9 @@ def create_campaign(
     from_name: str,
     from_email: str,
     reply_to: str,
+    html_content: str,
 ) -> str | None:
-    """Create a draft campaign in MailerLite.
+    """Create a draft campaign in MailerLite with content.
     
     Arguments:
         api_key: MailerLite API key.
@@ -23,6 +24,7 @@ def create_campaign(
         from_name: Sender name.
         from_email: Sender email address.
         reply_to: Reply-to email address.
+        html_content: Full HTML content for the email.
     
     Returns:
         Campaign ID if successful, None otherwise.
@@ -38,6 +40,7 @@ def create_campaign(
                 "from_name": from_name,
                 "from": from_email,
                 "reply_to": reply_to,
+                "content": html_content,
             }
         ],
     }
@@ -55,45 +58,12 @@ def create_campaign(
     try:
         with urllib.request.urlopen(req) as response:
             result = json.loads(response.read().decode("utf-8"))
-            return result.get("data", {}).get("id")
+            campaign_id = result.get("data", {}).get("id")
+            return campaign_id
     except urllib.error.HTTPError as e:
         print(f"Error creating campaign: {e}", file=sys.stderr)
         print(e.read().decode("utf-8"), file=sys.stderr)
         return None
-
-
-def set_campaign_content(api_key: str, campaign_id: str, html_content: str) -> bool:
-    """Set the HTML content for a campaign.
-    
-    Arguments:
-        api_key: MailerLite API key.
-        campaign_id: ID of the campaign to update.
-        html_content: Full HTML content for the email.
-    
-    Returns:
-        True if successful, False otherwise.
-    """
-    url = f"https://connect.mailerlite.com/api/campaigns/{campaign_id}/content"
-    
-    data = {"html": html_content}
-    
-    req = urllib.request.Request(
-        url,
-        data=json.dumps(data).encode("utf-8"),
-        headers={
-            "Authorization": f"Bearer {api_key}",
-            "Content-Type": "application/json",
-        },
-        method="PUT",
-    )
-    
-    try:
-        with urllib.request.urlopen(req) as response:
-            return response.status == 200
-    except urllib.error.HTTPError as e:
-        print(f"Error setting content: {e}", file=sys.stderr)
-        print(e.read().decode("utf-8"), file=sys.stderr)
-        return False
 
 
 def build_email_html(title: str, post_url: str, article_content: str) -> str:
@@ -169,23 +139,19 @@ def main():
     # Build full email HTML
     email_html = build_email_html(title, post_url, article_content)
     
-    # Create campaign
+    # Create campaign with content
     print(f"Creating campaign: {title}")
-    campaign_id = create_campaign(api_key, title, from_name, from_email, reply_to)
+    campaign_id = create_campaign(
+        api_key, title, from_name, from_email, reply_to, email_html
+    )
     
     if not campaign_id:
         print("Failed to create campaign", file=sys.stderr)
         sys.exit(1)
     
     print(f"Created campaign with ID: {campaign_id}")
-    
-    # Set content
-    if set_campaign_content(api_key, campaign_id, email_html):
-        print("Content set successfully")
-        print(f"Campaign URL: https://dashboard.mailerlite.com/campaigns/{campaign_id}")
-    else:
-        print("Failed to set campaign content", file=sys.stderr)
-        sys.exit(1)
+    print(f"Campaign URL: https://dashboard.mailerlite.com/campaigns/{campaign_id}")
+    print("Campaign is ready for review in MailerLite dashboard.")
 
 
 if __name__ == "__main__":
