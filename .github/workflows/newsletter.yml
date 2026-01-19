@@ -43,21 +43,6 @@ jobs:
             fi
           fi
 
-      - name: Setup Ruby
-        if: steps.detect.outputs.count != '0'
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: '3.3'
-          bundler-cache: true
-
-      - name: Build Jekyll site
-        if: steps.detect.outputs.count != '0'
-        run: bundle exec jekyll build
-        env:
-          JEKYLL_ENV: production
-          JEKYLL_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          PAGES_REPO_NWO: ${{ github.repository }}
-
       - name: Process posts and create campaigns
         if: steps.detect.outputs.count != '0'
         env:
@@ -72,35 +57,9 @@ jobs:
           for POST_PATH in ${{ steps.detect.outputs.posts }}; do
             echo "Processing: $POST_PATH"
             
-            # Extract title from frontmatter
-            TITLE=$(grep -m1 '^title:' "$POST_PATH" | sed 's/title: *//' | tr -d '"')
+            # Create campaign and output fields for manual entry
+            python3 .github/scripts/create_campaign.py "$POST_PATH"
             
-            # Calculate paths based on permalink pattern: /blog/:year/:month/:day/:title/
-            FILENAME=$(basename "$POST_PATH" .md)
-            YEAR=$(echo "$FILENAME" | cut -c1-4)
-            MONTH=$(echo "$FILENAME" | cut -c6-7)
-            DAY=$(echo "$FILENAME" | cut -c9-10)
-            SLUG=$(echo "$FILENAME" | cut -c12-)
-            
-            HTML_PATH="_site/blog/${YEAR}/${MONTH}/${DAY}/${SLUG}/index.html"
-            POST_URL="${SITE_URL}/blog/${YEAR}/${MONTH}/${DAY}/${SLUG}/"
-            
-            echo "Looking for rendered HTML at: $HTML_PATH"
-            
-            if [ ! -f "$HTML_PATH" ]; then
-              echo "Warning: Could not find rendered HTML at $HTML_PATH"
-              continue
-            fi
-            
-            # Extract article content to temp file
-            ARTICLE_FILE=$(mktemp)
-            python3 .github/scripts/extract_article.py "$HTML_PATH" > "$ARTICLE_FILE"
-            echo "Extracted article content ($(wc -c < "$ARTICLE_FILE") bytes)"
-            
-            # Create campaign
-            python3 .github/scripts/create_campaign.py "$TITLE" "$POST_URL" "$ARTICLE_FILE"
-            
-            rm -f "$ARTICLE_FILE"
             echo ""
           done
           
