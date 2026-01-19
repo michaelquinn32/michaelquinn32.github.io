@@ -20,24 +20,21 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          fetch-depth: 2  # Need previous commit for comparison
+          fetch-depth: 2
 
       - name: Detect new posts
         id: detect
         run: |
           if [ -n "${{ inputs.post_path }}" ]; then
-            # Manual trigger with specific post
             echo "posts=${{ inputs.post_path }}" >> $GITHUB_OUTPUT
             echo "count=1" >> $GITHUB_OUTPUT
           else
-            # Automatic trigger - find new/modified posts
             NEW_POSTS=$(git diff --name-only HEAD~1 HEAD -- '_posts/*.md' 2>/dev/null || echo "")
             
             if [ -z "$NEW_POSTS" ]; then
               echo "No new posts detected"
               echo "count=0" >> $GITHUB_OUTPUT
             else
-              # Convert to space-separated for later iteration
               POSTS_ONELINE=$(echo "$NEW_POSTS" | tr '\n' ' ' | xargs)
               echo "posts=$POSTS_ONELINE" >> $GITHUB_OUTPUT
               COUNT=$(echo "$NEW_POSTS" | wc -l | xargs)
@@ -55,8 +52,7 @@ jobs:
 
       - name: Build Jekyll site
         if: steps.detect.outputs.count != '0'
-        run: |
-          bundle exec jekyll build
+        run: bundle exec jekyll build
         env:
           JEKYLL_ENV: production
           JEKYLL_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -66,7 +62,9 @@ jobs:
         if: steps.detect.outputs.count != '0'
         env:
           MAILERLITE_API_KEY: ${{ secrets.MAILERLITE_API_KEY }}
-          MAILERLITE_GROUP_ID: ${{ secrets.MAILERLITE_GROUP_ID }}
+          FROM_NAME: "Michael Quinn"
+          FROM_EMAIL: "hello@msquinn.com"
+          REPLY_TO: "msquinn.illinois@gmail.com"
           SITE_URL: "https://www.msquinn.com"
         run: |
           set -e
@@ -74,14 +72,11 @@ jobs:
           for POST_PATH in ${{ steps.detect.outputs.posts }}; do
             echo "Processing: $POST_PATH"
             
-            # Extract frontmatter
+            # Extract title from frontmatter
             TITLE=$(grep -m1 '^title:' "$POST_PATH" | sed 's/title: *//' | tr -d '"')
-            EXCERPT=$(grep -m1 '^excerpt:' "$POST_PATH" | sed 's/excerpt: *//' | tr -d '"')
             
-            # Calculate the output HTML path based on permalink pattern
-            # permalink: /blog/:year/:month/:day/:title/
+            # Calculate paths based on permalink pattern: /blog/:year/:month/:day/:title/
             FILENAME=$(basename "$POST_PATH" .md)
-            # Parse date and slug from filename (YYYY-MM-DD-slug-here.md)
             YEAR=$(echo "$FILENAME" | cut -c1-4)
             MONTH=$(echo "$FILENAME" | cut -c6-7)
             DAY=$(echo "$FILENAME" | cut -c9-10)
@@ -94,119 +89,18 @@ jobs:
             
             if [ ! -f "$HTML_PATH" ]; then
               echo "Warning: Could not find rendered HTML at $HTML_PATH"
-              echo "Skipping this post..."
               continue
             fi
             
-            # Extract article content (between <article> tags, or main content)
-            # This extracts the main article content and wraps it for email
-            export HTML_PATH="$HTML_PATH"
-            ARTICLE_CONTENT=$(python3 -c "
-import os
-import re
-
-html_path = os.environ.get('HTML_PATH', '')
-
-with open(html_path, 'r', encoding='utf-8') as f:
-    content = f.read()
-
-# Try to extract just the article content
-article_match = re.search(r'<article[^>]*>(.*?)</article>', content, re.DOTALL)
-if article_match:
-    article_html = article_match.group(1)
-else:
-    # Fallback: look for main content area
-    main_match = re.search(r'<div class=\"page__inner-wrap\">(.*?)</div>\s*</div>\s*</article>', content, re.DOTALL)
-    if main_match:
-        article_html = main_match.group(1)
-    else:
-        # Last resort: use body content
-        body_match = re.search(r'<body[^>]*>(.*?)</body>', content, re.DOTALL)
-        article_html = body_match.group(1) if body_match else content
-
-# Clean up: remove navigation, scripts, etc.
-article_html = re.sub(r'<nav[^>]*>.*?</nav>', '', article_html, flags=re.DOTALL)
-article_html = re.sub(r'<script[^>]*>.*?</script>', '', article_html, flags=re.DOTALL)
-article_html = re.sub(r'<aside[^>]*>.*?</aside>', '', article_html, flags=re.DOTALL)
-
-print(article_html.strip())
-")
+            # Extract article content to temp file
+            ARTICLE_FILE=$(mktemp)
+            python3 .github/scripts/extract_article.py "$HTML_PATH" > "$ARTICLE_FILE"
+            echo "Extracted article content ($(wc -c < "$ARTICLE_FILE") bytes)"
             
-            echo "Extracted article content (${#ARTICLE_CONTENT} chars)"
+            # Create campaign
+            python3 .github/scripts/create_campaign.py "$TITLE" "$POST_URL" "$ARTICLE_FILE"
             
-            # Create email HTML wrapper
-            EMAIL_HTML=$(cat << EMAILEOF
-          <!DOCTYPE html>
-          <html>
-          <head>
-            <meta charset="utf-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1">
-            <title>${TITLE}</title>
-            <style>
-              body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px; }
-              h1, h2, h3 { color: #1a1a1a; }
-              a { color: #0066cc; }
-              pre { background: #f5f5f5; padding: 15px; overflow-x: auto; border-radius: 4px; }
-              code { background: #f5f5f5; padding: 2px 6px; border-radius: 3px; font-size: 0.9em; }
-              pre code { background: none; padding: 0; }
-              img { max-width: 100%; height: auto; }
-              blockquote { border-left: 4px solid #ddd; margin-left: 0; padding-left: 20px; color: #666; }
-            </style>
-          </head>
-          <body>
-            <p style="color: #666; font-size: 0.9em;">New post from Michael Quinn</p>
-            <h1><a href="${POST_URL}">${TITLE}</a></h1>
-            
-            ${ARTICLE_CONTENT}
-            
-            <hr style="margin: 40px 0; border: none; border-top: 1px solid #ddd;">
-            <p style="color: #666; font-size: 0.9em;">
-              <a href="${POST_URL}">Read on the web</a> | 
-              <a href="{$unsubscribe}">Unsubscribe</a>
-            </p>
-          </body>
-          </html>
-          EMAILEOF
-          )
-            
-            # Create campaign via MailerLite API
-            echo "Creating MailerLite campaign..."
-            
-            CAMPAIGN_RESPONSE=$(curl -s -X POST "https://connect.mailerlite.com/api/campaigns" \
-              -H "Authorization: Bearer ${MAILERLITE_API_KEY}" \
-              -H "Content-Type: application/json" \
-              -d "{
-                \"name\": \"Blog Post: ${TITLE}\",
-                \"type\": \"regular\",
-                \"emails\": [{
-                  \"subject\": \"${TITLE}\",
-                  \"from_name\": \"Michael Quinn\",
-                  \"from\": \"hello@msquinn.com\",
-                  \"reply_to\": \"msquinn.illinois@gmail.com\"
-                }]
-              }")
-            
-            CAMPAIGN_ID=$(echo "$CAMPAIGN_RESPONSE" | python3 -c "import sys, json; print(json.load(sys.stdin).get('data', {}).get('id', ''))" 2>/dev/null || echo "")
-            
-            if [ -z "$CAMPAIGN_ID" ]; then
-              echo "Error creating campaign. Response:"
-              echo "$CAMPAIGN_RESPONSE"
-              continue
-            fi
-            
-            echo "Created campaign with ID: $CAMPAIGN_ID"
-            
-            # Set campaign content
-            # Escape the HTML for JSON
-            ESCAPED_HTML=$(echo "$EMAIL_HTML" | python3 -c "import sys, json; print(json.dumps(sys.stdin.read()))")
-            
-            CONTENT_RESPONSE=$(curl -s -X PUT "https://connect.mailerlite.com/api/campaigns/${CAMPAIGN_ID}/content" \
-              -H "Authorization: Bearer ${MAILERLITE_API_KEY}" \
-              -H "Content-Type: application/json" \
-              -d "{\"html\": ${ESCAPED_HTML}}")
-            
-            echo "Content set. Campaign is ready for review in MailerLite dashboard."
-            echo "Campaign URL: https://dashboard.mailerlite.com/campaigns/${CAMPAIGN_ID}"
+            rm -f "$ARTICLE_FILE"
             echo ""
           done
           
