@@ -56,11 +56,11 @@ jobs:
       - name: Build Jekyll site
         if: steps.detect.outputs.count != '0'
         run: |
-          bundle config set --local path vendor/bundle
           bundle exec jekyll build
         env:
           JEKYLL_ENV: production
           JEKYLL_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PAGES_REPO_NWO: ${{ github.repository }}
 
       - name: Process posts and create campaigns
         if: steps.detect.outputs.count != '0'
