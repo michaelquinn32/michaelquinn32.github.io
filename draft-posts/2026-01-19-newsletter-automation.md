@@ -20,7 +20,7 @@ header:
 
 A few months ago, I [wrote about](/blog/2025/07/23/case-study-blog-edits/) setting up a newsletter for this blog. The process involved using [Gemini Code Assist](https://developers.google.com/gemini-code-assist/docs/overview) to add a MailerLite sign-up form to the end of my posts. That worked well enough in the end, but the workflow for actually *sending* newsletters was never fully implemented. I had hoped to use MailerLite's [RSS to Newsletters](https://www.mailerlite.com/features/rss-to-email), but this ultimately didn't fit my needs. To make matters worse, it's a paid feature. We're not big enough yet to justify something like that.
 
-But this is the age of AGI! We have agents to solve problems exactly like this. So today, I'll document the next step in this journey: automating the newsletter creation process so that publishing a new blog post automatically drafts a newsletter campaign ready for review and send.
+But this is exactly the kind of problem agents can help solve. So today, I'll document the next step in this journey. The goal is automating newsletter creation so that publishing a new post automatically drafts a campaign ready for review.
 
 ## What I Explored
 
@@ -44,7 +44,7 @@ Workflow automation tools could bridge the gap. That version of the solution loo
 - The workflow tool, Zapier or n8n, would get post content for an email
 - It would connect to another service to send the email
 
-But they add complexity, another service to manage, and often have their own pricing tiers for anything beyond basic automation. And given the skeleton above, there is no reason why I should have to go to a no-code solution. My agent will write basically code I could ever need.
+But they add complexity, another service to manage, and often have their own pricing tiers for anything beyond basic automation. And given the skeleton above, there is no reason why I should have to go to a no-code solution. My agent will write basically any code I could ever need.
 
 ## The Solution: GitHub Actions + MailerLite API
 
@@ -54,7 +54,7 @@ The pieces clicked when I realized:
 2. **MailerLite has a well-documented API** for creating campaigns
 3. **My posts are just markdown files** with structured frontmatter
 
-This is a perfect use case for [OpenCode](https://opencode.ai/), which can quickly wrap APIs and build automation scripts. It reads faster than I could ever hope to, and this is the kind of basic task where any solution in code would be good enough.
+This is a perfect use case for [OpenCode](https://opencode.ai/), which can quickly wrap APIs and build automation scripts. It reads faster than I could ever hope to. This is the kind of basic task where any solution in code would be good enough.
 
 ## Implementation
 
@@ -94,11 +94,11 @@ jobs:
           # Or use manual input if provided
 ```
 
-When a new post lands in `_posts/`, the workflow detects it and processes the markdown file directly. The check happens every time I commit in my newsletter repo. The `workflow_dispatch` gives me the option of manually triggering the workflow. This is really helpful during testing, since I don't want to always be tied to a git commit.
+When a new post lands in `_posts/`, the workflow detects it and processes the markdown file directly. The check happens every time I commit to this blog's repo. The `workflow_dispatch` gives me the option of manually triggering the workflow. This is really helpful during testing, since I don't want to always be tied to a git commit.
 
 ### Parsing Frontmatter
 
-My original plan was the render the page and upload the whole thing into MailerLite, but **MailerLite's free tier doesn't support setting HTML content via API**. That's an Advanced plan feature too. So instead of building the site Jekyll to extract content, a Python script parses markdown frontmatter directly:
+My original plan was the render the page and upload the whole thing into MailerLite, but **MailerLite's free tier doesn't support setting HTML content via API**. That's an Advanced plan feature too. So instead of building the site with Jekyll to extract content, a Python script parses markdown frontmatter directly:
 
 ```python
 def parse_frontmatter(markdown_path: str) -> tuple[dict, str]:
@@ -196,7 +196,7 @@ A few months ago, I wrote about setting up a newsletter for this blog...
 
 It's not fully automatic, but it's a massive improvement over what came before: essentially nothing. The campaign exists, the subject line is set, and all content is ready to paste into blocks.
 
-### The end result 
+### The End Result
 
 [Here's an example](https://preview.mailerlite.io/emails/webview/1679653/177002539898635731) of what subscribers receive. While far from perfect and still very much in the style of MailerLite's block editor, it adds a professional-enough delivery channel for my blog.
 
@@ -235,7 +235,7 @@ I don't want to build any of that. Why not?
 - I don't want to manage subscriber data or write another CRUD interface for contacts
 - I don't want to figure out why emails are landing in spam folders instead of inboxes
 
-There's a reason "don't roll your own auth" is a cliche. Some problems are solved, and re-solving them is just ego, and the maintenance tax is real. The compromise is accepting MailerLite's API limitations on the free tier and working around that.
+There's a reason "don't roll your own auth" is a cliche. Some problems are solved, and re-solving them is just ego. The maintenance tax is real. The compromise is accepting MailerLite's API limitations on the free tier and working around that.
 
 ### A big win regardless
 
