@@ -20,7 +20,7 @@ header:
 
 A few months ago, I [wrote about](/blog/2025/07/23/case-study-blog-edits/) setting up a newsletter for this blog. The process involved using [Gemini Code Assist](https://developers.google.com/gemini-code-assist/docs/overview) to add a MailerLite sign-up form to the end of my posts. That worked well enough in the end, but the workflow for actually *sending* newsletters was never fully implemented. I had hoped to use MailerLite's [RSS to Newsletters](https://www.mailerlite.com/features/rss-to-email), but this ultimately didn't fit my needs. To make matters worse, it's a paid feature. We're not big enough yet to justify something like that.
 
-But this is exactly the kind of problem agents can help solve. So today, I'll document the next step in this journey. The goal: automate newsletter creation so that publishing a new post triggers a campaign draft, ready for review..
+But this is exactly the kind of problem agents can help solve. So today, I'll document the next step in this journey. The goal: automate newsletter creation so that publishing a new post triggers a campaign draft, ready for review.
 
 ## What I Explored
 
