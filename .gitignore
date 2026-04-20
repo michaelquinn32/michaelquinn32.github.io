@@ -11,3 +11,4 @@ _cache
 .Rhistory
 .RData
 *.nb
+*:Zone.Identifier
