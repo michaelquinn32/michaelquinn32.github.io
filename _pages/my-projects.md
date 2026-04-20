@@ -1,6 +1,6 @@
 ---
 title: My Projects
-modified: 2015-10-24
+modified: 2026-04-20
 excerpt: "Michael's ongoing and occassionally updated projects."
 permalink: /my-projects/
 author_profile: true
@@ -9,6 +9,12 @@ header:
     image: /images/projects_main.jpg
     caption: "Photo credit: Michael Quinn"
 ---
+
+## AI Matrix Live
+
+[AI Matrix Live](https://aimatrixlive.com/) is a public dashboard tracking global AI adoption using the AI Matrix framework from [Simpson (2026)](https://doi.org/10.5281/zenodo.18181372). It plots countries on two dimensions, access and agency, placing each in one of four quadrants: Full Empowerment, Elite Empowerment, Passive Dependency, and Full Dependency. The data comes from the Anthropic Economic Index on HuggingFace, and the pipeline detects new releases, applies the paper's methodology, and deploys automatically.
+
+[You can view the source on GitHub](https://github.com/michaelquinn32/ai-matrix-live).
 
 ## Measuring Validity and Reliability of Human Ratings
 
