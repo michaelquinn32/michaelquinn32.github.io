@@ -8,7 +8,7 @@ This file provides context for AI agents working on this Jekyll blog.
 - **Theme**: Minimal Mistakes (remote theme)
 - **Domain**: msquinn.com
 - **Author**: Michael Quinn
-- **Focus**: Data Science, AI/ML, agentic development, and knowledge work
+- **Focus**: Engineering leadership, AI-native development, agentic workflows, and knowledge work
 
 ## Blog Post Style Guide
 
@@ -123,6 +123,7 @@ Recent posts focus on:
 ### Style
 
 -  Avoid em dashes, as they can almost always be replaced by a semicolon
+-  No Oxford comma
 -  Prefer complete sentences
 -  Keep sentences punchy
 -  Avoid parenthetic asides or similar tangents within sentences; use two sentences instead

@@ -5,6 +5,8 @@ main:
     url: /about-me/
   - title: Blog
     url: /blog/
+  - title: Work with me
+    url: /services/
   - title: My Projects
     url: /my-projects/
 

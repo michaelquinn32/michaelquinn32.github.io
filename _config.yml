@@ -1,16 +1,16 @@
 # Site wide configuration
 
 title: Michael Quinn
-subtitle: Your Guide to Data Science in the Age of AI
+subtitle: AI products and the teams that ship them.
 locale: en_US
 # For a development URL, follow the pattern from 
 # https://docs.github.com/en/codespaces/developing-in-a-codespace/forwarding-ports-in-your-codespace
 # url: https://glowing-journey-64r4xr7pv725rr7-4000.app.github.dev
 url: https://www.msquinn.com
 description: >
-    The personal website and blog of Michael Quinn, a Data Scientist who enjoys exploring
-    new computational tools and teaching others. Tutorials, musings and other 
-    adventures posted every now and then.
+    The personal website and blog of Michael Quinn, an engineering leader
+    who writes about technical leadership, AI-native development, and the
+    quantitative thinking underneath.
 twitter_username: michaelquinn32
 github_username: michaelquinn32
 
@@ -44,7 +44,7 @@ github: [metadata]
 author:
   name: Michael Quinn
   avatar: /images/bio-photo.jpg
-  bio: "An AI and Data Science veteran. An ex-Googler. A dad. A fan of statistical computing, the great outdoors and other adventurous things."
+  bio: "The Engineering Manager at Delphos Labs. Ex-Google. I write about engineering leadership in the age of agents, AI-native development, and the quantitative thinking underneath."
   email: hello@msquinn.com
   disqus-shortname: michaelquinn32
   twitter: michaelquinn32

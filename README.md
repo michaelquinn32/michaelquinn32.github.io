@@ -1,6 +1,6 @@
 # Michael's website
 
-This the personal website of Michael Quinn, a professional Data Scientist, AI enthusiast and generally curious person. 
+This the personal website of Michael Quinn, an engineering leader who writes about technical leadership, AI-native development, and system design. 
 
 [You can read it here](https://www.msquinn.com/blog).
 

@@ -36,33 +36,155 @@ body {
 }
 
 
+// Feature rows — breathing room above the built-in border-bottom separator
+.feature__wrapper {
+  padding-bottom: 1.5em;
+}
+
+// Feature rows — flexbox override for left/right image+text alignment
+@media (min-width: 37.5em) {
+  .feature__item--left .archive__item,
+  .feature__item--right .archive__item {
+    display: flex !important;
+    align-items: flex-start;
+    float: none !important;
+  }
+
+  .feature__item--left .archive__item-teaser,
+  .feature__item--right .archive__item-teaser {
+    flex: 0 0 40%;
+    float: none !important;
+    margin-bottom: 0 !important;
+
+    img {
+      width: 100%;
+      height: auto;
+      border-radius: 4px;
+    }
+  }
+
+  .feature__item--left .archive__item-body,
+  .feature__item--right .archive__item-body {
+    flex: 1;
+    float: none !important;
+    width: auto !important;
+    padding-inline-start: 1.5em !important;
+    padding-inline-end: 0 !important;
+
+    // Align heading flush with image top
+    .archive__item-title:first-child {
+      margin-top: 0;
+    }
+  }
+}
+
+// Contact section — stretch so image matches form height
+.contact-section {
+  margin-bottom: 2em;
+  padding-bottom: 1em;
+}
+
+@media (min-width: 37.5em) {
+  .contact-section .archive__item {
+    align-items: stretch !important;
+  }
+
+  .contact-section .archive__item-teaser img {
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
 // Formspree form
 .fs-form {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
   background-color: #333;
-  padding: 20px;
+  padding: 1.2em 1.5em;
   border-radius: 4px;
 }
 
-.fs-form h2,
-.fs-form p {
-    color: #eee;
+.fs-form h2 {
+  color: #fff;
+  margin-bottom: 0.15em !important;
+}
+
+.fs-form .archive__item-excerpt {
+  margin-bottom: 0.6em;
+
+  p {
+    color: #ccc;
+    font-size: 0.9em;
+    margin: 0;
+  }
+}
+
+.fs-field {
+  margin-bottom: 0.5em;
 }
 
 .fs-label {
-  color: #eee !important;
+  display: block;
+  color: #ddd !important;
+  font-size: 0.8em;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  margin-bottom: 0.2em;
 }
 
 .fs-input,
 .fs-textarea {
-  background-color: #444 !important;
+  display: block;
+  width: 100%;
+  padding: 0.4em 0.6em;
+  background-color: #2a2a2a !important;
   color: #eee !important;
-  border-color: #555 !important;
-  box-shadow: #555 0 0 0 1px inset !important;
+  border: 1px solid #666 !important;
+  border-radius: 3px !important;
+  box-shadow: none !important;
+  font-family: inherit;
+  font-size: 0.95em;
+  line-height: 1.4;
+  transition: border-color 0.2s ease;
+
+  &:focus {
+    border-color: #00adb5 !important;
+    outline: none;
+  }
+}
+
+.fs-textarea {
+  flex: 1;            // textarea grows to fill remaining space
+  min-height: 3em;
+  resize: vertical;
 }
 
 .fs-input::placeholder,
 .fs-textarea::placeholder {
-  color: #ccc !important;
+  color: #888 !important;
+}
+
+.fs-button-group {
+  margin-top: 0.6em;
+}
+
+.fs-button {
+  display: block;
+  width: 100%;
+  padding: 0.6em 1.6em;
+  background-color: #00adb5;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  font-size: 0.9em;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+
+  &:hover {
+    background-color: #00c9d2;
+  }
 }
 
 .greedy-nav {

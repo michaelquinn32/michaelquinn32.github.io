@@ -1,21 +1,31 @@
 ---
 layout: single
 title: Why me?
-modified: 2015-10-24
 comments: false
 permalink: /about-me/
-author_profile: false
+author_profile: true
 classes: wide
 header:
-    image: /images/about_main.jpg
-    caption: "Photo credit: Michael Quinn"
+  image: /images/about_main.jpg
+  caption: "Photo credit: Michael Quinn"
 ---
 
-## An expert in Data Science and AI, with a non-traditional background
+## An engineering leader with more than a decade's experience in tech
 
-I’ve been a Data Scientist for over a decade, with eight of those years working on AI at Google. I have lots of experience working on data applications for AI, mostly in the form of human-generated data. I wrote the [**Unofficial Google Data Science Blog post**](Unofficial ) on the topic. And most recently, my role was exclusively focused on AI. I am now the Staff Data Scientist at [Delphos Labs](https://delphoslabs.com/), which seeks to automate reverse engineering and secure software against a new generation of threats.
+I'm the Engineering Manager at [Delphos Labs](https://delphoslabs.com/), where we're automating reverse engineering and securing software against a new generation of threats. I lead our security research, infrastructure, and full-stack teams. I'm also one of our most productive engineers. I design solutions, write production code, ship features and run my own agent fleet alongside the team.
 
-I have a MSc in Statistics from UIUC, which I finished in 2015. Before then, I lived in Kazakhstan for a long time, exploring some unusual places and seeing things most people don't.
+This dual mode, leading and building, is where I do my best work. I've spent enough time on both sides to know that the best engineering leaders are still in the code, and the best engineers eventually have to lead something. The line between the two is thinner than people pretend.
 
-No doubt, I have a very unconventional journey into this industry, working in education and international development, insurance and now tech. I take this as a strength. My career has been one of big pivots and new opportunities. I’ve thrilled at the challenge of learning something completely new, and I’ve been lucky to do this many times now. Even better, there is no opportunity like the one in front of us right now: AI will transform our industry, just as it is gearing up to transform so many others as well. It's going to be an amazing ride, and I look forward to doing it together.
+Before Delphos Labs, I spent eight years at Google working on AI, internal systems and data quality. My most recent work there was on data acquisition and quality for flagship AI products; the unglamorous, leveraged side of model performance. I wrote the [Unofficial Google Data Science Blog post](https://www.unofficialgoogledatascience.com/2023/07/measuring-validity-and-reliability-of.html) on the topic and led a data science team that consulted across Gemini, Cloud and Assistant.
 
+Before Google, I got an MSc in Statistics from UIUC (2015) and spent a couple years as a Statistician at State Farm. And before that, I had a long stretch in Kazakhstan working in education and international development. The path is unconventional, and I take it as a strength. I've had to learn entirely new fields a few times now, and that's exactly what AI is asking everyone to do.
+
+## What I'm into right now
+
+The future of engineering work is hybrid: great engineers set the agenda and vision while an extensive fleet of agents manage the implementation. Management practices need to evolve when your team includes humans, agents and humans-with-agents. This will drive up the volume of software dramatically, creating new security implications and opportunities for automated reverse engineering and software analysis. The economics of abundant software will change the world.
+
+Most of my writing on these topics lives on the [blog](/blog/).
+
+## How to work with me
+
+I'm doing a small amount of fractional and advisory work alongside Delphos. If you're a seed-stage founder looking for a technical co-founder, or an early team that needs engineering leadership before you can hire it, [I'd like to talk](mailto:hello@msquinn.com).
