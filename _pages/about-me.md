@@ -12,7 +12,7 @@ header:
 
 ## An engineering leader with more than a decade's experience in tech
 
-I'm the Engineering Manager at [Delphos Labs](https://delphoslabs.com/), where we're automating reverse engineering and securing software against a new generation of threats. I lead our security research, infrastructure, and full-stack teams. I'm also one of our most productive engineers. I design solutions, write production code, ship features and run my own agent fleet alongside the team.
+I'm the Engineering Manager at [Delphos Labs](https://delphoslabs.com/), where we're automating reverse engineering and securing software against a new generation of threats. I lead our security research, infrastructure, and full-stack teams. I'm also one of our most productive engineers. I design solutions, write production code, build features and run my own agent fleet alongside the team.
 
 This dual mode, leading and building, is where I do my best work. I've spent enough time on both sides to know that the best engineering leaders are still in the code, and the best engineers eventually have to lead something. The line between the two is thinner than people pretend.
 

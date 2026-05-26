@@ -1,7 +1,7 @@
 # Site wide configuration
 
 title: Michael Quinn
-subtitle: AI products and the teams that ship them.
+subtitle: AI products and the teams that build them.
 locale: en_US
 # For a development URL, follow the pattern from 
 # https://docs.github.com/en/codespaces/developing-in-a-codespace/forwarding-ports-in-your-codespace

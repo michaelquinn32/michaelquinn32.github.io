@@ -23,7 +23,7 @@ _Best for:_ founders at the "I need a CTO, not a contractor" inflection point.
 
 10-20 hours per week. I work as your engineering leader: engineering process, architecture decisions, hiring, technical strategy, code review and writing code where it matters. Most of my fractional work is with AI-native teams, but the underlying skills transfer.
 
-_Best for:_ seed to Series A teams with 1-5 engineers, no engineering leadership yet, shipping faster than the team can sustainably support.
+_Best for:_ seed to Series A teams with 1-5 engineers, no engineering leadership yet, building faster than the team can sustainably support.
 
 ## Technical advisor
 
