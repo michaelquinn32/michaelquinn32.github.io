@@ -28,4 +28,4 @@ Most of my writing on these topics lives on the [blog](/blog/).
 
 ## How to work with me
 
-I'm doing a small amount of fractional and advisory work alongside Delphos. If you're a seed-stage founder looking for a technical co-founder, or an early team that needs engineering leadership before you can hire it, [I'd like to talk](mailto:hello@msquinn.com).
+I'm doing a small amount of fractional and advisory work alongside Delphos. If you're an early team that needs senior engineering leadership before you can hire it full-time, [I'd like to talk](mailto:hello@msquinn.com). More on the [shapes of engagement I offer](/services/).
