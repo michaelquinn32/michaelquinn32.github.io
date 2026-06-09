@@ -315,12 +315,18 @@ $services-max-width: 1120px;
 }
 
 // Stat / proof band
+//
+// The column grid must share the cards' coordinate system so each stat sits
+// directly above its card. That means matching the cards exactly: same column
+// floor (270px), same gap (1.25em), and no horizontal padding, so the tracks
+// start at the band's left edge instead of being inset. Vertical padding stays
+// for breathing room; the centered, short stat text never crowds the border.
 .services-stats {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
   gap: 1.25em;
   margin: 1.75em 0 0.5em;
-  padding: 1.4em 1.5em;
+  padding: 1.4em 0;
   background-color: #262626;
   border: 1px solid $services-card-border;
   border-radius: 6px;
