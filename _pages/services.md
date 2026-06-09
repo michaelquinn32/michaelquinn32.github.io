@@ -2,50 +2,102 @@
 title: "Working together"
 permalink: /services/
 layout: single
-author_profile: true
-classes: wide
+author_profile: false
+classes:
+  - wide
+  - services-page
 header:
   image: /images/grand-prismatic-spring.jpg
   caption: "Photo credit: Michael Quinn"
 ---
 
-I'm the Engineering Manager at [Delphos Labs](https://delphoslabs.com/) by day. I also take a small number of engagements with founders and early teams who'd benefit from senior engineering leadership before they can hire it full-time.
+I'm the Engineering Manager at [Delphos Labs](https://delphoslabs.com/) by day, where I run a fleet of agents alongside my team and ship more in a week than I used to in a month. Alongside that, I help a small number of teams get the same kind of leverage: the agent workflows, the review pipelines, and the management practices that make AI-native work actually stick.
 
-I offer four shapes of engagement, depending on what you need.
+<div class="services-stats">
+  <div class="services-stat">
+    <span class="services-stat__value">3x</span>
+    <span class="services-stat__label">team velocity once the agent workflow is in place</span>
+  </div>
+  <div class="services-stat">
+    <span class="services-stat__value">5+</span>
+    <span class="services-stat__label">new automated workflows your team runs on its own</span>
+  </div>
+  <div class="services-stat">
+    <span class="services-stat__value">1 hour</span>
+    <span class="services-stat__label">of your time to get started with an initial audit</span>
+  </div>
+</div>
 
-## Technical co-founder
+## Three ways to work together
 
-Some conversations are different. If you're a founder with traction, a clear problem, and the sense that the right technical partner would change the trajectory of the company; let's talk. I'm not browsing, but I'm having these conversations seriously, and the right one will land.
+Start with the audit. It's an hour of your time, and you leave with a plan you can act on whether or not we work together after. If there's a fit, we build from there.
 
-_Best for:_ founders at the "I need a CTO, not a contractor" inflection point.
+<div class="services-cards">
 
-## Fractional CTO
+  <div class="services-card">
+    <h3 class="services-card__title">AI productivity audit</h3>
+    <p class="services-card__time">1 hour of your time</p>
+    <p class="services-card__desc">Where is AI already helping your team, where is it quietly a distraction, and what's the highest-leverage workflow you're not yet running? I map how your team actually works and hand you a prioritized plan.</p>
+    <ul class="services-card__list">
+      <li>Where AI fits and where it's just noise</li>
+      <li>Three quick wins you can ship this week</li>
+      <li>The one workflow worth building next</li>
+      <li>A prioritized action plan you keep</li>
+    </ul>
+    <p class="services-card__best"><strong>Best when:</strong> you know AI should help but don't know where to start.</p>
+    <div class="services-card__cta">
+      <a class="services-btn" href="mailto:hello@msquinn.com?subject=AI%20productivity%20audit">Start a conversation</a>
+    </div>
+  </div>
 
-10-20 hours per week. I work as your engineering leader: engineering process, architecture decisions, hiring, technical strategy, code review and writing code where it matters. Most of my fractional work is with AI-native teams, but the underlying skills transfer.
+  <div class="services-card services-card--featured">
+    <p class="services-card__flag">Most common</p>
+    <h3 class="services-card__title">AI-native workflow build</h3>
+    <p class="services-card__time">Hands-on engagement</p>
+    <p class="services-card__desc">We build your team's agent workflow together: task design, parallel worktrees, review pipelines, and the documentation that turns one good run into a repeatable system.</p>
+    <ul class="services-card__list">
+      <li>An agent workflow codified in your repo</li>
+      <li>Parallel task execution your team can run</li>
+      <li>Specialized review agents for your standards</li>
+      <li>A written playbook your team keeps</li>
+    </ul>
+    <p class="services-card__best"><strong>Best when:</strong> your team is dabbling with AI but not yet compounding.</p>
+    <div class="services-card__cta">
+      <a class="services-btn services-btn--primary" href="mailto:hello@msquinn.com?subject=AI-native%20workflow%20build">Start a conversation</a>
+    </div>
+  </div>
 
-_Best for:_ seed to Series A teams with 1-5 engineers, no engineering leadership yet, building faster than the team can sustainably support.
+  <div class="services-card">
+    <h3 class="services-card__title">Engineering velocity</h3>
+    <p class="services-card__time">Ongoing, embedded</p>
+    <p class="services-card__desc">I join as a hands-on engineering leader and stay. I install the AI-native workflow, raise the team's throughput, and keep improving the system as your needs grow. Architecture, hiring, and strategy come with it.</p>
+    <ul class="services-card__list">
+      <li>A leader in the work, not just advising it</li>
+      <li>Throughput that climbs as the system matures</li>
+      <li>Architecture, hiring, and technical strategy</li>
+      <li>A process that gets sharper every cycle</li>
+    </ul>
+    <p class="services-card__best"><strong>Best when:</strong> you need senior leadership before you can hire it full-time.</p>
+    <div class="services-card__cta">
+      <a class="services-btn" href="mailto:hello@msquinn.com?subject=Engineering%20velocity%20engagement">Start a conversation</a>
+    </div>
+  </div>
 
-## Technical advisor
+</div>
 
-Lower-touch. Two to four hours per month, advisory shares (0.1-0.5%). Architecture sounding board, team building, hiring help, AI strategy, periodic deep-dives on specific decisions.
-
-_Best for:_ founders who have engineering leadership but want a second perspective from someone outside the building.
-
-## 0-to-1 audit
-
-One-week paid sprint, fixed scope. I show up, dig in, and deliver a concrete written recommendation. Three flavors:
-
-- **Engineering velocity.** How can you get the most out of your organization? Where are the bottlenecks? What are the new workflows to automate?
-- **Architecture review.** Is what you've built going to survive the next 6 months of growth? What are the three biggest risks?
-- **AI capability audit.** Where are you over- or under-using LLMs? What's the highest-leverage AI capability you're not yet exploiting?
-- **Build-vs-buy.** A specific decision you're facing, treated with the seriousness it deserves.
+<div class="services-note">
+  <h2 class="services-note__title">Not just engineering teams</h2>
+  <p>The biggest leverage I've found isn't in code; it's in the system around it. Agents work the same way on any knowledge work that synthesizes sources and has to stay consistent: design docs, proposals, research, reports, and the operations behind them. If your team writes for a living, the audit and the workflow build apply to you too. I wrote about why in <a href="/blog/2026/01/17/knowledge-stack/">The Knowledge Stack</a>.</p>
+</div>
 
 ## What I won't do
 
 - Code-for-hire that doesn't compound into a relationship. I'm not a contractor.
 - "Strategic" work without enough technical depth to be useful. I'm not a generalist advisor.
-- Anything that conflicts with my work at Delphos. I treat that boundary carefully.
+- Anything that conflicts with my work at Delphos Labs. I treat that boundary carefully.
 
-## Next step
-
-[Send me a note](mailto:hello@msquinn.com). I'll ask what you're working on, what's actually hard about it, and whether the shape of one of these engagements fits. If it does, great. If it doesn't, I'll try to point you at someone better suited.
+<div class="services-final-cta">
+  <h2 class="services-final-cta__title">I'd love to hear from you</h2>
+  <p class="services-final-cta__body">Tell me what you're working on and what's actually hard about it. I'll tell you whether the audit fits, what you'd walk away with, and where it could lead. If it's not a fit, I'll try to point you at someone better suited.</p>
+  <a class="services-btn services-btn--primary services-btn--large" href="mailto:hello@msquinn.com?subject=Working%20together">Send me a note</a>
+</div>

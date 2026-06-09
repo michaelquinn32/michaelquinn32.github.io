@@ -198,3 +198,336 @@ body {
 .toc {
     background-color: #333;
 }
+
+// ---------------------------------------------------------------------------
+// Services page (/services/)
+// Productized-sprint card layout, stat band, and button CTAs. The page drops
+// the author sidebar; the rules below reclaim the gutter the theme reserves
+// for it so there is no dead space, and tighten the inherited blog typography
+// to a landing-page scale. Cards stack to a single column on mobile.
+// ---------------------------------------------------------------------------
+
+$services-accent: #00adb5;
+$services-accent-hover: #00c9d2;
+$services-card-bg: #2b2b2b;
+$services-card-border: #3d3d3d;
+
+// --- Layout: drop the sidebar gutter, then cap the content width ------------
+// Minimal Mistakes sizes `.page` as `calc(100% - $right-sidebar-width)` with a
+// matching `padding-inline-end` for the (now removed) author sidebar. We zero
+// that out, then cap the content column at a comfortable measure and center it.
+//
+// Why the cap: with the gutter gone, content would otherwise run edge-to-edge.
+// On a wide monitor (~1900px+) that yields 200+ character lines and uneven
+// wrapping in the stat band. A single max-width on the inner wrap means EVERY
+// section (intro, stats, cards, note, CTA) shares the same edges AND text stays
+// at a readable line length regardless of viewport. This is the real fix for
+// the long-line / awkward-wrap problem, not a per-width patch.
+$services-max-width: 1120px;
+
+.services-page {
+  .sidebar {
+    display: none !important;
+  }
+
+  @media (min-width: 48em) {       // $medium — theme reserves 200px
+    .page {
+      width: 100%;
+      padding-inline-end: 0;
+    }
+  }
+
+  @media (min-width: 64em) {       // $large — theme reserves 300px
+    .page {
+      width: 100%;
+      padding-inline-end: 0;
+    }
+  }
+
+  // Cap and center the whole content column. Everything visible on the page
+  // lives inside .page__inner-wrap, so this aligns all sections to one measure.
+  // The theme floats this wrap `inline-start`, which would pin it left and make
+  // the column sit off-center under the full-bleed hero; clearing the float
+  // lets `margin-inline: auto` center it symmetrically.
+  .page__inner-wrap {
+    float: none;
+    max-width: $services-max-width;
+    margin-inline: auto;
+  }
+
+  // --- Typography: dial the inherited blog scale down to landing-page size ---
+  // Prose fills the (now capped) content column, so the intro and section text
+  // align flush with the stat band and cards on both edges, while the column
+  // cap keeps line lengths comfortable.
+  .page__content {
+    font-size: 0.92em;
+
+    > p {
+      line-height: 1.6;
+    }
+
+    h2 {
+      margin-top: 1.6em;
+      font-size: 1.5em;
+    }
+  }
+}
+
+// Shared button language (mirrors the contact form's teal buttons)
+.services-btn {
+  display: inline-block;
+  padding: 0.65em 1.4em;
+  background-color: $services-card-bg;
+  color: #f2f2f2 !important;
+  border: 1px solid #555;
+  border-radius: 4px;
+  font-size: 0.85em;
+  font-weight: 600;
+  line-height: 1.2;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition: border-color 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+
+  &:hover,
+  &:focus {
+    border-color: $services-accent;
+    color: #fff !important;
+    text-decoration: none;
+  }
+}
+
+.services-btn--primary {
+  background-color: $services-accent;
+  border-color: $services-accent;
+  color: #fff !important;
+
+  &:hover,
+  &:focus {
+    background-color: $services-accent-hover;
+    border-color: $services-accent-hover;
+  }
+}
+
+.services-btn--large {
+  padding: 0.8em 2.2em;
+  font-size: 0.95em;
+}
+
+// Stat / proof band
+.services-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.25em;
+  margin: 1.75em 0 0.5em;
+  padding: 1.4em 1.5em;
+  background-color: #262626;
+  border: 1px solid $services-card-border;
+  border-radius: 6px;
+}
+
+.services-stat {
+  text-align: center;
+
+  &__value {
+    display: block;
+    color: $services-accent;
+    font-size: 1.35em;
+    font-weight: 700;
+    line-height: 1.15;
+  }
+
+  &__label {
+    display: block;
+    margin-top: 0.35em;
+    color: #bbb;
+    font-size: 0.82em;
+    line-height: 1.4;
+  }
+}
+
+// Card grid — dynamic columns, stacks on mobile
+.services-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+  gap: 1.25em;
+  margin: 1.5em 0 2.5em;
+  align-items: stretch;
+}
+
+.services-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 1.5em 1.4em;
+  background-color: $services-card-bg;
+  border: 1px solid $services-card-border;
+  border-radius: 6px;
+
+  // Reserve the flag's height on every card so titles align across the row,
+  // even though only the featured card carries a flag. The placeholder mirrors
+  // the flag's exact box model (font-size, line-height, padding, margin) so the
+  // reserved space matches precisely regardless of em context.
+  &:not(.services-card--featured)::before {
+    content: "";
+    display: block;
+    font-size: 0.68em;
+    line-height: 1.2;
+    padding: 0.2em 0;
+    margin: 0 0 0.7em;
+  }
+
+  &__flag {
+    display: inline-block;
+    align-self: flex-start;
+    font-size: 0.68em;
+    line-height: 1.2;
+    margin: 0 0 0.7em;
+    padding: 0.2em 0.7em;
+    background-color: rgba($services-accent, 0.15);
+    color: $services-accent;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border-radius: 999px;
+  }
+
+  &__title {
+    margin: 0 0 0.1em;
+    color: #fff;
+    font-size: 1.2em;
+    line-height: 1.25;
+  }
+
+  &__time {
+    margin: 0 0 0.85em;
+    color: $services-accent;
+    font-size: 0.72em;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  &__desc {
+    margin: 0 0 1em;
+    color: #ccc;
+    font-size: 0.88em;
+    line-height: 1.55;
+  }
+
+  // Deliverables checklist — custom teal check, overrides the page's
+  // default `.page__content li { margin-left: 1em }`.
+  &__list {
+    list-style: none;
+    margin: 0 0 1em !important;
+    padding: 0;
+
+    li {
+      position: relative;
+      margin-left: 0 !important;
+      padding-left: 1.5em;
+      margin-bottom: 0.45em;
+      color: #d6d6d6;
+      font-size: 0.85em;
+      line-height: 1.45;
+
+      &::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0.2em;
+        width: 0.5em;
+        height: 0.85em;
+        border: solid $services-accent;
+        border-width: 0 2px 2px 0;
+        transform: rotate(45deg);
+      }
+    }
+  }
+
+  // "Best when" sits naturally after the deliverables list.
+  &__best {
+    margin: 0 0 1.1em;
+    color: #a8a8a8;
+    font-size: 0.82em;
+    line-height: 1.5;
+
+    strong {
+      color: #cfcfcf;
+    }
+  }
+
+  // CTA wrapper is pinned to the card bottom. Because every card is the same
+  // height (grid `align-items: stretch`) and the CTA carries `margin-top: auto`,
+  // all three buttons share an exact baseline regardless of the copy above —
+  // fixing the measured 43px button-bottom spread.
+  &__cta {
+    margin-top: auto;
+  }
+
+  .services-btn {
+    width: 100%;
+  }
+}
+
+// Promoted card
+.services-card--featured {
+  border-color: $services-accent;
+  box-shadow: 0 0 0 1px $services-accent;
+}
+
+// "Not just engineering teams" note — a calmer, full-width band between the
+// cards and the closing CTA.
+.services-note {
+  margin: 0 0 1em;
+  padding: 1.4em 1.6em;
+  background-color: #262626;
+  border: 1px solid $services-card-border;
+  border-left: 3px solid $services-accent;
+  border-radius: 6px;
+
+  &__title {
+    margin: 0 0 0.4em !important;
+    color: #fff;
+    font-size: 1.15em !important;
+  }
+
+  p {
+    margin: 0;
+    color: #c4c4c4;
+    font-size: 0.9em;
+    line-height: 1.6;
+  }
+}
+
+// Final CTA band — a full-width call to action that lines up with the content
+// column (same left/right edges as the "What I won't do" heading, bullets, and
+// the note band). Vertical padding is kept tight so the box hugs its content
+// rather than leaving a tall dead zone. The heading and body are centered and
+// capped to a comfortable measure within the band. The theme underlines every
+// `h2` and pins `.page__content p` to `margin-left: 0`; we override both with
+// `!important` so the content centers and the underline is removed.
+.services-final-cta {
+  margin: 2em 0 1em;
+  padding: 1.6em 1.5em;
+  text-align: center;
+  background-color: #262626;
+  border: 1px solid $services-card-border;
+  border-radius: 6px;
+
+  &__title {
+    margin: 0 0 0.4em !important;
+    padding: 0 !important;
+    color: #fff;
+    font-size: 1.15em !important;      // match the note title
+    border-bottom: 0 !important;   // beat theme's `.page__content h2` underline
+  }
+
+  &__body {
+    max-width: 48em;
+    margin: 0 auto 1.1em !important;   // beat theme's `.page__content p` margin
+    color: #c4c4c4;
+    font-size: 0.9em !important;       // match the "Not just engineering teams" note
+    line-height: 1.6;
+  }
+}
