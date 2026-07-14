@@ -95,7 +95,19 @@ This is the same bargain as the language, and it resolves the same way. The unfa
 
 The infrastructure case also makes the danger vivid, in a way the language case did not. A compiler error stops the build and nothing happens. A bad infrastructure change deletes a database. In [July 2025](https://fortune.com/2025/07/23/ai-coding-tool-replit-wiped-database-called-it-a-catastrophic-failure/) an AI agent on Replit did exactly that, wiping a live production database during a supposed code freeze; the company's CEO called it "unacceptable and should never be possible." As before, something was granted just a little too much rope. The agent's freedom is its blast radius, and the guardrail is the same one you would use on a new hire you did not fully trust yet: give it the narrowest access that lets it do the job, and make the destructive actions the ones a human still has to approve. The whole security industry has a name for this, least privilege, and it matters more, not less, when the thing holding the credentials is a fast, tireless, non-deterministic worker that will do precisely what you said and not at all what you meant.
 
-There is a second thing agents do with infrastructure, and it runs in the other direction. Configuration is legible to the machine that executes it and nearly opaque to the human trying to understand the system it describes. You can read every line of a Terraform module and still not hold the shape of the thing in your head. Recovering that shape, a picture of what talks to what, used to be its own separate skill; you learned a diagramming tool or a diagram language like Mermaid or C4, and you drew it by hand, and the drawing was stale the moment someone changed the infrastructure. Simon Brown, who created the C4 model, has made this point for years: diagrams kept by hand drift away from the system they claim to describe. An agent removes that whole chore. It reads the configuration and hands you the picture, generated from the current state, as easily as it wrote the configuration in the first place:
+There is a second thing agents do with infrastructure, and it runs in the other direction. Configuration is legible to the machine that executes it and nearly opaque to the human trying to understand the system it describes. You can read every line of a Terraform module and still not hold the shape of the thing in your head. Recovering that shape, a picture of what talks to what, used to be its own separate skill; you learned a diagramming tool or a diagram language like Mermaid or C4, and you drew it by hand, and the drawing was stale the moment someone changed the infrastructure. Simon Brown, who created the C4 model, has made this point for years: diagrams kept by hand drift away from the system they claim to describe. An agent removes that whole chore. It reads the configuration and hands you the picture, generated from the current state, as easily as it wrote the configuration in the first place. What it produces is itself just text, a few lines of a diagram language:
+
+```text
+graph LR
+    U[Users] --> LB[Load balancer]
+    LB --> API[API service]
+    API --> Q[Queue]
+    API --> DB[(Primary database)]
+    Q --> W[Worker]
+    W --> DB
+```
+
+That is legible to the machine. Rendered, the same lines are legible to you:
 
 ```mermaid
 graph LR
