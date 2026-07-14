@@ -12,3 +12,15 @@ _cache
 .RData
 *.nb
 *:Zone.Identifier
+
+# Book project (work-in-progress, not committed yet)
+book/
+
+# Writing QA pipeline (see AGENTS.md > "Writing QA pipeline")
+# Vale style packages are fetched by `vale sync`; do not commit them,
+# but keep the committed accept-list and our own custom Blog style.
+styles/*
+!styles/config/
+styles/config/*
+!styles/config/vocabularies/
+!styles/Blog/

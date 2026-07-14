@@ -146,6 +146,10 @@ assets/css/       # Custom CSS overrides
   scripts/        # Python scripts for automation
   workflows/      # GitHub Actions workflows
 post-elements/    # Supporting docs (excluded from build)
+scripts/          # Local dev/QA scripts (e.g. writing-qa/writing_stats.py)
+mise.toml         # Tool versions + tasks (writing-QA pipeline)
+.vale.ini         # Vale prose-linter config
+styles/           # Vale styles: Blog/ + config/vocabularies/ committed; packages gitignored
 ```
 
 ## Newsletter System
@@ -174,6 +178,95 @@ bundle exec jekyll serve
 - `_config.yml` - Main Jekyll config
 - `post-elements/` is excluded from the build
 - `vendor/` is excluded from the build
+
+### Tooling (mise)
+
+Tools for this repo are managed with [mise](https://mise.jdx.dev/) via `mise.toml`. mise
+manages standalone CLIs and language runtimes and defines the writing-QA tasks. This repo is
+outside the auto-trusted Delphos paths, so mise needs a one-time trust:
+
+```bash
+mise trust      # one-time, in the repo root
+mise install    # installs the pinned tools (e.g. Vale)
+```
+
+Prefer `mise run <task>` and `mise exec -- <tool>` over globally installed copies.
+
+### Writing QA pipeline
+
+Vale audits prose quality and AI-writing tells, deterministically and offline. It is the primary
+signal. An optional commercial API can be used as a pre-publish sanity check. Both are
+CLI/scriptable so an agent can shell out to them.
+
+**Vale + style packages (the primary check).** Deterministic prose linting. Vale is pinned in
+`mise.toml`; the style packages are declared in `.vale.ini` and fetched by `vale sync`.
+
+```bash
+mise run vale-sync                                   # one-time / after editing .vale.ini
+mise run lint-prose _posts/2026-01-01-slug.md        # human-readable
+mise run lint-prose-json _posts/2026-01-01-slug.md   # JSON for an agent to parse
+```
+
+Style packages: `write-good`, `proselint`, `alex`, `Readability` (Vale Hub), plus
+[`ai-tells`](https://github.com/tbhb/vale-ai-tells) (pinned by release-zip URL), which detects
+AI-writing tells (structure announcements, rhetorical self-answers, verb tricolons, sycophancy,
+buzzwords). The AI-tells style is the closest thing to a "GPTisms" ruleset.
+
+Some rules are disabled in `.vale.ini` on purpose, and should stay disabled:
+
+- **`ai-tells.SemicolonUsage`** flags a semicolon joining a comma-free clause as an AI tell (at
+  error level). This repo's voice guide does the opposite; it *prefers* a semicolon over an em
+  dash. Leaving this on would flag the author's signature construction on nearly every paragraph.
+- **`write-good.E-Prime`** flags every use of "to be." That is a fringe stylistic exercise, not a
+  quality signal, and it is pure noise for this author.
+
+Note on spelling: `Vale.Spelling` flags technical terms and names (Bazel, Terraform, Clippy,
+Starlark, Dafny, Delphos, and so on). Maintain the accept-list at `styles/config/vocabularies/Blog/accept.txt`
+rather than silencing the check wholesale.
+
+Treat `ai-tells` findings as a prompt to reread, not an automatic rewrite: the ruleset assumes
+a docs register, and this blog is more personal, so some flags (a deliberate tricolon, an
+"of course") are fine on a second look. Fix the real tells; keep the voice.
+
+**Statistical signal (deterministic; useful, not a gate).** There are two kinds of "statistical"
+signal, and they are not the same. Deterministic readability and sentence-distribution metrics
+are genuinely useful for finding places to improve, and carry no false-positive problem. Use
+them. (The ML-based AI *detectors* are the ones to treat cautiously; see the commercial API note
+below.)
+
+Vale reports the standard readability grades (Flesch-Kincaid, Gunning-Fog, SMOG, LIX, and so on).
+Their built-in thresholds are tuned for docs/marketing (grade <= 8, reading-ease >= 70) and do
+not fit long-form analytical prose, so `.vale.ini` demotes them to `suggestion`: read the score
+for trend, not compliance. A grade of ~10 is normal and fine here.
+
+For the signal Vale cannot compute (it only has aggregate counts), use the stats script:
+
+```bash
+mise run stats _posts/2026-01-01-slug.md
+```
+
+It prints the sentence-length distribution (mean, standard deviation, min/max, and counts of
+short and long sentences) plus reading grades, all offline stdlib. The key number is the
+standard deviation. This voice prizes "burstiness," short punches alternating with long
+explanatory sentences, so a healthy draft shows a double-digit stdev and a real supply of both
+short (<= 8 words) and long (> 40 words) sentences. A high mean with a low stdev reads as
+uniformly dense and is a mild AI tell. The custom `styles/Blog/AvgSentenceLength.yml` metric also
+flags a runaway average inside Vale.
+
+**Commercial API (optional, pre-publish only).** No install; an HTTP call with an API key in an
+env var (e.g. GPTZero at `api.gptzero.me/v2/predict/text`, or Originality.ai). These are
+statistical AI-detectors with meaningful false-positive rates, so treat any score as advisory,
+never a gate. Reserve it for a final pre-publish check given cost and latency; do not call it
+per-revision. Verify the current endpoint/auth against the vendor's docs before relying on it.
+
+(A local statistical detector, Binoculars, was evaluated and dropped: it is GPU-bound and has a
+high real-world false-positive rate. Do not reintroduce it without a good reason.)
+
+**Tools that do NOT exist (do not try to install them).** Some AI-generated install guides
+reference `agent-style` and `anywhere-agents` as pip packages, and `vale-ai-writing` /
+"ammil-industries" as the AI-tells Vale style. None of these are real. The AI-tells style is
+`tbhb/vale-ai-tells`. If a new writing tool is proposed, verify it resolves to a real
+repo/package before adding it to `mise.toml` or `.vale.ini`.
 
 ## Working with This Repo
 

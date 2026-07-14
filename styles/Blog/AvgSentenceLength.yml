@@ -1,0 +1,7 @@
+extends: metric
+message: "Average sentence length is %s words. Above ~28 tends to read as dense; vary with short punches."
+link: https://en.wikipedia.org/wiki/Readability
+level: suggestion
+formula: |
+  words / sentences
+condition: "> 28"

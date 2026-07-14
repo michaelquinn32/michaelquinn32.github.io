@@ -1,0 +1,39 @@
+# mise configuration for the msquinn.com blog repo.
+#
+# Primary purpose: the writing-QA pipeline (see AGENTS.md > "Writing QA pipeline").
+# mise manages the standalone CLI tools; Vale's own `vale sync` manages the prose
+# STYLE packages (proselint, alex, Readability, write-good, ai-tells), which are not
+# mise-managed. Run `mise trust` once in this repo (it is outside the auto-trusted
+# Delphos paths), then `mise install`, then `mise run vale-sync`.
+
+[tools]
+# Deterministic prose linter (Go binary). aqua backend matches the global config.
+# Repo was renamed errata-ai -> vale-cli; aqua still keys off errata-ai/vale.
+vale = "3.15.1"
+# For the offline writing-stats script (stdlib only; no extra deps).
+python = "3.12"
+
+[tasks.vale-sync]
+description = "Download/refresh Vale style packages defined in .vale.ini"
+run = "vale sync"
+
+[tasks.lint-prose]
+description = "Deterministic prose + AI-tell lint (Layer 1; fix these)"
+usage = '''
+arg "<file>" help="Markdown file to lint" default="_posts/*.md"
+'''
+run = "vale {{arg(name='file')}}"
+
+[tasks.lint-prose-json]
+description = "Same as lint-prose but JSON output for agents to parse"
+usage = '''
+arg "<file>" help="Markdown file to lint"
+'''
+run = "vale --output=JSON {{arg(name='file')}}"
+
+[tasks.stats]
+description = "Deterministic writing stats (sentence-length distribution, reading grade)"
+usage = '''
+arg "<file>" help="Markdown file to analyze"
+'''
+run = "python ${MISE_PROJECT_ROOT}/scripts/writing-qa/writing_stats.py {{arg(name='file')}}"
