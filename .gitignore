@@ -13,8 +13,15 @@ _cache
 *.nb
 *:Zone.Identifier
 
-# Book project (work-in-progress, not committed yet)
+# The book moved to its own private repo, michaelquinn32/everyday-ai-book.
+# Kept ignored so a stale local book/ directory cannot be committed here by
+# accident. See AGENTS.md > "The book".
 book/
+
+# Client-derived offer material moved to the private repo
+# michaelquinn32/consulting-offers. Ignored so a stale local copy cannot be
+# committed to this PUBLIC repo by accident. See AGENTS.md > "Consulting offers".
+post-elements/*-offer/
 
 # Writing QA pipeline (see AGENTS.md > "Writing QA pipeline")
 # Vale style packages are fetched by `vale sync`; do not commit them,

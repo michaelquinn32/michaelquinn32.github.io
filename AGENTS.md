@@ -152,6 +152,43 @@ mise.toml         # Tool versions + tasks (writing-QA pipeline)
 styles/           # Vale styles: Blog/ + config/vocabularies/ committed; packages gitignored
 ```
 
+## The book
+
+The book *AI Engineering for Everyday Knowledge Work* lives in its own private repo,
+`michaelquinn32/everyday-ai-book`, checked out locally at `~/personal/everyday-ai-book`.
+It used to sit in a gitignored `book/` directory here. Do not recreate it in this repo.
+
+The relationship runs one way. The book repo pins this repo as a `blog/` submodule and
+harvests from `_posts/`; nothing here depends on the book. Two consequences worth
+knowing when editing this repo:
+
+- **Renaming or deleting a file in `_posts/` or `_pages/` breaks book citations.** The
+  book cites posts by path, and its `mise run check-links` will catch the break, but only
+  after someone runs it. If you rename a post, say so, or run the book's link check.
+- **The book's submodule pointer is pinned to a commit.** New posts do not appear in the
+  book until someone runs `git submodule update --remote blog` over there. That is
+  deliberate; the pin records which version of a post a chapter harvested from.
+
+The book's voice guide is this file. The "Blog Post Style Guide" and "Style" sections
+below are canonical for both the blog and the book, so changes here propagate to the
+book's drafting standard. That is intended; keep them in one place.
+
+## Consulting offers
+
+Client-facing offer materials live in their own private repo,
+`michaelquinn32/consulting-offers`, checked out locally at `~/personal/consulting-offers`.
+The Trucker Huss offer used to sit in an untracked `post-elements/trucker-huss-offer/`
+directory here. Do not recreate it in this repo. **This repo is public; client-derived
+material must never be committed to it.** `.gitignore` carries a guard entry.
+
+The relationship is the same shape as the book's. The offers repo pins this repo as a
+`blog/` submodule for the voice guide, and nothing here depends on the offers repo. The
+"Blog Post Style Guide" and "Style" sections below are therefore canonical for three
+consumers: the blog, the book, and the offers.
+
+`_pages/services.md` is the public-facing version of this work and stays here. It is a
+productized summary; the offers repo holds the client-specific artifacts.
+
 ## Newsletter System
 
 The site has a MailerLite-powered newsletter with:
