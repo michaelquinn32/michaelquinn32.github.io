@@ -11,7 +11,7 @@ header:
   caption: "Photo credit: Michael Quinn"
 ---
 
-I'm the Engineering Manager at [Delphos Labs](https://delphoslabs.com/) by day, where I run a fleet of agents alongside my team and ship more in a week than I used to in a month. Alongside that, I help a small number of teams get the same kind of leverage: the agent workflows, the review pipelines, and the management practices that make AI-native work actually stick.
+I'm the Head of Engineering at [Delphos Labs](https://delphoslabs.com/) by day, where I run a fleet of agents alongside my team and ship more in a week than I used to in a month. Alongside that, I help a small number of teams get the same kind of leverage: the agent workflows, the review pipelines, and the management practices that make AI-native work actually stick.
 
 <div class="services-stats">
   <div class="services-stat">
