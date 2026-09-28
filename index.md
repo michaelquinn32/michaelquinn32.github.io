@@ -15,10 +15,11 @@ feature_row_about:
     alt: "Hi! I'm Michael"
     title: "Why me?"
     excerpt: >-
-      I lead the Security Research, Infrastructure Full-stack and Data Science teams at 
-      [Delphos Labs](https://delphoslabs.com/). We're automating reverse engineering and
-      solving the next generation of cybersecurity problems. Before Delphos Labs, I spent
-      eight years at Google working on AI; most recently on data acquisition and quality 
+      I am the Head of Engineering at [Delphos Labs](https://delphoslabs.com/), where I lead
+      the Security Research, Infrastructure, Full-stack and Data Science teams. We're
+      automating reverse engineering and solving the next generation of cybersecurity
+      problems. Before Delphos Labs, I spent
+      nearly nine years at Google working on AI; most recently on data acquisition and quality
       for flagship AI products.
     url: "/about-me/"
     btn_label: "Read More"
