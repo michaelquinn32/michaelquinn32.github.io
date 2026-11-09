@@ -34,3 +34,15 @@ linters
 Willison
 Agentic
 Addy
+Anthropic
+Arvind
+Cowork
+Kapoor
+Narayanan
+Rensin
+Sayash
+subagent
+subagents
+tuicr
+Unger
+Wiggum

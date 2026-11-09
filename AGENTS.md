@@ -2,6 +2,13 @@
 
 This file provides context for AI agents working on this Jekyll blog.
 
+## Repository workflow
+
+This is a personal, non-SOC repository. Commits do not require a Linear issue.
+Use a feature branch and signed commits. The Delphos-configured `gw` does not
+manage this repository; use `git worktree` with an explicit repository path.
+Commit only the requested work and preserve unrelated changes.
+
 ## Site Overview
 
 - **Platform**: Jekyll static site hosted on GitHub Pages
