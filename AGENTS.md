@@ -53,55 +53,70 @@ header:
 
 ### Tone and Voice
 
-The following analysis is drawn from close reading of all posts from 2025-2026. Use it to calibrate drafts.
+The following analysis is drawn from close reading of the posts and the author's own prose. Use it to calibrate drafts, not turn the voice into a checklist. Current author feedback is evidence of that voice; a reviewer must question its interpretation of the guide before editing that voice away.
 
 #### Core stance
 
-Michael writes as a practitioner sharing what he learned, not as an authority declaring truths. The implicit contract with the reader is: "I tried this, here's what happened, here's what I think it means." He is genuinely excited about AI but never uncritical. Every capability claim is grounded in a specific experience, and every limitation is stated plainly.
+Michael writes as a practitioner talking to a reader about something he cares about. He has a position, expresses enthusiasm and uses vivid language. Ground capability claims in experience or attributable evidence, and state the limitations that affect the argument. Do not replace this personal investment with a neutral report or make every observation carry a defensive disclaimer.
 
 #### Sentence-level patterns
 
-- **Short declarative sentences for emphasis, followed by longer explanatory ones.** "The bottleneck shifts. It's no longer 'how fast can I write code?' It's 'how many well-scoped tasks can I run simultaneously, and how quickly can I evaluate results?'"
+- **Sentence length follows the thought.** Short declarations supply emphasis; longer sentences carry explanation, qualification and conversational movement. Do not split every thought into terse assertions or impose a manuscript-wide sentence-length limit.
 - **Rhetorical questions used sparingly, to pivot.** "Could you run a Ralph loop to write a design doc? A grant proposal? A regulatory filing? Not yet."
 - **Concrete before abstract.** Michael almost always opens a section with a specific incident or number, then extracts the principle. He earns abstractions; he does not lead with them.
 - **Semicolons over em dashes.** Where most writers reach for an em dash to insert an aside, Michael uses a semicolon or splits into two sentences.
-- **No throat-clearing.** Introductions open with action or an observation, never with meta-commentary about what the post will cover. "Last week I produced a 100+ page technical design doc in about three days." Not: "In this post, I want to explore..."
-- **Natural burstiness.** Sentence length varies widely; 5-word punches alternate with 30-word explanatory sentences. This is genuine, not performed.
+- **Speak to the reader.** Signposting, direct address and explaining why an example matters are part of the voice. Mentions of the chapter, the writing process or what comes next are not defects in themselves. Judge what the passage does for the reader.
+- **Natural rhythm.** Let a thought run when it needs room, then use a short sentence to land it. Do not manufacture alternation, fragments or a target distribution to demonstrate variety.
 
 #### Paragraph-level patterns
 
-- **One idea per paragraph, rigorously.** Paragraphs rarely exceed 4-5 sentences.
+- **Give each paragraph a focus.** Let its length follow the thought; do not make every paragraph the same size or a self-contained claim and caveat.
 - **The pivot paragraph.** Michael often has a paragraph that begins with "But" or "And yet" that complicates the previous point. This is where his honesty about limitations lives. Example: "But the image is also misleading if you take it at face value."
 - **Attribution is woven in, not dropped.** He names people and their ideas inline: "Ethan Mollick at Wharton recently made the same observation" rather than bare citations.
-- **Lists used for concrete items (tools, steps), never for arguments.** Arguments are always in prose.
+- **Lists are available when they help the reader.** Use bullets for steps, comparisons or points that benefit from being seen together, including parts of an argument. Keep the prose that develops and connects those points; do not replace it with a list by default.
 
 #### Section-level patterns
 
-- **Introductions ground in personal experience.** Every post opens with a specific moment: sitting with his daughter, finishing a design doc, reflecting on a month at a new job. The personal anchor comes first; the thesis emerges from it.
+- **Introductions give the reader a way in.** Personal experience often provides the opening. Broader framing can come first when it helps the reader understand why the experience matters. Do not force an anecdote onto an argument or invent one to satisfy a structure rule.
 - **Body sections follow a pattern: experience, then framework, then implication.** He describes what happened, names the pattern or framework it illustrates, then says what it means for the reader.
 - **Conclusions are forward-looking, not summary.** They acknowledge uncertainty ("I don't know where this ends"), identify tensions, and point toward what comes next. They never mechanically restate section headings.
 
 #### Recurring rhetorical moves
 
 - **The "irony" turn.** Michael frequently identifies an irony or paradox in the situation. "And here's the irony: the skills that are so often dismissed as 'soft' turned out to be the hard ones." This is a signature move.
-- **The honest caveat.** After describing something that worked well, he immediately names the thing that didn't. "Even though this remains my top complaint, there's a caveat here."
+- **The honest caveat.** Put a qualification where it changes the claim or the reader's decision. Do not append a counterweight to every positive statement or repeatedly announce that an example is not universal proof.
 - **Quoting others to extend, not to defer.** He quotes Mollick, Karpathy, Cowen, etc. to build on their ideas, never as argument-from-authority. The quote opens a door; Michael walks through it with his own analysis.
-- **The lived-experience proof.** Claims are backed by "I did X, and Y happened" rather than "studies show." When he does cite studies, they support a point he has already established through experience.
+- **Experience and evidence.** Firsthand accounts give the argument a concrete basis. Research can also introduce, challenge or support a point. Do not demand a personal anecdote before every research claim or turn an anecdote into comparative proof.
+
+#### Narrative and prose structure
+
+Essays and book chapters develop an argument for someone reading through them.
+They are not engineering documents optimized for looking up isolated facts. Give
+the reader a reason to keep following: a question, an experience, a tension or an
+idea whose implications emerge as the prose develops.
+
+A paragraph should have a focus without having to stand alone. Let one paragraph
+prepare the next. Transitions, delayed explanations and returns to earlier ideas
+can carry the argument. Repetition can provide a reminder or a payoff; identify
+what a return contributes before calling it redundant.
+
+Do not flatten this movement into a sequence of claims, qualifications and verdicts,
+or make every section a miniature specification. Headings orient the reader; they
+do not replace the prose that connects the ideas. A personal story is one way to
+build this movement, not a required opening or permission to invent experience.
 
 #### What Michael does NOT do
 
 - No AI slop phrases: no "delve," "tapestry," "navigate the landscape," "in today's digital age"
 - No excessive hedging: claims are stated directly, then bounded with specific qualifications
-- No meta-commentary: no "it's worth noting," "it's important to mention," "let's discuss"
 - No emoji in prose (occasional emoji in informal contexts like tweet embeds)
-- No bullet-point arguments; bullets are reserved for tool lists, steps, and specifications
 - No corporate jargon: no "leverage," "synergize," "drive innovation"
 - No forced analogies or extended metaphors that aren't load-bearing
 - Does not open posts with "time since I last posted" or similar weak hooks
 
 #### Voice summary in one sentence
 
-Michael writes like an engineer who reads economics and management theory, grounds everything in what he built last week, and trusts the reader to handle complexity without being talked down to.
+Michael talks to the reader as an engaged practitioner: personal, expressive and willing to argue a position, with evidence where it matters and room for a thought to develop.
 
 ### Code Snippets
 
@@ -132,8 +147,8 @@ Recent posts focus on:
 -  Avoid em dashes, as they can almost always be replaced by a semicolon
 -  No Oxford comma
 -  Prefer complete sentences
--  Keep sentences punchy
--  Avoid parenthetic asides or similar tangents within sentences; use two sentences instead
+-  Use short sentences for emphasis, not as the default shape of every thought
+-  Keep conversational asides when they carry the thought; split them when they obscure it
 -  No bold taxonomy labels (e.g., "**Cost type:**", "**Benefit scaling:**") as section scaffolding; weave framework vocabulary into prose naturally
 -  Avoid internal subsection headings (`###`) within short sections; continuous prose reads better unless the section is long enough to genuinely need navigation
 -  Never fabricate anecdotes or lived experience; if the author hasn't provided a specific story, don't invent one
@@ -290,12 +305,12 @@ mise run stats _posts/2026-01-01-slug.md
 ```
 
 It prints the sentence-length distribution (mean, standard deviation, min/max, and counts of
-short and long sentences) plus reading grades, all offline stdlib. The key number is the
-standard deviation. This voice prizes "burstiness," short punches alternating with long
-explanatory sentences, so a healthy draft shows a double-digit stdev and a real supply of both
-short (<= 8 words) and long (> 40 words) sentences. A high mean with a low stdev reads as
-uniformly dense and is a mild AI tell. The custom `styles/Blog/AvgSentenceLength.yml` metric also
-flags a runaway average inside Vale.
+short and long sentences) plus reading grades, all offline stdlib. Read the distribution as
+a prompt to listen to the prose. It does not establish voice quality or AI authorship.
+There is no required standard deviation, proportion of short sentences or quota of sentences
+over 40 words. Do not pad, split or combine sentences to hit a metric. The custom
+`styles/Blog/AvgSentenceLength.yml` metric also flags a runaway average inside Vale; inspect
+the actual passages before deciding whether anything needs to change.
 
 **Commercial API (optional, pre-publish only).** No install; an HTTP call with an API key in an
 env var (e.g. GPTZero at `api.gptzero.me/v2/predict/text`, or Originality.ai). These are

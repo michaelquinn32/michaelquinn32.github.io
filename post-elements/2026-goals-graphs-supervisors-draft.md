@@ -3,7 +3,7 @@ title: "Goals, graphs and the work of watching agents"
 excerpt: "Making agent work legible, then delegating some of the work of watching it"
 tags: [AI, Agents, Software Engineering, Knowledge Work]
 comments: true
-modified: 2026-11-08
+modified: 2026-11-09
 show_newsletter_signup: true
 use_math: false
 use_mermaid: false
@@ -18,139 +18,156 @@ header:
 
 ## Introduction
 
-I move my own work toward review, often across a whole epic. I review other people's work. And I get pull requests through the remaining checks and feedback so they can merge. Those three activities account for most of my engineering work now.
+In my [last post](/blog/2026/07/03/legibility-agents/), I discussed legibility and agents, and I am going to finish the second half of that work now. The first half was about the bargain these tools offer: agents make it much easier to work within strict systems, from Rust's type checker to Bazel's dependency graph, while quietly separating the production of software from the human understanding that used to come with writing it. We gain a great deal of capability. How do we keep enough visibility into the work to use that capability well?
 
-The agents do much of the work inside those buckets. I spend my time moving between them, working out what needs attention and deciding what should happen next. The basic workflow is familiar: define a task, implement it, review the result and ship it. What has changed is how much of that workflow can run without me, and how many copies of it can run at once.
+You could group a lot of my engineering work these days into one of three broad categories:
 
-In my [last post](/blog/2026/07/03/legibility-agents/), I described a strange trade. Agents make it easier to produce software that satisfies strict rules. But they also produce more work than I can personally understand at the rate it arrives. The code becomes legible to the compiler while the process becomes less legible to me.
+- Developing my own work, often across an epic, up to the point where it is ready for review.
+- Reviewing other people's work and giving them useful feedback.
+- Addressing the comments others leave on my work and getting pull requests through to merge.
 
-That problem has become a large part of my job. I need to know what the agents are doing, what their results mean and where my judgment would actually help. Reading every conversation is not a workable answer. Neither is accepting every green check.
+None of that is a new development process. We still define the task, write the software, review it and get it into users' hands. As I described in [It's Agents All the Way Down](/blog/2026/02/14/agents-all-the-way-down/), agents now do much of the work within those stages, while I move between them, provide direction and help at the decision points. The process has become more explicit as we have found ways to delegate more of it.
 
-The tools are starting to catch up. Some help me see the work. Others make the outcome or the process more explicit. And now we are building another layer: agents that take over some of the watching and coordination I currently do myself.
+In this post, I want to work through what that looks like, starting with the tools I use to see and act on the work. From there, I will describe goals and graphs, two complementary ways of making agent work more legible, before moving up another level to supervisor agents. That last step leads into a broader question raised in a recent Ezra Klein interview: what does it mean to rely on agents to watch other agents?
 
 ## First, somewhere to see the work
 
-[gh-dash](https://github.com/dlvhdr/gh-dash) and [tuicr](https://github.com/agavra/tuicr) have become important to how I work. Both run in the terminal, where I already spend most of my day.
+To get this started, I want to talk about two critical tools in my current workflow: [gh-dash](https://github.com/dlvhdr/gh-dash) and [tuicr](https://github.com/agavra/tuicr). Both are terminal tools, but they help with different parts of the job. gh-dash gives me a surface for grabbing and addressing work; tuicr lets me get into the work itself and give an agent precise feedback.
 
-gh-dash gives me a dashboard for GitHub pull requests and issues. Around it, I use launcher scripts that open the appropriate agent session or review tool. tuicr gives me a focused view of a change, with line-level comments that can go back to GitHub or into an agent conversation. The combination lets me move from the queue to the work without reconstructing the environment every time.
+### gh-dash: the queue and the way into the work
 
-These are not especially exotic capabilities. A list of work, a way to inspect it and some commands to act on it. But that ordinary structure matters. A terminal full of agent conversations tells me where the agents are talking. It does not necessarily tell me where the work stands.
+gh-dash organizes GitHub pull requests and issues into configurable views. I can see the work I need to review, check the state of my own changes and decide what to pick up next. That would be useful on its own, but the launcher scripts around it are just as important as the dashboard. They connect an item in the queue to the appropriate agent session or review tool, so choosing the work also gives me a way to start addressing it.
 
-My three buckets have different questions. For implementation, I want to know which task is running and what is blocking it. For review, I need enough context to judge the change and the proposed findings. For merging, I need to know what remains: a failed check, an unanswered comment or a decision someone has not made.
+![gh-dash showing a queue of pull requests with details for the selected change](/images/goals-graphs-supervisors/gh-dash.png)
 
-The dashboard organizes work rather than conversations. I can choose what to inspect instead of treating every active session as equally deserving of attention.
+_gh-dash's public demonstration, showing the pull request queue and detail pane. The launcher scripts I use sit around this interface. [Source: gh-dash](https://github.com/dlvhdr/gh-dash/blob/e6752f8f2cf10f650d4f6e136385ba70f57d11f1/docs/src/assets/overview.gif). This is not a company dashboard._
 
-But I am still doing the choosing. I look at the state, decide which operation follows and launch it. A better dashboard reduces the effort of that loop. It does not remove me from it.
+The questions I bring to the queue depend on the work. When an agent is developing something, I want to know which task it is working on and whether it is blocked. When I am reviewing, I need the context for the change and somewhere to inspect it. When I am trying to merge a pull request, I am looking for what is left: failed checks, unanswered comments or a decision that needs to be made. gh-dash and the launchers tie those questions to the workflows I already use.
 
-Visibility is not quite legibility. Seeing that an agent finished a review is useful. Understanding what it reviewed, what it could not check and whether its findings hold up is a different achievement. A dashboard can give me the first without giving me the second.
+I like this because it puts the work at the center.
+
+I do not have to start by finding the right conversation, remembering what was happening in it and then working out which command to give the agent. I can start with the thing that needs attention and enter the conversation from there.
+
+### tuicr: feedback where the work lives
+
+Once I get into a change, tuicr is the best tool I currently have for editing with an agent and providing direct feedback. It presents files or diffs in a review interface, lets me attach comments to the relevant passages and exports those comments with their file and line references. I can hand the result back to an agent without copying text into a chat and explaining which part I meant.
+
+![tuicr showing a side-by-side code diff with an inline review comment](/images/goals-graphs-supervisors/tuicr.png)
+
+_An inline comment in tuicr's public demonstration. The same feedback mechanism works for prose and specifications. [Source: tuicr](https://github.com/agavra/tuicr/blob/f098fb8f0911f6b9b14c80e23f79ab084cf5ef91/public/tuicr-demo.gif)._
+
+The feedback on an earlier draft of this post came back through that interface. Comments attached to particular paragraphs explained where the writing felt abrupt, where I needed to introduce an idea and where the structure was getting repetitive. That is exactly the kind of conversation I want to have with an agent: look at this passage, here is what is wrong with it, carry that understanding into the next draft.
+
+Although tuicr is primarily a code review tool, I think this interaction should be available almost everywhere we work with agents. A specification, a design document and a blog post all benefit from being able to point at the work and discuss it in place. The file is not just the output at the end of the conversation; it becomes part of the conversation.
+
+Claude's [Artifacts](https://claude.com/features/artifacts) supports this kind of feedback, with comments and editing alongside the work. [Cowork also supports selecting text in a Markdown draft and asking Claude to edit that passage](https://support.claude.com/en/articles/13345190-get-started-with-claude-cowork). These are important improvements in the user experience, not just conveniences. If we want people to engage with what an agent produced rather than skim its summary, we should make that engagement easier.
+
+Colleagues who use [Paseo](https://paseo.sh/docs/parallel-development) are working with another version of this emerging environment. Its documented workflow brings agent conversations, files, diffs and terminals together, with separate workspaces for parallel tasks and split panes for reviewing the result. The details differ from my terminal setup, but the need is similar: somewhere to organize the agents, somewhere to inspect their work and a short path from inspection to useful feedback.
+
+I expect these capabilities to become foundational parts of agent platforms. Better review interfaces will not automatically restore the understanding we used to gain from writing code, but they give us a much better place to start than asking people to supervise everything through a chat transcript. And once those interfaces are connected to explicit workflows, we can begin delegating more than the individual task.
 
 ## Goals: make the destination explicit
 
-Recently, I asked Claude to audit my pull request review workflow and adapt it for current Claude and Sol models. I brought in recent pull requests as benchmark material and gave it high-level guidance about prompt design, informed by Anthropic's [prompt-audit guidance](https://github.com/anthropics/skills/blob/main/skills/claude-api/shared/prompt-audit.md). Then I let it work.
+The first approach I want to discuss is goals. Rather than tell an agent exactly how to proceed, you make the outcome explicit and let it work toward that outcome, changing its approach as it learns. This is a familiar way to delegate to a person, but it becomes especially interesting when the worker can run through many attempts without you prompting each one.
 
-I did not deeply review most of the individual changes. Instead, I used the reviewers while the audit was ongoing. Iterate, try them on actual work, iterate again. I also reached out to colleagues as they received reviews. My sense of what worked developed through using the changing system, not through reading every instruction the agent modified.
+We have tried this a few times at Delphos Labs. Most recently, I asked Claude to audit my pull request review workflow and adapt it for current Claude and Sol models. I pulled in recent pull requests as benchmark material, supplied high-level feedback about good prompt design inspired by Anthropic's [prompt-audit guidance](https://github.com/anthropics/skills/blob/main/skills/claude-api/shared/prompt-audit.md) and set it to work. I wanted the agent to have room to investigate and improve the process, rather than make a list of edits I had already decided on.
 
-That is not a controlled experiment, and I cannot give you a clean estimate of the improvement. My impressions are not a substitute for an independent evaluation. But it is an example of a way of working that is becoming more practical: make the desired result explicit, give the agent feedback and let it choose how to get there.
+Most of the changes happened without deep human review.
 
-The [Ralph Wiggum loop](https://ghuntley.com/ralph/), described by Geoffrey Huntley in July 2025, was an influential early coding version of this approach. Keep running the agent against a task, preserve useful state and give it checks that push back when the work is wrong. The loop supplies persistence. The agent supplies the next attempt.
+Instead, I used the reviewers while the audit was ongoing: iterate, try them on real work, iterate again. I also reached out to colleagues as they received reviews. Their responses, together with my experience of using the changing system, helped refine my feeling for what was working.
 
-The important part was never the loop alone. A loop can repeat a mistake indefinitely. Huntley's fuller account puts specifications, tests and other checks around the work, with human observation feeding back into the instructions.
+I was still involved, but the involvement was different. Reading every instruction change would have made me the editor of the review system. Using it while it changed made me a source of feedback about its behavior, including the parts that are difficult to specify in advance: whether a comment is useful, whether a review directs attention to the right place and whether the whole exercise helps someone make a better decision about the change.
 
-That pattern is becoming a product feature. Claude Code's [`/goal` command](https://code.claude.com/docs/en/goal.md) lets you state a completion condition. After a turn finishes, a separate model evaluates whether the condition has been met. If not, another turn begins. You no longer have to keep saying some version of "continue."
+I cannot put a percentage on the improvement. What I can describe is the freedom this gave the agent: with the outcome and constraints explicit, it could investigate and try changes I had not prescribed, while I assessed the behavior those changes produced. That is why I find goal-directed work promising.
 
-I find the allocation of freedom here useful. The destination is constrained; the route can change. When the agent follows the constraints well enough, I do not need to specify every intermediate decision. It can investigate, try an approach, discover that it failed and try something else.
+The [Ralph Wiggum loop](https://ghuntley.com/ralph/), which Geoffrey Huntley described in July 2025, was an influential early coding version of this idea. Keep running an agent against a task, carry useful state forward and give it checks that push back on bad work. The simple loop supplied persistence, but the fuller practice included specifications, tests and human observation feeding back into the instructions. The interesting behavior came from putting those pieces together.
 
-But an explicit goal is not the same thing as a trustworthy check. "Improve the reviewer" leaves a lot unanswered. Finding more defects might be an improvement. Producing twice as many plausible but incorrect comments is not. A useful objective needs to preserve the things that matter while the agent searches for a better method.
+Now this is becoming a product feature. Claude Code's [`/goal` command](https://code.claude.com/docs/en/goal.md) lets you state a completion condition, then uses a separate model to assess that condition after a turn finishes. If the condition is not met, another turn begins. The agent can keep working without waiting for you to come back and type "continue."
 
-Even a separate evaluator has limits. Claude Code documents that its goal evaluator reads the conversation; it does not independently run commands or inspect files. A fresh model assessing a completion claim is useful, but it still depends on the evidence the working agent surfaced.
+Of course, the quality of the goal matters enormously. "Find more issues" would be a terrible objective for a reviewer if it rewarded a flood of plausible but incorrect comments. The work needs constraints as well as a destination, and completion needs evidence that does not disappear into the agent's confidence about itself. Claude Code's documentation makes one limitation particularly clear: its goal evaluator reads the conversation, rather than independently running commands or inspecting files. A separate evaluator is useful, but it still has to see the right evidence.
 
-This is the same problem I raised in the last post about agents writing their own tests. If the agent can satisfy the measure without doing what I meant, persistence just gives it more opportunities to find that shortcut. The goal needs constraints, the run needs limits and the completion claim needs something better than the worker's confidence.
+This connects to the problem from the last post about an agent writing its own tests. If the work and its measure share the same misunderstanding, green checks can reinforce the mistake. Giving the agent more attempts does not fix the measure. That is where independent checks, bounded runs and feedback from actual use become important.
 
-In the audit, my use of the reviewers supplied another kind of feedback. I was not absent from the process. I was interacting with its output while the process itself changed. Some of the judgment stayed tacit: my feeling for whether a review was useful, and my colleagues' reactions to what they received. That is valuable information. It is also information I still need to turn into clearer evaluation criteria.
+For me, the attraction is not that a goal makes the work completely predictable. It gives me a stable question to ask while the agent explores: are we getting closer to the thing I actually want? The route is allowed to surprise me.
 
 ## Graphs: make the coordination executable
 
-The other term showing up everywhere in my feed is "graphs." Much of the discussion is promotion. Posts announce that prompting is over, or that everyone has moved from agents to loops to graphs. Underneath that, something useful is happening.
+Goals make the destination explicit. There is another way to make the work easier to follow: write down the procedure in a form that software can execute. This is the idea behind much of the recent excitement about "graphs," a term you may have seen all over your feed if you follow people building with coding agents.
 
-Anthropic [announced dynamic workflows](https://x.com/ClaudeDevs/status/2060044853279617150) in May. Claude writes an orchestration script for the task, and a runtime executes that script to coordinate subagents. Its [documentation](https://code.claude.com/docs/en/workflows.md) draws the distinction plainly: with ordinary subagents, Claude decides what to launch next, turn by turn. With a dynamic workflow, the script holds the branching, repetition and intermediate results.
+I tend to think of these as structured workflows. Graphs are not new, and neither are subagents. What is exciting is how readily an agent can now turn a description of work into a program that coordinates other agents. We already trust these tools to write scripts and call tools; starting another agent can be one more operation in the script.
 
-That is the part that interests me. Agents already write scripts and call tools. Give them a tool for starting another agent, and they can write programs that coordinate agents too.
+Anthropic [announced dynamic workflows](https://x.com/ClaudeDevs/status/2060044853279617150) in May, and its [documentation](https://code.claude.com/docs/en/workflows.md) makes the change in responsibility easy to understand. In an ordinary conversation with subagents, the model decides what to launch next and receives the results back into its context. In a dynamic workflow, Claude writes a JavaScript orchestration script; the runtime executes it, keeping the intermediate results in variables and following the branches and loops in the program.
 
-The graph is the shape of that program: what runs, what depends on something else, what can run in parallel and where a failed result goes back for correction. [One widely circulated explanation on X](https://x.com/hanakoxbt/status/2091515787366306154) puts the relationship neatly: "The loop lives inside a node. The graph lives between them."
+That sounds like an implementation detail until you consider how much coordination can otherwise become part of the conversation. Launch a reviewer. Wait for it. Decide which reviewer comes next. Carry the findings into another prompt. Keep track of which workers finished and whether the validation happened. When those relationships are already known, a script can hold them without asking the model to reconstruct the process at every transition.
 
-These are not alternatives to goals. A worker inside the graph can pursue a goal with considerable freedom. The surrounding program can still determine what input it receives, what checks follow and what happens to its result.
+The graph describes what depends on what. Independent reviews can run in parallel; a validation step can wait for their findings; a failed check can return the affected work for correction. [One widely circulated explanation on X](https://x.com/hanakoxbt/status/2091515787366306154) puts the relationship to loops neatly: "The loop lives inside a node. The graph lives between them." A worker may have considerable freedom to achieve its goal while the surrounding procedure determines how its result moves through the system.
 
-Our review process at Delphos Labs is moving in this direction. A script starts the preparation and discovery work, including a subagent's assessment of how to review the change. Reviews then fan out across a team of reviewers. Models still assess the code and the findings. But more of the coordination belongs to the script rather than an agent remembering a long set of instructions.
+This is how our pull request review work at Delphos Labs is developing. A script drives preparation and discovery, including a subagent's assessment of how we should review the change, then fans the reviews out across a team. The models still do the assessment. The procedure determines how to collect and use their work. Anthropic's [Code Review service](https://code.claude.com/docs/en/code-review) describes a related pattern of parallel review followed by verification, ranking and publication.
 
-The broad review pattern is not unusual. Anthropic's [Code Review service](https://code.claude.com/docs/en/code-review) describes parallel agents finding issues, followed by verification, ranking and publication. More reviewers are only part of the change. Their relationship becomes explicit enough that software can execute it.
+The agent overseeing the run can then spend its effort on exceptions: watching for a failure, responding within its authority and telling me when I need to step in. It does not have to improvise the whole review process. And I can inspect the procedure separately from the judgments made during a run, which is a useful distinction when I am trying to understand why something went wrong.
 
-That gives me something more stable to supervise. Instead of asking whether an agent remembered the next step, I can inspect the procedure and the run. What was launched? Which workers completed? Did validation fail, or did a worker fail to return anything? Where does the process need me?
+There is a version of this that will be familiar even if you do not use coding agents. Claude's document tools can write a script to generate a deck, render its slides, inspect the result and revise it. Anthropic's [public presentation skill described that workflow in late 2025](https://github.com/anthropics/skills/blob/ef740771ac901e03fbca3ce4e1c453a96010f30a/skills/pptx/SKILL.md), before Cowork launched. Cowork's [documented capabilities](https://support.claude.com/en/articles/13345190-get-started-with-claude-cowork) bring code execution, multi-step work and parallel subagents into a much more accessible interface. You ask for a finished piece of work and, underneath, Claude combines judgment with a series of scripted operations and checks.
 
-The agent running the workflow has a narrower job too. It can watch execution, respond to exceptions within its authority and tell me when I need to step in. It does not need to reconsider the entire coordination problem after every result.
+I would not describe all of Cowork as a graph engine, but it is a useful way into the idea. The work is already more than a model producing one answer. Dynamic workflows take another step by making the coordination itself executable, rather than leaving it entirely to the agent's conversation.
 
-Claude's document tools offer a familiar version of this outside software engineering. You may have watched it write a script to produce a deck, render the slides, inspect the images and revise the result. Anthropic's [public presentation skill already described that sequence in late 2025](https://github.com/anthropics/skills/blob/ef740771ac901e03fbca3ce4e1c453a96010f30a/skills/pptx/SKILL.md), before Cowork launched.
+We can be deliberate about what each worker sees, too. Dave Rensin's [Elephant-Goldfish model](https://opensource.googleblog.com/2026/10/introducing-elephant-goldfish-model-plugin.html) separates a long, context-rich design discussion from fresh sessions that assess the resulting specification. The Elephant knows the history; a Goldfish has to make sense of the document without it. If the fresh reviewer cannot understand the plan, something important never made it out of the conversation and into the artifact.
 
-Cowork brings this style of work to people who do not spend their days in a coding agent. Its [documented capabilities](https://support.claude.com/en/articles/13345190-get-started-with-claude-cowork) include code execution, multi-step tasks and parallel subagents. I would not call the whole product a graph engine. But the combination of generation, scripted operations and inspection is already familiar to its users. Dynamic workflows extend that idea to the coordination itself.
+A workflow gives us a place to encode that separation, along with the model, reasoning settings and other parameters for each job. The fresh reviewer may still share the designer's model weaknesses, but it can expose assumptions that the original conversation took for granted. We can examine the handoff itself and improve it, instead of discovering much later that the next agent never understood what we wanted.
 
-They also give us a place to specify context boundaries. Dave Rensin's [Elephant-Goldfish model](https://opensource.googleblog.com/2026/10/introducing-elephant-goldfish-model-plugin.html) separates a long, context-rich design conversation from fresh sessions that assess the written specification. The Goldfish must understand the document without inheriting the discussion that produced it.
+The enthusiasm on X sometimes turns this into a progression where graphs replace loops and prompting is suddenly obsolete. I do not think that is the useful interpretation. Goals and graphs can sit inside each other, and neither removes the need to describe good work. One gives an agent room to search toward an outcome; the other makes the relationships between pieces of work explicit enough to run and inspect. Together, they give us much more to work with than a collection of conversations.
 
-That is a useful legibility test. If the reviewer needs the whole conversation to understand the plan, some important knowledge never reached the document. A workflow can preserve that separation deliberately, rather than hoping each new reviewer starts with the right context. It can also choose different models and reasoning settings for different jobs; context separation and model selection become explicit parts of the procedure.
-
-None of this makes the work deterministic. The coordination can be repeatable while the judgments inside it vary. A graph can faithfully execute a bad review process, and a hundred reviewers can share a blind spot. What becomes more legible is the process and its evidence, not the model's internal reasoning or a guarantee of correctness.
+Of course, a script can run a bad procedure perfectly. The gain is that the procedure is now available for inspection and revision. We have moved one more part of the work out of an agent's moment-to-moment decisions and into something both people and software can operate.
 
 ## Supervisors: let an agent operate the dashboard
 
-At Delphos Labs, we are also working on supervisor agents, inspired by [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness). The idea is to reduce the number of conversations I need to move between by giving another agent responsibility for watching work and bringing the right decisions back to me.
+Now we can return to the dashboard, because there is a natural next step. At Delphos Labs, we are working on supervisor agents, inspired by [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness), that take over some of the watching and coordination I currently do myself.
 
-This is a level above the tools I started with. When I use gh-dash, I inspect the state of a pull request and invoke a command. A supervisor can inspect that state and invoke the same command. It does not need to press my keyboard shortcut or use my terminal interface. It needs access to the operation underneath.
+Think about what I do when I open gh-dash. I look at the work, decide which part needs attention and invoke a command to start the appropriate workflow. The dashboard is an interface to those operations, not the only place they can happen. A supervisor can inspect the same state and execute the same commands without pressing my keyboard shortcuts or reproducing my terminal layout.
 
-That is a more interesting abstraction than another summary of my open pull requests. The supervisor can potentially take the next permitted step, check what happened and return when the work needs a decision it cannot make. It starts replacing my use of the dashboard, rather than just making the dashboard easier to read.
+This is the abstraction above the dashboard: an agent starts doing some of what I do with the tools, rather than providing another screen for me to look at. Where I used to switch into a conversation to ask what happened, it can collect the result. Where the next step is already defined and permitted, it can launch that step. And where the work needs my judgment, it can bring me the question with the relevant context.
 
-Goals and graphs give it something concrete to operate. The supervisor can read what a worker is trying to achieve, or launch and observe a defined procedure. It does not need to reconstruct every worker's conversation to determine what should happen next.
+We are building toward this, and the explicit workflows give us a useful starting point. The supervisor can ask whether a goal has been reached, observe a workflow's progress or send a worker back to address a failed check, without having to invent the process for getting a pull request from one state to another.
 
-The communication needs structure too. DeepSeek's [public subagent interfaces](https://github.com/deepseek-ai/deepseek-harness/blob/master/docs/subsystems/subagent.md) include discovery, messaging, interruption and result collection. Those are the basic mechanics. The harder contract is deciding what a worker must report, what a supervisor can do in response and what still requires a person.
+DeepSeek's [public subagent interfaces](https://github.com/deepseek-ai/deepseek-harness/blob/master/docs/subsystems/subagent.md) include the mechanics you would expect: finding agents, messaging them, interrupting them and collecting results. The same discipline we apply to workflows can extend to those interactions. A worker should have a clear way to report completion or a blocker; the supervisor should know which responses it can make and when it must ask a person.
 
-The supervisor can also give me a cleaner account of the work by leaving out precisely the detail I would have questioned. "All reviews complete" is wonderfully compact. It is also compatible with a worker failing, an unresolved disagreement or a finding nobody actually verified, unless the reporting contract distinguishes those cases.
+The benefit I am after is fewer conversations competing for my attention. I still want to inspect a change in tuicr or go back to the dashboard when that is useful. But I do not want every piece of work to wait for me to notice that it is ready for the next ordinary operation. We have made the workers faster; now we can do something about the human repeatedly moving work between them.
 
-The supervisor's account has to remain connected to the underlying work. I need to be able to go from a claim to the result or check that supports it. Fewer interruptions are useful only if the system still brings me the interruptions that matter.
+This also puts pressure on the quality of the supervisor's account. "All reviews complete" is a pleasant thing to read, but it needs to distinguish a clean result from a worker that failed to return, or a disagreement nobody resolved. I need a path back to the findings and checks, not just a reassuring sentence. Otherwise, the supervisor has saved my attention by hiding the work I needed to see.
 
-And here's the irony: the tools I built to make agent work visible to me are also helping define the work I can delegate next. Once observing the queue and acting on it become explicit operations, another agent can perform them. The new layer buys back attention while creating another process I need to understand.
+And here is the part I find especially interesting. The tools that make the work easier for me to see also help define the work another agent can take over. The launchers I use from the dashboard become operations a supervisor can invoke. The review feedback becomes something a worker can address. We are not throwing away the human interface; we are building on the structure it helped us create.
 
 ## The horizon beyond my terminal
 
-That last step makes the recent [Ezra Klein interview with Arvind Narayanan](https://www.nytimes.com/2026/10/09/opinion/ezra-klein-podcast-arvind-narayanan.html) feel particularly relevant. Arvind and Sayash Kapoor developed the [AI as Normal Technology](https://www.normaltech.ai/p/ai-as-normal-technology) argument. AI could change society as much as electricity did, but we can still shape its effects through institutions, engineering and choices about deployment.
+This brings me to the broader horizon, and to a conversation I kept thinking about while working through these ideas. On a recent [Ezra Klein episode with Arvind Narayanan](https://www.nytimes.com/2026/10/09/opinion/ezra-klein-podcast-arvind-narayanan.html), the discussion turns to AI systems monitoring other AI systems. Arvind and Sayash Kapoor developed the [AI as Normal Technology](https://www.normaltech.ai/p/ai-as-normal-technology) argument: AI can change society on the scale of electricity without making human choices about institutions, engineering and deployment irrelevant.
 
-Ezra is uncomfortable with a future in which AI systems monitor other AI systems, and those monitors become part of how we understand what happened. He does not deny that this is likely. His concern is whether we can trust the resulting account, especially when systems can deceive their operators or cooperate in unexpected ways.
+Ezra expresses considerable discomfort with the monitoring picture. If one AI tells us what another AI did, and we increasingly depend on that account because we cannot follow the work ourselves, what exactly are we trusting? He is particularly concerned about deception and unexpected cooperation between agents, not merely the existence of complicated software.
 
-My first reaction is that software monitoring software is already ordinary. We use automated checks, security tools and monitoring systems because the systems we operate are too complex and too fast to watch directly. Adding an agent to the observation layer is not, by itself, a new category of absurdity.
+I understand the discomfort. I also think that focusing on the word "agent" can make the arrangement sound stranger than it is. We already use software to monitor software, analyze logs and flag behavior no person could watch directly at the speed or scale it occurs. When an agent helps inspect another agent's work, we are extending that observation layer, not inventing the idea that machines can help us see what other machines are doing.
 
-But that does not settle Ezra's concern. A system that interprets ambiguous work and reports on another agent introduces different failure modes from a counter recording an error rate. The shared name "software" does not make those differences disappear.
+That does not make every such arrangement trustworthy. A system interpreting another agent's behavior has different failure modes from a counter recording an error rate. But it does suggest a more useful question than whether agents watching agents feels too strange to accept: what would make this particular arrangement worthy of our trust, and how would we find out when it is not?
 
-Arvind makes that distinction in his [notes after the interview](https://substack.com/@aisnakeoil/note/c-359957182). He acknowledges that an agent's intentionality changes the engineering problem. His argument is that control is still an engineering problem we can work on, not that existing techniques have already solved it.
+Arvind's [notes after the interview](https://substack.com/@aisnakeoil/note/c-359957182) are useful here. He explicitly acknowledges that an agent's intentionality changes the problem compared with traditional engineering systems. His position is not that the controls are already solved, but that they are an engineering problem we can work on, with defensive AI as part of the answer. There is already [research testing models that monitor other models under attempted subversion](https://arxiv.org/abs/2312.06942), rather than assuming that another model provides an independent guarantee.
 
-That seems like the productive position. We should not treat agents watching agents as inherently impossible. We should also not treat the extra agent as an answer to the question of who checks the work. It is another component whose access, evidence and failure modes need to be understood.
+I find that position much closer to the work in front of me. My pull request supervisor is not a solution to frontier AI safety, but it does require choices about what an agent can do, what it must report and where a human decision belongs. We are designing the execution and observation layers together. The goals, workflows and communication contracts are some of the means available to us, and their quality matters as much as the number of agents we can run.
 
-[Researchers have already tested models monitoring other models under attempted subversion](https://arxiv.org/abs/2312.06942). The important move is to test the arrangement against the failure we fear, rather than assume that asking a second model supplies an independent guarantee.
+There is also more than one kind of success to pursue. In a [later essay with Gabriel Unger](https://www.normaltech.ai/p/steering-ai-beyond-automation), Arvind argues for systems that expose sources, assumptions, uncertainties and intermediate artifacts so people can collaborate with them. That connects back to tuicr and the review of this draft. The agent does not have to choose between finishing work for me and giving me somewhere to engage with it; a better interface can help it do both.
 
-My review workflows are not a solution to frontier AI safety. A supervisor keeping track of pull requests is not the same thing as a security system containing a hostile agent. But working on the smaller problem makes the larger one less abstract. We are deciding what can act, what can observe, what evidence must survive and when a human has to be involved.
-
-In a [later essay with Gabriel Unger](https://www.normaltech.ai/p/steering-ai-beyond-automation), Arvind argues for agents that make sources, assumptions, uncertainties and intermediate artifacts available to their users. That connects directly to the legibility problem. Finishing the work is useful; helping me understand and steer it is a different contribution, and one I do not want to lose.
+This is why I do not see legibility as a temporary problem we will solve by adding one more reviewer. Each new layer changes what we can see and what we have to understand. The practical response is to keep improving the tools and practices at those boundaries, rather than insist that a human must personally perform every act of observation for any of it to count.
 
 ## Conclusion
 
-I am not trying to get rid of the dashboard. I am trying to stop being the only thing that can look at it and decide what happens next.
+I started this pair of posts with agents helping a small team use tools and disciplines that once demanded much more specialized human effort. Following that through brings us to a different question: how much of the surrounding work can we delegate without losing our ability to understand and direct it?
 
-Goals make an intended outcome explicit. Graphs make coordination executable. Supervisors can use both to take over some of the attention-consuming work between decisions. Each can make delegation easier to understand without requiring me to prescribe or inspect everything.
+I am excited by how much room there is to improve, especially in the work between tasks. Getting the agents to write code faster has brought us to the point where I can spend a substantial part of my day helping finished work take its next step. I would rather spend more of that time thinking about what we should build and engaging with the decisions that will shape it, and I want the supervisor to help make that possible.
 
-But none eliminates the question from the last post. The agent can produce work without producing my understanding of it. Another agent can assess that work without transferring its understanding to me either. A good summary might help close the gap, or just make the gap more comfortable.
+The unresolved part is how to preserve judgment as that arrangement gets more comfortable. If the supervisor handles the queue, I will spend less time looking at the queue. Some of that is the whole point. Some of it could mean missing the pattern I would have noticed by being there, and I do not yet know how well we can distinguish the two.
 
-I do not think the answer is to keep myself at every step. I am already working beyond what I could inspect that way. The practical task is to make the important claims traceable, the consequential actions controllable and the unresolved questions hard to hide.
-
-That is the part I want to keep building: not a system that never needs my attention, but one that makes better use of it. The next test is whether the supervisor gives me back time while keeping me close enough to notice when its picture of the work is wrong.
+That is what I want to test next. Not whether I can run one more agent, but whether the next layer gives me a better relationship to the work: less time moving it along, more useful opportunities to question it and enough understanding to recognize when I need to step back in.
 
 ## Tools Used
 
 - [OpenCode](https://opencode.ai/) with GPT-6.1 Sol for research and drafting
 - Perplexity for source discovery
-- Public documentation and source code from Anthropic, DeepSeek Harness, gh-dash and tuicr
+- [gh-dash](https://github.com/dlvhdr/gh-dash) and [tuicr](https://github.com/agavra/tuicr) for the workflows discussed here and feedback on the draft
+- Public documentation and source code from Anthropic, DeepSeek Harness and Paseo
 - The Ezra Klein interview with Arvind Narayanan and Narayanan's published response
