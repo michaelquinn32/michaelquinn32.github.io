@@ -6,7 +6,7 @@
 	"image": "ghcr.io/rocker-org/devcontainer/r-ver:4",
 	// Features to add to the dev container. More info: https://containers.dev/features.
 	"features": {
-		"ghcr.io/devcontainers/features/ruby:1": {}
+		"ghcr.io/devcontainers/features/ruby:2": {}
 	},
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	// "forwardPorts": [],
