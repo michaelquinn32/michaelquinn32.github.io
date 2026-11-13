@@ -102,9 +102,9 @@ def main(argv: list[str]) -> int:
             "flesch_reading_ease": round(reading_ease, 1),
         },
         "notes": (
-            "Signal, not a gate. A healthy long-form voice mixes lengths: expect a "
-            "stdev in double digits and a supply of both short (<=8) and long (>40) "
-            "sentences. Low stdev with a high mean reads as uniformly dense."
+            "Signal, not a gate. Read the distribution as a prompt to listen to the "
+            "prose, not as a measure of voice quality or AI authorship. There are "
+            "no required sentence-length quotas or standard-deviation targets."
         ),
     }
     print(json.dumps(result, indent=2))

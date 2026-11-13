@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1160" height="460" viewBox="0 0 1160 460" role="img" aria-labelledby="title description">
+  <title id="title">A goal loop with human assessment</title>
+  <desc id="description">An agent revises a review process and produces candidate reviews. A user assesses usefulness and tradeoffs, informed by automated comment-count and coverage comparisons, and sends feedback to guide the next attempt.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 Z" fill="#64748b"/>
+    </marker>
+  </defs>
+  <rect width="1160" height="460" rx="16" fill="#ffffff"/>
+  <g font-family="system-ui, sans-serif" text-anchor="middle">
+    <text x="580" y="43" fill="#1e3a5f" font-size="25" font-weight="600">Goal: make the reviews more useful</text>
+    <g fill="none" stroke="#64748b" stroke-width="3" stroke-linejoin="round" marker-end="url(#arrow)">
+      <path d="M330 155 H420"/>
+      <path d="M700 155 H800"/>
+      <path d="M560 210 V282"/>
+      <path d="M700 324 H940 V210"/>
+      <path d="M1080 155 H1120 V418 H190 V210"/>
+    </g>
+    <g stroke-width="2">
+      <rect x="50" y="100" width="280" height="110" rx="10" fill="#ffedd5" stroke="#c2410c"/>
+      <rect x="420" y="100" width="280" height="110" rx="10" fill="#f1f5f9" stroke="#64748b"/>
+      <rect x="800" y="100" width="280" height="110" rx="10" fill="#dbeafe" stroke="#1d4ed8"/>
+      <rect x="420" y="282" width="280" height="84" rx="10" fill="#f1f5f9" stroke="#64748b"/>
+    </g>
+    <g font-size="23" font-weight="600">
+      <text x="190" y="140" fill="#7c2d12">Agent</text>
+      <text x="560" y="140" fill="#334155">Candidate reviews</text>
+      <text x="940" y="140" fill="#1e3a5f">User assessment</text>
+    </g>
+    <g font-size="20">
+      <text x="190" y="174" fill="#7c2d12">Revises the review process</text>
+      <text x="560" y="174" fill="#334155">Try on real changes</text>
+      <text x="940" y="174" fill="#1e3a5f">Usefulness and tradeoffs</text>
+      <text x="560" y="315" fill="#334155">Automated comparisons</text>
+      <text x="560" y="345" fill="#334155">Counts and coverage</text>
+      <text x="620" y="403" fill="#1e3a5f">Human feedback directs the next attempt</text>
+    </g>
+  </g>
+</svg>
