@@ -47,3 +47,10 @@ tuicr
 Unger
 Wiggum
 Paseo
+Cherny
+libsignal
+Romig
+subprocesses
+tmux
+Verus
+worktree

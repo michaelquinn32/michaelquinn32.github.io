@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800" role="img" aria-labelledby="title description">
+  <title id="title">How a Claude Code dynamic workflow runs</title>
+  <desc id="description">The main Claude agent writes a JavaScript workflow. A separate workflow runtime executes the script, which dispatches subagents and collects and processes their results in script variables. The final output returns to the main agent.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 Z" fill="#64748b"/>
+    </marker>
+  </defs>
+  <rect width="1200" height="800" rx="16" fill="#ffffff"/>
+  <rect x="55" y="230" width="1090" height="530" rx="16" fill="#f8fafc" stroke="#64748b" stroke-width="2" stroke-dasharray="9 7"/>
+  <g font-family="system-ui, sans-serif">
+    <text x="80" y="265" fill="#334155" font-size="22" font-weight="600">Workflow runtime</text>
+    <g fill="none" stroke="#64748b" stroke-width="3" stroke-linejoin="round">
+      <path d="M600 125 V280" marker-end="url(#arrow)"/>
+      <path d="M600 370 V405 H240 V450" marker-end="url(#arrow)"/>
+      <path d="M600 405 V450" marker-end="url(#arrow)"/>
+      <path d="M600 405 H960 V450" marker-end="url(#arrow)"/>
+      <path d="M240 530 V565 H960 V530"/>
+      <path d="M600 530 V610" marker-end="url(#arrow)"/>
+      <path d="M420 655 H20 V78 H420" marker-end="url(#arrow)"/>
+    </g>
+    <text x="195" y="59" fill="#334155" font-size="21" text-anchor="middle">Final output</text>
+    <text x="620" y="190" fill="#334155" font-size="21">Writes / starts workflow</text>
+    <g stroke-width="2">
+      <rect x="420" y="30" width="360" height="95" rx="10" fill="#dbeafe" stroke="#1d4ed8"/>
+      <rect x="420" y="280" width="360" height="90" rx="10" fill="#ede9fe" stroke="#6d28d9"/>
+      <rect x="100" y="450" width="280" height="80" rx="10" fill="#ffedd5" stroke="#c2410c"/>
+      <rect x="460" y="450" width="280" height="80" rx="10" fill="#ffedd5" stroke="#c2410c"/>
+      <rect x="820" y="450" width="280" height="80" rx="10" fill="#ffedd5" stroke="#c2410c"/>
+      <rect x="420" y="610" width="360" height="90" rx="10" fill="#ede9fe" stroke="#6d28d9"/>
+    </g>
+    <g text-anchor="middle">
+      <text x="600" y="70" fill="#1e3a5f" font-size="26" font-weight="600">Main agent (Claude)</text>
+      <text x="600" y="103" fill="#1e3a5f" font-size="20">Main conversation</text>
+      <text x="600" y="318" fill="#4c1d95" font-size="25" font-weight="600">JavaScript workflow</text>
+      <text x="600" y="349" fill="#4c1d95" font-size="20">Coordinates subagent calls</text>
+      <g fill="#7c2d12" font-size="24" font-weight="600">
+        <text x="240" y="499">Claude subagent 1</text>
+        <text x="600" y="499">Claude subagent 2</text>
+        <text x="960" y="499">Claude subagent 3</text>
+      </g>
+      <text x="600" y="648" fill="#4c1d95" font-size="24" font-weight="600">Collect / process results</text>
+      <text x="600" y="679" fill="#4c1d95" font-size="20">Stored in script variables</text>
+    </g>
+  </g>
+</svg>
